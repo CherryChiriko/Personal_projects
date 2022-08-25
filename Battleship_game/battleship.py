@@ -1,6 +1,8 @@
+from sre_compile import isstring
 import numpy as np
 import string
 import random
+import keyboard
 
 class Board:
     def __init__(self, dim):  # building the basic board
@@ -14,7 +16,6 @@ class Board:
             self.board[0][i+1] = letter
         for i in range(1,dim+1):
             self.board[i][0] = str(i)
-        print(self.board)
     
     
     def place_ship(self):
@@ -29,7 +30,7 @@ class Board:
             if len(ships) != l: self.ship.append(elements)
             print(self.ship)
 
-    def update_board(self, coordinates):
+    def update_board(self, coordinates, shot_type):
         x, y = coordinates
         self.board[x][y] = "x"
         print(self.board)
@@ -77,26 +78,56 @@ class Ship:
         
 
 def shot (board, coordinates):
-    x, y = coordinates
-    x = x.upper()
-    for i, letter in enumerate(string.ascii_uppercase): 
-        if x == letter: x = i+1
-    coordinates = (x, y)
     h = board.shots_left
+    shot_type = ''
     for i, ship in enumerate(board.ships_list):
         for element in board.ships_list[i]:
-            if len(ship) == 1 and coordinates == element : print("Hit and sunk!"); board.shots_left -= 1; board.ships_list.remove(ship); break
-            if coordinates == element : print("Hit!"); board.shots_left -= 1; ship.remove(element); break
-    if h == board.shots_left : print("Miss!"); board.shots_left -= 1
+            if len(ship) == 1 and coordinates == element : 
+                print("Hit and sunk!")
+                board.shots_left -= 1; board.ships_list.remove(ship)
+                shot_type = '#'; break
+            if coordinates == element : 
+                print("Hit!") 
+                board.shots_left -= 1; ship.remove(element)
+                shot_type = 'o'; break
+    if h == board.shots_left : 
+        print("Miss!"); board.shots_left -= 1
+        shot_type = 'x'
     print("Shots left: ", board.shots_left)
+    return coordinates, shot_type
     #board.update_board(board, coordinates)
-            
 
+   
+playing = True
 b1 = Board(10)
-#print(b1.board)
+print("**** Welcome to the battleship game! ****")
+print("The game board is 10x10 with rows ranging from 0 to 9 and columns from A to J\nIt is currently not possible to change the dimension of the board, but please stay tuned for updates.")
+print("Press 'Ctrl+C' to exit at any time.")
+print("****************************************")
+try:
+    while playing:
+        print("You have a total of ", b1.shots_left, " shots.")
+        print(b1.board)
+        
+        try: 
+            coordinates = input("Type the coordinates of your shot in the following format: L0.\n")
+            x, y = coordinates
+        except ValueError: print("Input not valid"); continue
+        x = x.upper()
+        if x not in "ABCDEFGHIJ": print("Input not valid"); continue    # hard coded lol
+            
+        try: y = int(y)
+        except: print("not valid"); continue
+
+        for i, letter in enumerate(string.ascii_uppercase): 
+            if x == letter: x = i+1
+        coordinates = (x, y)
+        b1.update_board(shot(b1, coordinates))
+        break
+
+except KeyboardInterrupt: pass
+print(b1.board)
 shot(b1, ('J',1))
 shot(b1, ('J',2))
 shot(b1, ('J',3))
 shot(b1, ('J',4))
-
-
