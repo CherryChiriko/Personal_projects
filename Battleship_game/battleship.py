@@ -1,21 +1,90 @@
-from sre_compile import isstring
+# from sre_compile import isstring
+#  isinstance(variable, str)
 import numpy as np
 import string
 import random
-import keyboard
+#import keyboard
+
+# alt+1+5  ☼
+
+WHITESPACE = '⚫' #⚪🔵
+BARCO = '🐱' #'🐶'
+EQUIS = WHITESPACE
+# EQUIS = '❌'
+TRY_N_TIMES = 10
 
 class Game:
     def __init__(self, dim):
         self.shots_left = 50   # shots to end the game
-    pass
+        self.style = ['emoji', 'traditional']
+        self.players = 1
+        self.board_dimension = 10
+        self.ships_dimensions = [4,3,3,2,2,2,1,1,1,1]
 
+    def shot (board, coordinates):
+    h = board.shots_left
+    shot_type = ''
+    for i, ship in enumerate(board.ships_list):
+        for element in board.ships_list[i]:
+            if len(ship) == 1 and coordinates == element : 
+                print("Hit and sunk!")
+                board.shots_left -= 1; board.ships_list.remove(ship)
+                shot_type = '#'; break
+            if coordinates == element : 
+                print("Hit!") 
+                board.shots_left -= 1; ship.remove(element)
+                shot_type = 'o'; break
+    if h == board.shots_left : 
+        print("Miss!"); board.shots_left -= 1
+        shot_type = 'x'
+    print("Shots left: ", board.shots_left)
+    return shot_type
+    #board.update_board(board, coordinates)
+
+    b2 = Board(10)
+b2.generate_board()
+# b1 = Board(10)
+# print("**** Welcome to the battleship game! ****")
+# print("The game board is 10x10 with rows ranging from 0 to 9 and columns from A to J\nIt is currently not possible to change the dimension of the board, but please stay tuned for updates.")
+# print("Press 'Ctrl+C' to exit at any time.")
+# print("****************************************")
+# print(b1.board)
+# print("****************************************")
+# try:
+#     while b1.shots_left:
+#         if not b1.ships_list : break
+#         print("You have a total of ", b1.shots_left, " shots.")
+        
+#         try: 
+#             coordinates = input("Type the coordinates of your shot in the following format: L0.\n")
+#             x, y = coordinates
+#         except ValueError: print("Input not valid"); continue
+#         x = x.upper()
+#         if x not in "ABCDEFGHIJ": print("Input not valid"); continue    # hard coded lol
+            
+#         try: y = int(y)+1
+#         except: print("not valid"); continue
+
+#         if y < 1 or y > 9 : print("not valid"); continue
+
+#         for i, letter in enumerate("ABCDEFGHIJ"):   # string.ascii_uppercase): 
+#             if x == letter: x = i+1
+
+#         b1.update_board((x, y), shot(b1, (x, y)))
+
+# except KeyboardInterrupt: pass
+# print("**** GAME OVER! ****")
+# if not b1.ships_list : print("°°°°  You won! °°°°")
+# else: print("You lost!")
+# print(b1.board)
 
 class Board:
     def __init__(self, dim):  # building the empty board
         self.dim = dim
-        self.board = np.full((dim+1,dim+1), " ")
+        self.board = np.full((dim+1,dim+1), WHITESPACE)
         self.ships_list = []    # ships already on the board
-        self.ships_dimensions = [4,3] #[4,3,3,2,2,2,1,1,1,1]
+        # self.ships_dimensions = [4,3] #[4,3,3,2,2,2,1,1,1,1]
+        self.ships_dimensions = [4,3,3,2,2,2,1,1,1,1]
         self.shots_left = 50
 
         for i, letter in enumerate(string.ascii_uppercase):  # write letters as board coordinates
@@ -25,15 +94,16 @@ class Board:
             self.board[0][i+1] = str(i)
 
     def generate_board(self):
-        i = 50
-        while self.ships_dimensions:
-            if not i: self.generete_board
-            for dim in self.ships_dimensions:
-                l = len(self.ships_list)
-                while len(self.ships_list)== l:
-                    self.place_ship_random(dim)
-            i-=1
+        while len(self.ships_list) != len(self.ships_dimensions):
+            self.ships_list.clear()
         
+            for dim in self.ships_dimensions:
+                for _ in range(TRY_N_TIMES):
+                    ship_placed = self.place_ship_random(dim)
+                    if ship_placed: break
+
+                if not ship_placed:
+                    break
             
     
     def place_ship_random(self, dim):
@@ -44,22 +114,23 @@ class Board:
             ship_board = Ship(len(ship_on_board))
             ship_board.elements = ship_on_board
             ship_board.set_surr(self)
-            print(ship_board.elements)
             for el in ship.elements:
-                print(el)
-                if el in ship_on_board or el in ship_board.surround: return
+                if el in ship_on_board or el in ship_board.surround: return False
 
         self.ships_list.append(ship.elements)
         for el in ship.elements:
             el_x, el_y = el
-            self.board[el_x][el_y]= 'o'
+            self.board[el_x][el_y]= BARCO
         ship.set_surr(self)
         for el in ship.surround:
             el_x, el_y = el
-            self.board[el_x][el_y]= 'x'
+            self.board[el_x][el_y]= EQUIS
+
+        return True
 
 
     def place_ship_by_coordinates(self, coordinates):
+        # check that coordinates are allowed
         ship = Ship(len(coordinates))
         ship.elements = coordinates
 
@@ -75,14 +146,17 @@ class Board:
         self.ships_list.append(ship.elements)
         for el in ship.elements:
             el_x, el_y = el
-            self.board[el_x][el_y]= 'o'
+            self.board[el_x][el_y]= BARCO
         ship.set_surr(self)
         for el in ship.surround:
             el_x, el_y = el
-            self.board[el_x][el_y]= 'x'
+            self.board[el_x][el_y]= EQUIS
 
 
-
+    def update_board(self, coordinates, shot_type):
+        x, y = coordinates
+        self.board[x][y] = shot_type
+        print(self.board)
 
 class Ship:
     def __init__(self, dim):
@@ -128,12 +202,10 @@ class Ship:
 
 
 b2 = Board(10)
-b2.place_ship_by_coordinates([(4,3),(4,4)])
-b2.place_ship_by_coordinates([(4,4),(4,5),(4,6)])
-b2.place_ship_by_coordinates([(9,0),(9,1),(9,2)])  # use menu class to fix
-b2.place_ship_random(4)
-b2.place_ship_random(3)
+b2.generate_board()
 print(b2.board)
 
-
-#use counter to break while loop, recursive
+# >>> "o".isdigit()
+# False
+# >>> "o".isalpha()
+# True
