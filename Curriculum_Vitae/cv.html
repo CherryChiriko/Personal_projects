@@ -1,23 +1,49 @@
-<html>
-  <body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sofia Di Gennaro Curriculum Vitae</title>
-    <h1>Sofia Di Gennaro</h1>
+    <link href="styles.css" rel="stylesheet"/>
+    <!--<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  -->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G60c7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />-->
+  </head>
+  <body>
+    <header>
+      <h1>Sofia Di Gennaro</h1>
+    </header>
+
     <hr>
+
     <main>
-        <section> <!-- Personal Information -->
-        <h2>Personal Information</h2>
-        <!--<figure>
-          <img src="https://photos.app.goo.gl/MD1WZnB5ybRFP2Qa7" alt="Sofia Di Gennaro">
-          <figcaption>Me in 2020 on the Lake Garda</figcaption>
-        </figure>-->
-        <p><strong>Address:</strong> via 26 agosto, 46</p>
-        <p> 61034, Fossombrone (PU), Italy</p>
-        <p><strong>Date of Birth:</strong> 9th November 1995</p>
-        <p><strong>Mobile Phone:</strong> +39 393 8407081</p>
-        <p><strong>Email:</strong> sofia.digennarox@gmail.com</p>
-        </section>
+        <!-- Personal Information -->
+        <div class="PersonalInfo">
+          <section>
+          <h2>Personal Information</h2>
+          <figure>
+            <img style="width:250px" alt="Sofia Di Gennaro" src="https://lh3.googleusercontent.com/TesSrhinoe9DtqgTZ8Gh3eZvYH45JaGwaU8bBVXoZbLjxxhf-THfVAF1YS52a6zW6Kma3xDVKTzZch5d8Eh-n67SMp-bGEYHouaol-P3zC5-LbtSHvSFy4Jh37UYHmo0Wy8xcSW5Nkc=w600-h315-p-k" />
+            <figcaption>2020, Lake Garda (Italy)</figcaption>
+          </figure>
+          </section>
+          <section>
+            <article class="item">
+              <p class="category">Address:</p><p class="info">via 26 agosto, 46,</p><p class="info"> 61034, Fossombrone (PU), Italy</p>
+            </article>
+            <article class="item">
+              <p class="category">Date of Birth:</p><p class="info">9th November 1995</p>
+            </article>
+            <article class="item">
+              <p class="category">Mobile Phone:</p><p class="info">+39 393 8407081</p>
+            <article class="item">
+              <p class="category">Email:</p><p class="info">sofia.digennarox@gmail.com</p>
+            </article>
+          </section>
+        </div>
         <hr>
-        <section> <!-- Education -->
+        <!-- Education -->
+        <div class="Education">
+        <section>
         <h2>Education</h2>
         <ul>
           <li><strong>2020-today: </strong>Ph.D in Theoretical Physics
@@ -42,6 +68,8 @@
             <p>Graduation date: 20th October 2017</p></li>
         </ul>
         </section>
+        </div>
+        <div class="WorkExp">
         <section>
         <h2>Work Experience</h2>
         <ul>
@@ -57,32 +85,69 @@
           </li>
         </ul>
         </section>
+        </div>
         <hr>
-        <section> <!-- Foreign Languages -->
+        <!-- Foreign Languages -->
+        <div class="ForeignLang">
+        <section>
         <h2>Foreign Languages</h2>
         <ul>
-          <li><strong>Italian:</strong> Native</li>
-          <li><strong>English:</strong> Fluent, C1 (Certified by the University of Bologna)</li>
-          <li><strong>Spanish:</strong> Fluent, C1/C2 (self-assessed)</li>
-          <li><strong>German:</strong> Intermediate, B1 (self-assessed)</li>
-          <li><strong>Japanese:</strong> Intermediate, N3 (self-assessed)</li>
-          <li><strong>Chinese:</strong> Intermediate, HSK4/HSK5 (self-assessed)</li>
-          <li><strong>Vietnamese:</strong> A0 (know the basics)</li>
-          <li><strong>French, Portuguese:</strong> can understand written language</li>
+          <li><article class="item">
+            <p class="category">Italian:</p><p class="info">Native</p>
+          </article></li>
+          <li><article class="item">
+            <p class="category">English:</p><p class="info">Fluent, C1</p><p class="info">(Certified by the University of Bologna)</p>
+          </article></li>
+          <li><article class="item">
+            <p class="category">Spanish:</p><p class="info">Fluent, C1/C2 (self-assessed)</p>
+          </article></li>
+          <li><article class="item">
+            <p class="category">German:</p><p class="info">Intermediate, B1 (self-assessed)</p>
+          </article></li>
+          <li><article class="item">
+            <p class="category">Japanese:</p><p class="info">Intermediate, N3 (self-assessed)</p>
+          </article></li>
+          <li><article class="item">
+            <p class="category">Chinese:</p><p class="info">Intermediate, HSK4/HSK5 (self-assessed)</p>
+          </article></li>
+          <li><article class="item">
+            <p class="category">Vietnamese:</p><p class="info">A0 (know the basics)</p>
+          </article></li>
+          <li><article class="item">
+            <p class="category">French, Portuguese:</p><p class="info">can understand written language</p>
+          </article></li>
         </ul>
         </section>
-        <section> <!-- Programming Languages -->
+        </div>
+         <!-- Programming Languages -->
+        <div class="ProgrammingLang">
+        <section>
         <h2>Programming Languages</h2>
         <ul>
-          <li><strong>Python:</strong> Competent</li>
-          <li><strong>LaTeX:</strong> Competent</li>
-          <li><strong>Mathematica:</strong> Average</li>
-          <li><strong>C++:</strong> Basic</li>
-          <li><strong>HTML, CSS:</strong> Basic</li>
-          <li><strong>Java:</strong> Basic</li>
-          <li><strong>Android Studio:</strong> Basic</li>
+          <li><article class="item">
+            <p class="category">Python:</p><p class="info">Competent</p>
+          </article></li>
+          <li><article class="item">
+            <p class="category">LaTeX:</p><p class="info">Competent</p>
+          </article></li>
+          <li><article class="item">
+            <p class="category">Mathematica:</p><p class="info">Average</p>
+          </article></li>
+          <li><article class="item">
+            <p class="category">C++:</p><p class="info">Basic</p>
+          </article></li>
+          <li><article class="item">
+            <p class="category">HTML, CSS:</p><p class="info">Basic</p>
+          </article></li>
+          <li><article class="item">
+            <p class="category">Java:</p><p class="info">Basic</p>
+          </article></li>
+          <li><article class="item">
+            <p class="category">Android Studio:</p><p class="info">Basic</p>
+          </article></li>
         </ul>
         </section>
+      </div>
     </main>
   </body>
 </html>

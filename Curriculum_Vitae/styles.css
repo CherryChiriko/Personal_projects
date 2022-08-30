@@ -1,0 +1,32 @@
+header{
+  font-family: Garamond, serif;
+  font-size: 20px;
+}
+body {
+  background-color: orange;
+  font-family: sans-serif;
+  padding: 20px;
+}
+img {
+  display: block;
+}
+.PersonalInfo, .ForeignLang, .ProgrammingLang{
+  background-color: DodgerBlue;
+  padding-top: 2px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+
+.item p {
+  display: inline-block;
+  margin-top: 2px;
+  margin-bottom: 5px;
+}
+.category{
+  font-weight: bold;
+  text-align: left;
+  width: 49%;
+}
+.info{
+  text-align: right;
+}
