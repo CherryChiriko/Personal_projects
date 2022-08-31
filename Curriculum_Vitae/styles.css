@@ -3,18 +3,26 @@ header{
   font-size: 20px;
 }
 body {
-  background-color: orange;
+  background: radial-gradient(circle, yellow 70%, orange);
   font-family: sans-serif;
   padding: 20px;
 }
 img {
   display: block;
 }
+
+
 .PersonalInfo, .ForeignLang, .ProgrammingLang{
-  background-color: DodgerBlue;
+  background: linear-gradient(to right,
+    DodgerBlue, rgb(15,50,155) 30% 70%, rgb(255,15,250));
   padding-top: 2px;
   padding-bottom: 5px;
   padding-left: 10px;
+  width: 700px;
+  align-self: auto;
+  color: white;
+  display: table;
+  clear: both;
 }
 
 .item p {
