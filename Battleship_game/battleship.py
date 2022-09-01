@@ -1,213 +1,157 @@
-# from sre_compile import isstring
-#  isinstance(variable, str)
 import numpy as np
 import string
 import random
-#import keyboard
 
-# alt+1+5  ☼
-EMPTY = '⚫' #⚪
-WATER = '🔵'
-SHIP = '🐱'
-WHITESPACE = '⚫' #⚪🔵
-BARCO = '🐱' #'🐶'
-EQUIS = WHITESPACE
-# EQUIS = '❌'
+# style_types = ['emoji', 'traditional']
+# alternative emojis '⚪''🐱''🐶'
+def style(type):
+        if type == 'emoji':
+            return {'empty':'⚫', 'water': '🔵', 'ship': '🚢', 'sunk_ship': '❌'}
+        else : 
+            return {'empty':'.', 'water': '-', 'ship': '0', 'sunk_ship': 'x'}
+
 TRY_N_TIMES = 10
+
 class Game:
     def __init__(self, dim):
         self.shots_left = 50   # shots to end the game
-        self.style = ['emoji', 'traditional']
-        self.players = 1
-        self.board_dimension = 10
-        self.ships_dimensions = [4,3,3,2,2,2,1,1,1,1]
-        self.solution = Board(self.board_dimension)
-        self.player_board = Board(self.board_dimension)
+        self.single_player = True
+        self.board_dimension = dim
+        self.solution = Board(dim, 'emoji')
+        self.player_board = Board(dim, 'traditional')
 
     def intro(self):
-        self.solution.generate_board()
-        self.player_board.ships_list = self.solution.ships_list
-        print("**** Welcome to the battleship game! ****")
-        print("The game board is 10x10 with rows ranging from 0 to 9 and columns from A to J\nIt is currently not possible to change the dimension of the board, but please stay tuned for updates.")
-        print("Press 'Ctrl+C' to exit at any time.")
+        if self.single_player: self.solution.generate_board()       # randomly generate game board 
+        # self.player_board.ships_list = self.solution.ships_list
+        # print("**** Welcome to the battleship game! ****")
+        # print("The game board is 10x10 with rows ranging from 0 to 9 and columns from A to J\nIt is currently not possible to change the dimension of the board, but please stay tuned for updates.")
+        # print("Press 'Ctrl+C' to exit at any time.")
+        # print("****************************************")        
+        self.player_board.print_board()
         print("****************************************")
-        
-        # for row in self.player_board.board: print(*row, sep = '')
-        print(self.player_board.board)
-        print("****************************************")
-
-    def shot (self, board, coordinates): 
-        h = self.shots_left
-        shot_type = ''
-        for i, ship in enumerate(board.ships_list):
-            for element in board.ships_list[i]:
-                if len(ship) == 1 and coordinates == element : 
-                    print("Hit and sunk!")
-                    board.shots_left -= 1; board.ships_list.remove(ship)
-                    shot_type = '#'; break
-                if coordinates == element : 
-                    print("Hit!") 
-                    board.shots_left -= 1; ship.remove(element)
-                    shot_type = 'o'; break
-        if h == board.shots_left : 
-            print("Miss!"); board.shots_left -= 1
-            shot_type = 'x'
-        print("Shots left: ", board.shots_left)
-        return shot_type
-        #board.update_board(board, coordinates)
-
-    def gameplay(self):
-        try:
-            while self.shots_left:
-                if not self.player_board.ships_list : break
-                print("You have a total of ", self.shots_left, " shots.")
-                try: 
-                    coordinates = input("Type the coordinates of your shot in the following format:\nLetterNumber, e.g. L0.\n")
-                    x, y = coordinates
-                except ValueError: print("Input not valid"); continue
-                x = x.upper()
-                if x not in "ABCDEFGHIJ": print("Input not valid"); continue    # hard coded, works only for a 10x10 board. Use string.asciiletters in the future           
-                try: y = int(y)+1
-                except: print("not valid"); continue
-                if y < 1 or y > 9 : print("not valid"); continue
-                for i, letter in enumerate("ABCDEFGHIJ"):   # string.ascii_uppercase): 
-                    if x == letter: x = i+1
-
-                self.player_board.update_board((x, y), self.shot(self.player_board, (x, y)))
-
-        except KeyboardInterrupt: pass
-        print("**** GAME OVER! ****")
-        if not self.player_board.ships_list : print("°°°°  You won! °°°°")
-        else: print("You lost!")
-        print(self.solution.board)
+        self.solution.print_board()
 
 
 class Board:
-    def __init__(self, dim):  # building the empty board
+    def __init__(self, dim, board_style):  # building the empty board
         self.dim = dim
-        self.board = np.full((dim+1,dim+1), WHITESPACE)
-        # self.ships_list = []    # ships already on the board
-        self.ships_list = [(4,2)]
-        # self.ships_dimensions = [4,3] #[4,3,3,2,2,2,1,1,1,1]
+        self.style_type = board_style
+        self.style = style(board_style)
+        self.board = np.full((dim,dim), self.style['empty'])
         self.ships_dimensions = [4,3,3,2,2,2,1,1,1,1]
-        self.shots_left = 50
+        self.ships_list = []
+        
 
-        for i, letter in enumerate(string.ascii_uppercase):  # write letters as board coordinates
-            if i+1 == len(self.board[0]): break
-            self.board[i+1][0] = letter
-        for i in range(0,dim):                              # write numbers as board coordinates
-            self.board[0][i+1] = str(i)
+    def print_board(self):
+        if self.style_type == 'emoji':
+            numbers = ['1️⃣ ','2️⃣ ','3️⃣ ','4️⃣ ','5️⃣ ','6️⃣ ','7️⃣ ','8️⃣ ','9️⃣ ','🔟 ']
+            letters = [ '🇦','🇧','🇨','🇩','🇪','🇫','🇬','🇭','🇮','🇯'] #🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙
+            sep = '  '     
+        elif self.style_type == 'traditional':
+            numbers = [i for i in range(1, self.dim+2)]
+            # letters = string.ascii_uppercase[:self.dim+1]
+            letters = "ABCDEFGHIJ"
+            sep = ' '
+    
+        print(' ', *numbers, sep = sep)
+        for i,letter in enumerate(letters):
+            print(letter, *self.board[i], sep = sep)
+
 
     def generate_board(self):
-        while len(self.ships_list) != len(self.ships_dimensions):
-            self.ships_list.clear()
-        
+        j = 0
+        while len(self.ships_list) != len(self.ships_dimensions):  # repeat until we have all the ships we want
+            self.ships_list.clear()                                # resets the list of ships, either at the beginning or in the case of unsuccessfult positioning
+            j += 1
             for dim in self.ships_dimensions:
                 for _ in range(TRY_N_TIMES):
                     ship_placed = self.place_ship_random(dim)
                     if ship_placed: break
-
-                if not ship_placed:
-                    break
-            
+                
+                if not ship_placed: break
+            if j>10: print(self.ships_list); print("AAAAAAAAAAAAAA"); break
     
+    # def place_ship_random(self, dim):
+        
+        # ship = Ship(dim)
+        # ship.set_elements(self)
+
+        # for ship_on_board in self.ships_list:
+        #     ship_board = Ship(len(ship_on_board))
+        #     ship_board.coords = ship_on_board
+        #     ship_board.set_surr(self)
+        #     for el in ship.coords:
+        #         if el in ship_on_board or el in ship_board.surround: return False
+
+        # self.ships_list.append(ship.coords)
+        # for el in ship.coords:
+        #     el_x, el_y = el
+        #     self.board[el_x][el_y]= self.style['ship']
+        # ship.set_surr(self)
+        # for el in ship.surround:
+        #     el_x, el_y = el
+        #     self.board[el_x][el_y]= self.style['water']
+
+        # return True
+
     def place_ship_random(self, dim):
-        ship = Ship(dim)
-        ship.set_elements(self)
+        ship = Ship(self, dim)
+        ship.gen_random_elements()
+        for x,y in ship.coords:
+            if self.board[x][y] in [self.style['ship'], self.style['water']]: 
+                return False  # tried to generate ship on another ship or on its surrounding water
+            self.board[x][y]= self.style['ship']
 
-        for ship_on_board in self.ships_list:
-            ship_board = Ship(len(ship_on_board))
-            ship_board.elements = ship_on_board
-            ship_board.set_surr(self)
-            for el in ship.elements:
-                if el in ship_on_board or el in ship_board.surround: return False
-
-        self.ships_list.append(ship.elements)
-        for el in ship.elements:
-            el_x, el_y = el
-            self.board[el_x][el_y]= BARCO
-        ship.set_surr(self)
+        self.ships_list.append(ship.coords)
+        ship.gen_surr()
         for el in ship.surround:
             el_x, el_y = el
-            self.board[el_x][el_y]= EQUIS
+            self.board[el_x][el_y]= self.style['water']
+        
 
-        return True
-
-
-    def place_ship_by_coordinates(self, coordinates):
-        # check that coordinates are allowed
-        ship = Ship(len(coordinates))
-        ship.elements = coordinates
-
-        for ship_on_board in self.ships_list:
-            ship_board = Ship(len(ship_on_board))
-            ship_board.elements = ship_on_board
-            ship_board.set_surr(self)
-            print(ship_board.elements)
-            for el in ship.elements:
-                print(el)
-                if el in ship_on_board or el in ship_board.surround: return
-
-        self.ships_list.append(ship.elements)
-        for el in ship.elements:
-            el_x, el_y = el
-            self.board[el_x][el_y]= BARCO
-        ship.set_surr(self)
-        for el in ship.surround:
-            el_x, el_y = el
-            self.board[el_x][el_y]= EQUIS
-
-
-    def update_board(self, coordinates, shot_type):
-        x, y = coordinates
-        self.board[x][y] = shot_type
-        print(self.board)
+        return True                
 
 class Ship:
-    def __init__(self, dim):
+    def __init__(self, board, dim):
         self.dim = dim
-        self.elements = []
+        self.coords = []
         self.surround = []
-    
-    def set_surr(self, board):
-        x_points = [(1,0), (-1,0), (1,1),(0,1),(0,-1),(-1,-1),(-1,1),(1,-1)]
-        for el in self.elements:
-            el_x, el_y = el
-            for dx,dy in x_points:
+        self.board = board
+
+    def gen_random_elements(self):
+        direction_switch = [(0, 1), (1, 0)]  # [right, down]
+        # dx, dy = direction_switch[random.randint(0,1)]
+        dx, dy = random.choice(direction_switch)
+
+        r_full_board = random.randint(0, self.board.dim-1)
+        r_reduced_board = random.randint(0, self.board.dim-self.dim)
+
+        x = r_full_board if dy else r_reduced_board      #if down x in [1,10], y in [1,11-dim]; if right x in [1,11-dim], y in [1,10]
+        y = r_full_board if dx else r_reduced_board
+
+        self.coords.append((x, y))        
+        for _ in range(1, self.dim):
+            x += dx; y += dy
+            self.coords.append((x,y))
+
+    def gen_surr(self):
+        # surr_points = [
+        #     (-1,-1), (0,-1), (1,-1),
+        #     (-1, 0),         (1, 0),
+        #     (-1, 1), (0, 1), (1, 1)
+        #     ]
+
+        surr_points = [(1,0), (-1,0), (1,1),(0,1),(0,-1),(-1,-1),(-1,1),(1,-1)]
+
+
+        for el_x, el_y in self.coords:
+            for dx, dy in surr_points:
                 x = el_x + dx; y = el_y + dy
-                if x > board.dim or y > board.dim or not x > 0 or not y > 0: continue
-                else: 
+                if (0 <= x < self.board.dim) and (0 <= y < self.board.dim):
                     surr = (x, y)
-                    if surr in self.elements : continue
-                    else : self.surround.append(surr)
+                    if surr not in self.coords: 
+                        self.surround.append(surr)
 
-    def set_elements(self, board):
 
-        direction_switch = {0: (0, 1), 1: (1,0)}  #0: right, 1: down
-
-        n = random.randint(0,1)
-        dx, dy = direction_switch.get(n)
-
-        r1, r2 = random.randint(1, board.dim),random.randint(1,board.dim-self.dim+1)
-        x_i = r1 if not n else r2              #if down x in [1,10], y in [1,11-dim]; if right x in [1,11-dim], y in [1,10]
-        y_i = r2 if not n else r1
-        position_i = (x_i, y_i) 
-
-        self.elements.append(position_i)
-        if self.dim == 1: return self.elements
-        
-        for i in range(1, self.dim):
-            x = x_i + i*dx; y = y_i + i*dy
-            self.elements.append((x,y))
-        
 game = Game(10)
 game.intro()
-game.gameplay()
-# b2 = Board(10)
-# b2.generate_board()
-# print(b2.board)
-
-# >>> "o".isdigit()
-# False
-# >>> "o".isalpha()
-# True
