@@ -1,0 +1,75 @@
+head, body{
+  background-color: linear-gradient(blue, yellow);
+}
+div{
+  background-color: linear-gradient(blue, yellow);
+}
+body:{
+  width: 100%;
+  background-color: blue;
+  color: white;
+  margin: 0;
+  font-family: Times;
+  font-size: 16px;
+}
+
+h1,p {
+  font-family: sans-serif;
+  color: rgb(64, 0, 255);
+  margin: 1em auto;
+  text-align: center;
+}
+
+form {
+  font-family: sans-serif;
+  color: rgba(64, 0, 255, 0.8);
+  background-color: rgba(0, 191, 255, 0.4);
+  min-width: 40%;
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+label{
+  display: block;
+  margin: 0.5rem 0;
+}
+
+input, textarea, select{
+  color: white;
+  background-color:  rgba(0, 191, 255, 0.4);
+  margin: 10px 0 0 0;
+  width:100%;
+}
+
+input, textarea{
+  background-color:  rgba(0, 191, 255, 0.4);
+  border: 2px solid white;
+  color: white;
+}
+
+.inline{
+  width: 100%;
+  vertical-align:middle;
+  margin: 0 0.5em 0 0;
+}
+
+input[type="submit"] {
+  display: block;
+  width: 60%;
+  margin: 1em auto;
+  height: 2em;
+  font-size: 1.1rem;
+  background-color: #3b3b4f;
+  border-color: white;
+  min-width: 300px;
+}
+
+LABEL.indented-checkbox-text
+{
+  margin-left: 2em;
+  display: block;
+  position: relative;
+  margin-top: -1.4em;  /* make this margin match whatever your line-height is */
+  line-height: 1.4em;  /* can be set here, or elsewehere */
+}
