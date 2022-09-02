@@ -2,13 +2,6 @@ import numpy as np
 import string
 import random
 
-# alternative emojis '⚪''🐱''🐶'
-def style(type):
-        if type == 'emoji':
-            return {'name': 'emoji','empty':'⚫', 'water': '🔵', 'ship': '🚢', 'sunk_ship': '❌'}
-        else : 
-            return {'name': 'traditional','empty':'.', 'water': '~', 'ship': '0', 'sunk_ship': 'x'}
-
 TRY_N_TIMES = 10
 
 class Game:
@@ -30,56 +23,57 @@ class Game:
 class Board:
     def __init__(self, dim, board_style):  # building the empty board
         self.dim = dim
-        self.style = style(board_style)
+        # self.style = style(board_style)
+        self.set_style(board_style)
         self.board = np.full((dim,dim), 0)
         self.ships_dimensions = [4,3,3,2,2,2,1,1,1,1]
 
+
+
     def set_style(self, new_style):
-        if self.style['name'] == 'emoji':
-            numbers = ['1️⃣ ','2️⃣ ','3️⃣ ','4️⃣ ','5️⃣ ','6️⃣ ','7️⃣ ','8️⃣ ','9️⃣ ','🔟 ']
-            letters = [ '🇦','🇧','🇨','🇩','🇪','🇫','🇬','🇭','🇮','🇯'] #🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙
-            sep = '  '     
-        elif self.style['name'] == 'traditional':
-            numbers = [i for i in range(1, self.dim+1)]
-            letters = string.ascii_uppercase[: self.dim]
-            sep = ' '
+        # alternative emojis '⚪''🐱''🐶'   
+        if new_style == 'emoji':
+            self.style = {
+                "tiles" : ['⚫', '🔵', '🚢', '❌'],
+                "numbers" : ['1️⃣ ','2️⃣ ','3️⃣ ','4️⃣ ','5️⃣ ','6️⃣ ','7️⃣ ','8️⃣ ','9️⃣ ','🔟 '],
+                "letters" : [ '🇦','🇧','🇨','🇩','🇪','🇫','🇬','🇭','🇮','🇯'], #🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙
+                "sep" : '  '
+                }
+
+        elif new_style == 'traditional':
+            self.style = {
+                "tiles" : ['.', '~', '0', 'x'],
+                "numbers" : [i for i in range(1, self.dim+1)],
+                "letters" : string.ascii_uppercase[: self.dim],
+                "sep" : ' '
+                }
 
 
     def print_board(self):
+        print(' ', *self.style["numbers"], sep = self.style["sep"])
+        for i,letter in enumerate(self.style["letters"]):            
+            # print(letter, end = self.style["sep"])
+            # for j in range(self.dim):
+            #     tile = self.board[i,j]
+            #     print(self.style["tiles"][tile], end = self.style["sep"])
+            # print()
 
-    
-        print(' ', *numbers, sep = sep)
-        for i,letter in enumerate(letters):
-            print(letter, *self.board[i], sep = sep)
-        
+            print(letter, *(self.style["tiles"][tile] for tile in self.board[i]), sep = self.style["sep"])
+            # print(letter, *map(lambda tile: self.style["tiles"][tile], self.board[i]), sep = self.style["sep"])
+
 
     def generate_board(self):
         # ship = Ship(self, 2)
         # ship.gen_elements()
-        global TRY_N_TIMES
-        for i, dim in enumerate(self.ships_dimensions):
-        # for i, dim in enumerate([4,3]):
-            ship = Ship(self, dim)
-            if not ship.gen_elements(): self.generate_board(); TRY_N_TIMES = 10
-        print(self.board)
-
-
-        # print(self.board)
-        # while len(self.ships_dimensions):  # repeat until we have all the ships we want
-        #     if not ship.gen_elements(): self.ships_dimensions = [4,3,3,2,2,2,1,1,1,1]; self.board.clear()
-        #     else: 
-        #     # self.board = np.full((self.dim,self.dim), self.style['empty'])
-        #     self.ships_list.clear()                                # resets the list of ships, either at the beginning or in the case of unsuccessfult positioning
-
-
-        #         for _ in range(TRY_N_TIMES):
-        #             ship_placed = self.place_ship_random(dim)
-        #             if ship_placed: break
-        #         if not ship_placed: break
-
-
-
-        #     if j>10: print(self.ships_list); print("AAAAAAAAAAAAAA"); exit(); break
+        while True:
+            self.board = np.full((self.dim,self.dim), 0)
+            ships_dim = [4,3,3,2,2,2,1,1,1,1] #[4,3]
+            success = 0
+            #for dim in self.ships_dimensions:
+            for dim in ships_dim:
+                ship = Ship(self, dim)
+                if ship.gen_elements(): success += 1
+            if success == len(ships_dim): break    
 
 class Ship:
     def __init__(self, board, dim):
@@ -102,31 +96,20 @@ class Ship:
             x_f = x_i + (self.dim-1)*dx                                             # ship's final position, calculated using direction and length
             y_f = y_i + (self.dim-1)*dy
 
-            # x_i, x_f, y_i, y_f = (0,0,0,0)
-            # print(x_i, x_f, y_i, y_f)
+            #x_i, x_f, y_i, y_f = (0,3,0,0)
+            #print(x_i, x_f, y_i, y_f)
             if self.board.board[x_i:x_f+1, y_i:y_f+1].any() : continue          # if there is a 1 or 2 on the board, try again
-            else:
-                subs_1 = (x_f +2) if not x_i else (y_f +2)
-                subs_2 = (x_f +2) if not x_i else (y_f +2)
+            
+            sx = max(0, x_i-1)                                                  # to deal with the lower border of the board
+            sy = max(0, y_i-1)
 
-                if not x_i and not y_i: self.board.board[:x_f+2, y_i:y_f+2] = 1
-                elif not x_i:
-                    self.board.board[:x_f+2, y_i-1:y_f+2] = 1
-                elif not y_i:
-                    self.board.board[x_i-1:x_f+2,:y_f+2, ] = 1
-                    
-                self.board.board[x_i-1:x_f+2, y_i-1:y_f+2] = 1
-                self.board.board[x_i:x_f+1, y_i:y_f+1] = 2                      # 2 corresponds to a ship, 1 to the surroundings -> forbidden space
-                
-                return True
+            self.board.board[sx:x_f+2, sy:y_f+2] = 1                            # surroundings of the ship must be water
+            self.board.board[x_i:x_f+1, y_i:y_f+1] = 2                          # now place the ship
+            
+            return True
+        print("nope")
         return False
 
-        # self.coords.append((x, y))        
-        # for _ in range(1, self.dim):
-        #     x += dx; y += dy
-
-        #     self.coords.append((x,y))
-
 game = Game(10)
-#game.board.print_board()
 game.board.generate_board()
+game.board.print_board()
