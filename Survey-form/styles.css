@@ -1,10 +1,10 @@
-head, body{
+html {
   background-color: linear-gradient(blue, yellow);
 }
 div{
   background-color: linear-gradient(blue, yellow);
 }
-body:{
+html body:{
   width: 100%;
   background-color: blue;
   color: white;
@@ -26,6 +26,7 @@ form {
   background-color: rgba(0, 191, 255, 0.4);
   min-width: 40%;
   max-width: 90%;
+  width:50%;
   margin: 0 auto;
   padding: 1em;
 }
@@ -49,9 +50,11 @@ input, textarea{
 }
 
 .inline{
-  width: 100%;
-  vertical-align:middle;
-  margin: 0 0.5em 0 0;
+  vertical-align: middle;
+  margin: auto;
+  width: 10%;
+  overflow: hidden;
+
 }
 
 input[type="submit"] {
@@ -63,13 +66,4 @@ input[type="submit"] {
   background-color: #3b3b4f;
   border-color: white;
   min-width: 300px;
-}
-
-LABEL.indented-checkbox-text
-{
-  margin-left: 2em;
-  display: block;
-  position: relative;
-  margin-top: -1.4em;  /* make this margin match whatever your line-height is */
-  line-height: 1.4em;  /* can be set here, or elsewehere */
 }

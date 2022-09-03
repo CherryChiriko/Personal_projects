@@ -1,46 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<div>
   <head>
     <meta charset="utf-8">
     <title>Survey Form</title>
     <link rel="stylesheet" href="styles.css"/>
   </head>
-  <body>
-    <h1 id="title">Survey Form</h1>
-    <p id="description">Thank you for taking the time to fill in this form. Just know it does nothing.</p>
+  <body style="background-color:powderblue;">
+    <h1 id="title">Meaningless Survey Form</h1>
+    <p id="description">Thank you for taking the time to fill in this useless form. Just know it does nothing.</p>
     <form id="survey-form">
-      <label id="name-label">Name: <input id="name" type="text" required placeholder="Enter your name"></input></label>
-      <label id="email-label">Email: <input id="email" type="email" required placeholder="Enter your email"></input></label>
-      <label id="number-label">Age(optional): <input id="number" type="number" min="13" max="130" placeholder="Age"></input></label>
+      <label id="name-label">Your mother's name: <input id="name" type="text" required placeholder="Enter your mother's name"></input></label>
+      <label id="email-label">Your pet's email: <input id="email" type="email" required placeholder="Enter your pet's email"></input></label>
+      <label id="number-label">Your age(optional): <input id="number" type="number" min="300" max="500" placeholder="Age"></input></label>
       <label>What is your job? <select id="dropdown">
         <option>(select one)</option>
-        <option>Student</option>
-        <option>Full-time</option>
-        <option>Part-time</option>
+        <option>Student of life</option>
+        <option>Full-time gamer</option>
+        <option>Part-time eater</option>
         <option>Unemployed</option>
         </select>
       </label>
       <label>Do you like this survey?
-        <!-- <input type="radio" name="like" value="like"/>
-        <label for="like" class="indented-checkbox-text">Yes</label>
-        <input type="radio" name="like" value="like"/>
-        <label for="like" class="indented-checkbox-text">No</label>
-        <input type="radio" name="like" value="like"/>
-        <label for="like" class="indented-checkbox-text">Maybe</label> -->
         <input type="radio" name="like" value="like" class="inline">Yes</input>
-        <input type="radio" name="like" value="like" class="inline">No</input>
-        <input type="radio" name="like" value="like" class="inline">Maybe</input>
+        <input type="radio" name="like" value="like" class="inline">Of course</input>
+        <input type="radio" name="like" value="like" class="inline">Absolutely</input>
       </label>
       <label>What do you like?
         <input type="checkbox" value="whatlike" class="inline">It's short</input>
         <input type="checkbox" value="whatlike" class="inline">It's cool</input>
         <input type="checkbox" value="whatlike" class="inline">My favorite person made it</input>
       </label>
-      <label>Comments: <input type="textarea"></input>
+      <label>Comments: <input type="textarea" placeholder="Type here your comment, I will ignore it."></input>
       </label>
       <input type="submit" id="submit" value="Submit"></input>
     </form>
   </body>
-</div>
 </html>
