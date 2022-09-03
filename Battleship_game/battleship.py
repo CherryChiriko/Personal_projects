@@ -16,33 +16,31 @@ class Game:
         if self.single_player: self.solution.generate_board()       # randomly generate game board 
         self.player_board.ships_coordinates = self.solution.ships_coordinates
         self.player_board.ships_surroundings = self.solution.ships_surroundings
-        # print("**** Welcome to the battleship game! ****")
+        print("**** Welcome to the battleship game! ****")
         # print("The game board is 10x10 with rows ranging from 0 to 9 and columns from A to J\nIt is currently not possible to change the dimension of the board, but please stay tuned for updates.")
-        # print("Press 'Ctrl+C' to exit at any time.")
-        # print("****************************************")        
+        print("Press 'Ctrl+C' to exit at any time.")
+        print("****************************************")        
         self.player_board.print_board()
-        # print("****************************************")
+        print("****************************************")
         
 
     def shot (self, coordinates): 
         self.shots_left -= 1
-        coordinates = self.player_board.ships_coordinates[0][0]
+        # coordinates = list(self.player_board.ships_coordinates[0])[0]
         x, y = coordinates
         if coordinates not in self.shots_list: self.shots_list.append(coordinates)
         else: return
         self.player_board.board[x][y] = max(1, self.solution.board[x][y])
         if self.solution.board[x][y] == 2: 
             self.solution.board[x][y] = 3
-            for j, ship in enumerate(self.player_board.ships_coordinates):
-                for element in ship:
-                    print("Before: ", self.player_board.ships_coordinates)
-                    if coordinates == element: ship.remove(coordinates)
-                    if not ship: 
-                        self.player_board.surr_list.append(self.player_board.ships_surroundings[j])
-                        self.refresh_board()  
-                        
+            for j, ship in enumerate(self.player_board.ships_coordinates):                    
+                ship -= {coordinates}
+                if not ship: 
+                    self.player_board.surr_list.append(self.player_board.ships_surroundings[j])
+                    self.refresh_board(); return
+                    
 
-        #self.player_board.print_board()
+        self.player_board.print_board()
         
     
     def refresh_board(self):
@@ -51,27 +49,8 @@ class Game:
             self.player_board.board[x][y] = max(1, self.solution.board[x][y])
         for surr in self.player_board.surr_list:
             for x,y in surr:
-                #print(self.player_board.surr_list)
                 self.player_board.board[x][y] = 1
         self.player_board.print_board()
-    #     h = self.shots_left
-    #     shot_type = ''
-    #     for i, ship in enumerate(self.player_board.ships_list):
-    #         for element in self.player_board.ships_list[i]:
-    #             if len(ship) == 1 and coordinates == element : 
-    #                 print("Hit and sunk!")
-    #                 self.shots_left -= 1; self.player_board.ships_list.remove(ship)
-    #                 shot_type = '#'; break
-    #             if coordinates == element : 
-    #                 print("Hit!") 
-    #                 self.shots_left -= 1; ship.remove(element)
-    #                 shot_type = 'o'; break
-    #     if h == self.shots_left : 
-    #         print("Miss!"); self.shots_left -= 1
-    #         shot_type = 'x'
-    #     print("Shots left: ", self.shots_left)
-    #     return shot_type
-    #     #board.update_board(board, coordinates)
 
     def gameplay(self):
         try:
@@ -81,16 +60,17 @@ class Game:
                 if self.shots_list: 
                     prev_x, prev_y = self.shots_list[-1]
                     prev_x =  string.ascii_uppercase[prev_x]
-                    print("Your last shot was: ", prev_x, prev_y)
+                    print("Your last shot was: ", prev_x, prev_y+1)
                 try: 
                     coordinates = input("Type the coordinates of your shot in the following format:\nLetterNumber, e.g. L0.\n")
-                    x, y = coordinates
+                    x = coordinates[0]
+                    y = coordinates[1:]
                 except ValueError: print("Input not valid"); continue
                 x = x.upper()
                 if x not in "ABCDEFGHIJ": print("Input not valid"); continue    # hard coded, works only for a 10x10 board. Use string.asciiletters in the future           
-                try: y = int(y)
+                try: y = int(y)-1
                 except: print("not valid"); continue
-                if y < 1 or y > 10 : print("not valid"); continue
+                if y < 0 or y > 9 : print("not valid"); continue
                 for i, letter in enumerate("ABCDEFGHIJ"):   # string.ascii_uppercase): 
                     if x == letter: x = i
 
@@ -98,9 +78,9 @@ class Game:
 
         except KeyboardInterrupt: pass
         print("**** GAME OVER! ****")
-        # if not self.player_board.ships_list : print("°°°°  You won! °°°°")
-        # else: print("You lost!")
-        # self.solution.print_board()
+        if not self.player_board.ships_dimensions : print("°°°°  You won! °°°°")
+        else: print("You lost!")
+        self.solution.print_board()
 
 class Board:
 
@@ -108,7 +88,6 @@ class Board:
         self.dim = dim
         self.set_style(board_style)
         self.board = np.full((dim,dim), 0)
-        # self.ships_list = [[0 for _ in range(dim)] for _ in range(dim)]
         self.ships_dimensions = [4,3,3,2,2,2,1,1,1,1]
         self.ships_coordinates = []
         self.ships_surroundings = []
@@ -135,8 +114,9 @@ class Board:
     def print_board(self):
         print(' ', *self.style["numbers"], sep = self.style["sep"])
         for i,letter in enumerate(self.style["letters"]):            
-            print(letter, *(self.style["tiles"][tile] for tile in self.board[i]), sep = self.style["sep"])
+            print(letter, *(self.style["tiles"][tile] for tile in self.board[i]), letter, sep = self.style["sep"])
             # print(letter, *map(lambda tile: self.style["tiles"][tile], self.board[i]), sep = self.style["sep"])
+        print(' ', *self.style["numbers"], sep = self.style["sep"])
 
 
     def place_ship(self, dim):        
@@ -153,8 +133,6 @@ class Board:
             x_f = x_i + (dim-1)*dx                                              # ship's final position, calculated using direction and length
             y_f = y_i + (dim-1)*dy
 
-            #x_i, x_f, y_i, y_f = (0,3,0,0)
-            #print(x_i, x_f, y_i, y_f)
             if self.board[x_i:x_f+1, y_i:y_f+1].any() : continue                # if there is a 1 or 2 on the board, try again
             
             sx = max(0, x_i-1)                                                  # to deal with the lower border of the board
@@ -164,8 +142,8 @@ class Board:
             self.board[x_i:x_f+1, y_i:y_f+1] = 2                                # now place the ship
             
 
-            new_ship = [(x_i+ i*dx, y_i+i*dy) for i in range(dim)]
-            new_surr = []
+            new_ship = set((x_i+ i*dx, y_i+i*dy) for i in range(dim))
+            new_surr = set()
             self.ships_coordinates.append(new_ship)
             x_points = [(1,0), (-1,0), (1,1),(0,1),(0,-1),(-1,-1),(-1,1),(1,-1)]
 
@@ -176,7 +154,7 @@ class Board:
                         surr = (x, y)
                         if surr in new_ship : continue
                         else : 
-                            new_surr.append(surr)
+                            new_surr.add(surr)
             self.ships_surroundings.append(new_surr)
             print(self.ships_coordinates, self.ships_surroundings)
             return True
@@ -185,7 +163,7 @@ class Board:
     def generate_board(self):
         while True:
             self.board = np.full((self.dim,self.dim), 0)
-            ships_dim = [1]#[4,3,3,2,2,2,1,1,1,1] #[4,3]
+            ships_dim = [4,3,3,2,2,2,1,1,1,1] #[4,3]
             success = 0
             #for dim in self.ships_dimensions:
             for dim in ships_dim:
