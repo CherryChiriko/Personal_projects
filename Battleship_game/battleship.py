@@ -9,13 +9,15 @@ class Game:
         self.shots_left = 50   # shots to end the game
         self.single_player = True
         self.solution = Board(dim, 'traditional')
+        self.shot_board = Board(dim, 'traditional')
         self.player_board = Board(dim, 'emoji')
         self.shots_list = []
 
     def intro(self):
-        if self.single_player: self.solution.generate_board()       # randomly generate game board 
-        self.player_board.ships_coordinates = self.solution.ships_coordinates
-        self.player_board.ships_surroundings = self.solution.ships_surroundings
+        if self.single_player: self.solution.generate_board()                           # randomly generate game board 
+        self.player_board.ships_coordinates = self.solution.ships_coordinates           # copy the coordinates of the ships
+        self.player_board.ships_surroundings = self.solution.ships_surroundings         # copy the surroundings of the ships
+        self.solution.print_board()
         print("**** Welcome to the battleship game! ****")
         # print("The game board is 10x10 with rows ranging from 0 to 9 and columns from A to J\nIt is currently not possible to change the dimension of the board, but please stay tuned for updates.")
         print("Press 'Ctrl+C' to exit at any time.")
@@ -25,28 +27,33 @@ class Game:
         
 
     def shot (self, coordinates): 
-        self.shots_left -= 1
-        # coordinates = list(self.player_board.ships_coordinates[0])[0]
+        self.shots_left -= 1                                                                 # a shot will be counted if you hit a spot you have already tried, ammo is not free, don't waste it!
         x, y = coordinates
         if coordinates not in self.shots_list: self.shots_list.append(coordinates)
-        else: return
-        self.player_board.board[x][y] = max(1, self.solution.board[x][y])
+        else: print("You already shot here"); return
+
+        self.player_board.board[x][y] = max(1, self.solution.board[x][y])                   # max because "empty"(0) and "water"(1) both give "water" in the display
         if self.solution.board[x][y] == 2: 
-            self.solution.board[x][y] = 3
             for j, ship in enumerate(self.player_board.ships_coordinates):                    
                 ship -= {coordinates}
                 if not ship: 
+                    self.solution.board[x][y] = 3
                     self.player_board.surr_list.append(self.player_board.ships_surroundings[j])
-                    self.refresh_board(); return
-                    
-
+                    self.refresh_board(j); return
+            self.player_board.print_board()
+            self.solution.board[x][y] = 3
+            return
         self.player_board.print_board()
         
+                    
     
-    def refresh_board(self):
-        self.player_board.board = self.board = np.full((self.player_board.dim, self.player_board.dim), 0)
+    def refresh_board(self, id_index):
+        self.player_board.board = np.full((self.player_board.dim, self.player_board.dim), 0)
         for x,y in self.shots_list: 
             self.player_board.board[x][y] = max(1, self.solution.board[x][y])
+            if self.player_board.board[x][y] == 3: pass   #check its id, if it's not the same ship that was completed, just print 2
+
+            #if self.player_board.board[x][y] == 4: self.player_board.board[x][y] = 2
         for surr in self.player_board.surr_list:
             for x,y in surr:
                 self.player_board.board[x][y] = 1
@@ -66,6 +73,7 @@ class Game:
                     x = coordinates[0]
                     y = coordinates[1:]
                 except ValueError: print("Input not valid"); continue
+                except IndexError: print("Input not valid"); continue
                 x = x.upper()
                 if x not in "ABCDEFGHIJ": print("Input not valid"); continue    # hard coded, works only for a 10x10 board. Use string.asciiletters in the future           
                 try: y = int(y)-1
@@ -144,6 +152,7 @@ class Board:
 
             new_ship = set((x_i+ i*dx, y_i+i*dy) for i in range(dim))
             new_surr = set()
+            
             self.ships_coordinates.append(new_ship)
             x_points = [(1,0), (-1,0), (1,1),(0,1),(0,-1),(-1,-1),(-1,1),(1,-1)]
 
@@ -156,19 +165,16 @@ class Board:
                         else : 
                             new_surr.add(surr)
             self.ships_surroundings.append(new_surr)
-            print(self.ships_coordinates, self.ships_surroundings)
             return True
         return False
 
     def generate_board(self):
         while True:
             self.board = np.full((self.dim,self.dim), 0)
-            ships_dim = [4,3,3,2,2,2,1,1,1,1] #[4,3]
             success = 0
-            #for dim in self.ships_dimensions:
-            for dim in ships_dim:
+            for dim in self.ships_dimensions:
                 if self.place_ship(dim): success += 1
-            if success == len(ships_dim): break    
+            if success == len(self.ships_dimensions): break    
 
 
     
