@@ -12,6 +12,14 @@ WATER = 1
 SUNK = 2
 FIRST_SHIP = 3
 
+REVEAL = 1
+
+DOGGS = "U・ᴥ・U"
+
+def fill_submatrix(matrix, x0, x1, y0, y1, surrounding_value):
+    matrix[max(0, x0-1) : x1 + 2, max(0, y0-1) : y1 + 2] = surrounding_value 
+
+
 class Game:
     def __init__(self, dim, style):
         dim = min(MAX_BOARD_DIM, dim)
@@ -54,16 +62,9 @@ class Game:
 
             if ship_sunk:
                 self.solution.board[self.solution.board == tile] = SUNK
+                ship_id = tile - FIRST_SHIP
+                fill_submatrix(self.mask, *self.solution.ships_coordinates[ship_id], REVEAL)
                 
-            # for j, ship in enumerate(self.player_board.ships_coordinates):                    
-            #     ship -= {coordinates}
-            #     if not ship: 
-            #         self.solution.board[coordinates] = 3
-            #         self.player_board.surr_list.append(self.player_board.ships_surroundings[j])
-            #         self.refresh_board(j); return
-            # self.player_board.print_board()
-            # self.solution.board[coordinates] = 3
-            # return
 
         self.print_board()
 
@@ -96,11 +97,11 @@ class Game:
             
             if no_ships_left: break
 
-            print(f"You have a total of {self.shots_left} shots")
+            print(f">>> You have a total of {self.shots_left} shots")
             if self.last_shot: 
                 prev_x, prev_y = self.last_shot
                 prev_x =  string.ascii_uppercase[prev_x]
-                print("Your last shot was: ", prev_x, prev_y + 1)
+                print(">> Your last shot was: ", prev_x, prev_y + 1)
             
             try: 
                 coordinates = input("Type the coordinates of your shot in the following format:\nLetterNumber, e.g. L0.\n")
@@ -127,15 +128,6 @@ class Game:
         # self.solution.board[mask]
 
 
-        
-        # # print(mask, mask.shape)
-        # # print(self.solution.board, self.solution.board.shape)
-        # print(display, display.shape)
-
-        # print(DOGGS)
-
-        # # exit()
-
         print(' ', *self.style["numbers"], sep = self.style["sep"])
         for i,letter in enumerate(self.style["letters"]):            
             print(letter, *(self.style["tiles"][tile] for tile in display[i]), letter, sep = self.style["sep"])
@@ -144,12 +136,10 @@ class Game:
 class Board:
     def __init__(self, dim):  # building the empty board
         self.dim = dim
-        self.ships_coordinates = []
-        self.ships_surroundings = []
-        self.surr_list = []
-
+        
         self.board : np.array
         self.current_ship_id : int
+        self.ships_coordinates : list
         self.ships_dimensions : list
         self.sunk_ships : list
         
@@ -157,12 +147,14 @@ class Board:
 
     def generate_board(self):
         self.ships_dimensions = [4,3,3,2,2,2,1,1,1,1]
+        self.ships_coordinates = []
         self.sunk_ships = [False for _ in self.ships_dimensions]
 
         while True:
             # reset values
             self.board = np.zeros((self.dim,self.dim), dtype = np.uint8)
             self.current_ship_id = FIRST_SHIP
+            self.ships_coordinates.clear()
 
             # try to place all ships randomly
             for length in self.ships_dimensions:
@@ -186,10 +178,10 @@ class Board:
 
             if self.board[x_i:x_f+1, y_i:y_f+1].any() : continue                # if there is a 1 or 2 on the board, try again
    
+            fill_submatrix(self.board, x_i, x_f, y_i, y_f, WATER)
+            self.board[x_i : x_f + 1, y_i : y_f + 1] = self.current_ship_id
 
-            self.board[max(0, x_i-1) : x_f+2,     max(0, y_i-1) : y_f+2] = WATER       # surroundings of the ship must be water
-            self.board[x_i           : x_f+1,     y_i           : y_f+1] = self.current_ship_id  # now place the ship
-                                                                            # U・ᴥ・U
+            self.ships_coordinates.append((x_i, x_f, y_i, y_f))
 
             return True
         return False
