@@ -1,40 +1,80 @@
-header{
-  font-family: Garamond, serif;
-  font-size: 20px;
+*{
+  font-family: Helvetica;
 }
+header{
+  background-color: #fdc500;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px;
+  max-width: 80%;
+  margin-left: 10%;
+  border-radius: 15px;
+  box-shadow: 0 0 2px 2px #fdc500;
+}
+
 body {
-  background: radial-gradient(circle, yellow 70%, orange);
+  /* background-image: url("background-galaxy.jpg"); */
+  /* background-color: #6798c0; */
+  background-size: cover;
   font-family: sans-serif;
   padding: 20px;
-}
-img {
-  display: block;
-}
-
-
-.PersonalInfo, .ForeignLang, .ProgrammingLang{
-  background: linear-gradient(to right,
-    DodgerBlue, rgb(15,50,155) 30% 70%, rgb(255,15,250));
-  padding-top: 2px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  width: 700px;
-  align-self: auto;
-  color: white;
-  display: table;
-  clear: both;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
 }
 
-.item p {
+
+.box{
+  height: 310px;
+  width: 470px;
+  background-color: #00509d;
+  border-radius: 15px;
+  box-shadow: 0 0 2px 2px #00509d;
+}
+
+table{
+  font-size: 13px;
+  /* border: solid #fdc500; */
+  padding: 5px;
   display: inline-block;
-  margin-top: 2px;
-  margin-bottom: 5px;
 }
-.category{
-  font-weight: bold;
-  text-align: left;
-  width: 49%;
+caption{  font-size: 17px;}
+thead{  font-size: 14px;}
+tbody td {  width: 300vw;  max-width: 9rem;}
+tfoot{  font-size: 12px;}
+
+table, th, td{
+  /* border: 1px solid black; */
+  border-collapse: collapse;
+  color: #fffdf7;
 }
-.info{
-  text-align: right;
+th, td {
+  padding: 5px;
+  text-align: center;
+}
+th{
+  border-bottom: 1px solid black;
+  border-color: #fffdf7;
+}
+span.bold{   font-weight: bold;}
+table tbody tr:hover {background-color: #99d6ea; } /* color: #6798c0;*/
+
+.box2{
+  height: 250px;
+  width: 320px;
+  background-color: #6798c0;
+  border-radius: 15px;
+  box-shadow: 0 0 2px 2px #6798c0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+
+a {
+  color: cyan;
+}
+a:visited {
+  color: pink;
 }
