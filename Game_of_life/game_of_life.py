@@ -8,33 +8,33 @@ from matplotlib import animation
 M = np.full((10,10), 0)
 fig, ax = plt.subplots()
 matrix = ax.matshow(M)
-plt.colorbar(matrix)
+cb = plt.colorbar(matrix)
+cb.remove() 
 
 
 # initialization function: plot the background of each frame
 def init():
-    M[5,5] = 1
-    M[5,6] = 1
-    M[5,7] = 1
+    # M[5,5:8] = 1                          # BLINKER CONFIGURATION (period 2)
+    M[0:3,2] = 1; M[1,0] = 1;  M[2,1] = 1   # GLIDER CONFIGURATION
     matrix.set_array(M)
     return matrix,
 
 # animation function.  This is called sequentially
 def animate(i):
+    global M
     N = M.copy()
     for x0, row in enumerate(M):
-        for y0 in row:
-            if M[max(0, x0-1) : x0 + 2, max(0, y0-1) : y0 + 2].sum() == 2: N[x0,y0] = 1
-     
-    x = i
-    y = i*2
-    M[x,y] = 1
+        for y0, _ in enumerate(row):
+            n_sum = M[max(0, x0-1) : x0 + 2, max(0, y0-1) : y0 + 2].sum() - M[x0,y0]
+            if n_sum == 3: N[x0,y0] = 1
+            elif n_sum == 2 and M[x0,y0] == 1: N[x0,y0] = 1
+            else: N[x0,y0] = 0
+    M = N.copy()
     matrix.set_array(M)
     return matrix,
 
 # call the animator.  blit=True means only re-draw the parts that have changed.
 anim = animation.FuncAnimation(fig, animate, init_func=init,
-                               frames=len(M), interval=50, blit=True)
+                               frames=200, interval=500, blit=True)
 
-# plt.matshow(matrix, fignum=0)
 plt.show()
