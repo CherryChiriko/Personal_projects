@@ -4,18 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chiriko || Personal Portfolio</title>
-    <link href="styles.css" rel="stylesheet"/>
+    <link href="css/styles.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body>
     <header>
       <div class="header-div">
-        <nav id="navbar">
+        <nav id="navbar" class="fixed-top">
           <ul>
-            <li><a href="#welcome-section" class="welcome-link">About</a></li>
-            <li><a href="#projects" class="projects-link">Projects</a></li>
             <li><a href="#contacts" class="contacts-link">Contacts</a></li>
+            <li><a href="#projects" class="projects-link">Projects</a></li>
+            <li><a href="#welcome-section" class="welcome-link">About</a></li>
           </ul>
         </nav>
       </div>
@@ -26,8 +26,28 @@
     </section>
     <section id="projects">
       <h1>My Projects</h1>
-      <div class="project-tile">
-        <a href="" target="_blank" id="profile-link">
+      <div class="project-wrap">
+        <div class="project-tile">
+          <a href="html/cv.html" target="_blank" id="profile-link"><h2>My Curriculum</h2>
+          <figure>
+            <img alt="Sofia Di Gennaro" src= "https://lh3.googleusercontent.com/TesSrhinoe9DtqgTZ8Gh3eZvYH45JaGwaU8bBVXoZbLjxxhf-THfVAF1YS52a6zW6Kma3xDVKTzZch5d8Eh-n67SMp-bGEYHouaol-P3zC5-LbtSHvSFy4Jh37UYHmo0Wy8xcSW5Nkc=w2400?source=screenshot.guru"/>
+          </figure>
+          </a>
+        </div>
+        <div class="project-tile">
+          <a href="html/product_fish.html" target="_blank" id="profile-link"><h2>Product Landing</h2>
+          <figure>
+            <img alt="(not ugly) fish" src= "pic/fish.jpg"/>
+          </figure>
+          </a>
+        </div>
+        <div class="project-tile">
+          <a href="html/tribute.html" target="_blank" id="profile-link"><h2>Tribute Page</h2>
+          <figure>
+            <img style="object-position: 2% 100%;" alt="Konata Izumi" src= "pic/konata.jpg"/>
+          </figure>
+          </a>
+        </div>
       </div>
     </section>
     <section id="contacts">
