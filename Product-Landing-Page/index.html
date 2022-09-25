@@ -7,6 +7,170 @@
     <link href="styles.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
     <link      href="https://fonts.googleapis.com/css?family=Anton%7CBaskervville%7CRaleway&display=swap"      rel="stylesheet"    />
+    <style>
+    :root{
+      --darker-blue:  #001d3d;
+      --dark-blue:    #11296b;
+      --blue:         #00509d;
+      --light-blue:   #6798c0;
+      --lighter-blue: #99d6ea;
+    }
+    /* *{
+      box-sizing: border-box;
+      border: 1px solid red;
+    } */
+    html{color:var(--darker-blue);}
+
+    .flex-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .header-div, .form-div, section{
+      border-radius: 5px;
+      box-shadow: 1px 1px 5px grey;
+    }
+    #header-img{height: 50px; display: inline;}
+    body {
+      font-family: 'Baskervville', serif;
+      background-color: var(--lighter-blue);
+      margin : 0px;
+    }
+    .logo, .header-div{
+      display: flex;
+      align-items: center;
+      position: fixed;
+      height: 60px;
+    }
+
+    .logo{
+      width: auto;
+      padding-right: 5px;
+      background-color: white;
+      color: var(--dark-blue);
+    }
+
+    .header-div{
+      width: 100%;
+      background-color: var(--dark-blue);
+      z-index: 1;
+    }
+    .form-div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      padding: 20px;
+      color: white;
+      background-color: var(--blue);
+    }
+
+    nav ul, nav ul li, h1 {display: flex; justify-content: space-around; }
+    nav {
+      font-size: 20px;
+      margin-right: 5px;
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      width: 30%;
+      }
+    ul li {list-style-type: none; height: 100%;}
+    nav ul{overflow: auto; width: 100%; height: 100%;}
+    main{
+      position: absolute;
+      margin-top: 60px;
+      width: 100%;
+    }
+    h2, footer, form{text-align: center;}
+    h2, footer{margin-top: 5px;}
+    footer{ margin-bottom: 5px; border-bottom: var(--darker-blue);}
+
+    a{color: white; text-decoration: none; padding:10px;}
+    a:hover{
+      background-color: var(--darker-blue);
+      border-radius: 5px;
+      box-shadow: 1px 1px 5px DarkGrey;
+    }
+
+    section{margin-top: 10px; background-color: white;}
+    #features{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      height: auto;
+    }
+
+    .section-title {grid-area: 1 / 1 / span 1 / span 2; color: var(--dark-blue); height: 3rem; font-size: 2rem;}
+    .video-div, .figure-div { grid-area: 2 / 2 / span 1 / span 1;}
+    .list li{height: auto;}
+    .list{grid-column: 1 / 1; color: var(--dark-blue); }
+    i {font-size: 1.5rem;}
+    p {margin-left: 3rem; margin-top: 0.5rem;}
+    span{
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-left: 1rem;
+    }
+    #how_it_works{  padding-right: 10px;}
+    #fish-pic{ width: 50%;}
+    #fish-video {width: 420px; height: 315px;}
+    #pricing{
+       width: 80%;
+       margin-bottom: 30px;
+     }
+    .price-div{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      text-align: center;
+      padding-bottom: 20px;
+    }
+    .price-div h2 { width: 300px; background-color: var(--dark-blue); color: white; margin-top: 0;}
+    .price{ border: solid 1px var(--dark-blue); margin-bottom: 5px; margin-top: auto;}
+
+    #submit{
+      background-color: var(--dark-blue);
+      color: white;
+      padding: 2%;
+    }
+    #pricing #submit {margin-bottom: 20px;}
+    ol {font-size: 2rem;}
+    p, .figure-div {font-size: 1rem;}
+
+
+    @media only screen and (max-width: 1100px) {
+      nav ul {  flex-direction: column;  }
+      main {margin-top: 200px;}
+      .header-div{ height: auto;}
+      #features{
+        display: flex;
+        flex-direction: column;
+      }
+      .price-div{
+        flex-direction: column;
+      }
+    }
+    @media only screen and (max-width: 620px) {
+      nav {    margin: auto; width:100%; margin-top: 50px;  }
+      nav ul {    flex-direction : row; }
+      .header-div {flex-direction: column;}
+      .logo{
+        display: flex;
+        align-items: center;
+      }
+      h1, nav, .logo img {position:relative;}
+      #fish-video {width: 420px; height: 315px;}
+    }
+
+    /* Mobile phones */
+    /* @media only screen and (max-width: 600px) {} */
+    /* Tablets */
+    /* @media only screen and (min-width: 600px) {} */
+    /* Desktop */
+    /* @media only screen and (min-width: 992px) {}  */
+
+    </style>
   </head>
   <body>
     <header id="header">
