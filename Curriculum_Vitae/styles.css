@@ -1,7 +1,16 @@
 :root{
-  --yellow:     #fdc500;
-  --blue:       #00509d;
-  --light-blue: #6798c0;
+  --orange:       #dc562e;
+  --yellow:       #fdc500;
+  --yellow-2:     #fdd85d;
+
+  --darker-blue:  #001d3d;
+  --dark-blue:    #11296b;
+  --blue:         #00509d;
+  --light-blue:   #6798c0;
+  --lighter-blue: #99d6ea;
+
+  --white:        #fffdf7;
+  /* palette: https://coolors.co/palette/fdc921-99d6ea-6798c0-fffdf7-fdd85d */
 }
 
 /* *{
@@ -17,27 +26,22 @@ html{
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  height: 100%;
-  width: 100%;
   gap: 1rem;
   grid-auto-rows: 100px;
   text-align: center;
 }
-.box1, .box2, .box3, .box4, .box5, .box6, .box7 {
-  background-color: blue;
-  width: 100%;
-  height: 100%;
+.box {
   border-radius: 15px;
-  box-shadow: 1px 1px 5px red;
+  box-shadow: 1px 1px 5px grey;
   align-items: center;
   font-size: 1.2rem;
 }
 .box1 {
   grid-area: 1 / 1 / span 3 / span 1;
-  font-size: 17px;
+  font-size: 1.7rem;
   display: grid;
   grid-template-columns: 1.5fr 0.5fr;
-  background-color: var(--blue);
+  background-color: var(--dark-blue);
 }
 .contacts{
   display: flex;
@@ -64,7 +68,7 @@ html{
 
 .box5{
   grid-area: 4 / 1 / span 2 / span 1;
-  background-color: var(--blue);
+  background-color: var(--light-blue);
   display: flex;
   flex-direction: column;
   line-height: 2rem;
@@ -72,16 +76,26 @@ html{
 
 .box4 {
   grid-area: 2 / 3 / span 3 / span 1;
-  background-color: var(--blue);
+  background-color: #003566;
   display: flex;
   justify-content: center;
 }
 .box6{
   grid-area: 5 / 3 / span 2 / span 1;
-  background-color: var(--blue);
+  background-color: var(--light-blue);
   display: flex;
   justify-content: center;
 }
+
+.box7{
+  grid-area: 6 / 1 / span 1 / span 2;
+  background-color: var(--yellow);
+  display: flex;
+  flex-direction: column;
+  line-height: 2rem;
+  justify-content:  center;
+}
+
 table{
   width: 80%;
   align-self: center;
@@ -121,7 +135,7 @@ h1{ font-size: 4rem; letter-spacing: 1.4px;}
 caption, h2{
   font-size: 1.7rem;
   width: 100%;
-  background-color: purple;
+  background-color: var(--orange);
   letter-spacing: 1.2px;
 }
 
@@ -143,14 +157,18 @@ ul li {  list-style-type: none;}
   font-size: 1.4rem;
   font-weight: bold;
 }
-/* a {  color: var(--color1); text-decoration: none;}
-a:visited {  color: pink;} */
-/* a:hover{background-color: black;} */
+a {color: var(--blue); text-decoration: none;}
+a:visited {  color: var(--blue);}
+a:hover{color: var(--orange);}
 
-.box7{
-  grid-area: 6 / 1 / span 1 / span 2;
-  background-color: var(--yellow);
-  display: flex;
-  flex-direction: column;
-  line-height: 2rem;
+.interests{
+  display: inline-flex;
+  font-size: 2rem;
+  color: var(--blue);
+  gap: 1.2rem;
 }
+
+.hobbies{ border: solid 2px var(--blue); padding: 0.3rem; margin-bottom: 1rem;}
+.hobbies i{padding: 0.1rem;}
+.hobbies p {font-size: 1rem;}
+.hovertext {border: none;}

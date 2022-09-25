@@ -1,0 +1,118 @@
+:root{
+  --orange:          #ff9f1c;
+  --light-orange:    #ffbf69;
+  --blue:            #0f4c5c;
+  --light-aqua:      #cbf3f0;
+  --aqua:            #2ec4b6;
+}
+*{
+  box-sizing: border-box;
+  border: 1px solid red;
+}
+*, ::before, ::after {
+  box-sizing: inherit;
+}
+html {
+  font-size: 62.5%;
+}
+head, body{
+  margin: 0; padding: 0;
+  font-family: 'Roboto Slab', sans-serif;
+  letter-spacing: 1.5px;
+}
+header{
+  display: flex;
+  justify-content: flex-end;
+}
+.header-div{  width:100%; }
+
+#navbar{
+  font-size: 2rem;
+  width: 100%;
+  background-color: var(--orange);
+  position: fixed;
+  box-shadow: 1px 1px 5px grey;
+}
+nav ul {
+  display: flex; justify-content: space-around;
+  width:30%; float: right;
+}
+ul li {list-style-type: none; }
+nav a {color: white; text-decoration: none; padding:2rem;}
+nav a:hover{
+  background-color: var(--light-orange);
+  color: var(--blue);
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px DarkGrey;
+}
+section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#welcome-section{
+  height: 100vh;
+  background-image: linear-gradient(62deg, var(--light-aqua), var(--aqua));
+  color: var(--blue);
+}
+
+h2 {font-size: 3rem;}
+#welcome-section h1{font-size: 10rem;}
+#welcome-section h2{font-style: italic; margin-top: -5%;}
+#contacts h1, #projects h1{ font-size: 5rem;}
+#contacts h2 {font-style: italic; margin-top: -2%;}
+
+#projects{
+  color: var(--orange);
+  background-color: var(--blue);
+}
+
+#contacts{
+  height: 100vh;
+  color: var(--orange);
+  background-color: var(--light-aqua);
+}
+.contacts{
+  font-size: 4rem;
+}
+
+.hovertext {
+  position: relative;
+  border-bottom: 1px dotted black;
+}
+.hovertext:before {
+  content: attr(data-hover);
+  visibility: hidden;
+  opacity: 0;
+  width: max-content;
+  background-color: #202020;
+  color:  #F5F5F5;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 5px;
+  transition: opacity 1s ease-in-out;
+
+  position: absolute;
+  z-index: 1;
+  left: 10%;
+  top: 95%;
+
+  font-size: 1.7rem;
+}
+.hovertext:hover:before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.contacts a {color: inherit; text-decoration: none; padding:2rem;}
+.contacts a:hover{color: var(--blue); transition: transform 0.3s ease-out;}
+/* a:active{color:inherit;} */
+@media only screen and (max-width: 1100px) {
+
+}
+@media only screen and (max-width: 620px) {
+
+}
