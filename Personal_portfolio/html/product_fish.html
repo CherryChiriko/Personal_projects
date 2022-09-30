@@ -4,241 +4,110 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Landing Page || Ugly Fish</title>
-    <link href="..css/fish_styles.css" rel="stylesheet"/>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link href="../css/fish_styles.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
     <link      href="https://fonts.googleapis.com/css?family=Anton%7CBaskervville%7CRaleway&display=swap"      rel="stylesheet"    />
-    <style>
-    :root{
-      --darker-blue:  #001d3d;
-      --dark-blue:    #11296b;
-      --blue:         #00509d;
-      --light-blue:   #6798c0;
-      --lighter-blue: #99d6ea;
-    }
-    /* *{
-      box-sizing: border-box;
-      border: 1px solid red;
-    } */
-    html{color:var(--darker-blue);}
-
-    .flex-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .header-div, .form-div, section{
-      border-radius: 5px;
-      box-shadow: 1px 1px 5px grey;
-    }
-    #header-img{height: 50px; display: inline;}
-    body {
-      font-family: 'Baskervville', serif;
-      background-color: var(--lighter-blue);
-      margin : 0px;
-    }
-    .logo, .header-div{
-      display: flex;
-      align-items: center;
-      position: fixed;
-      height: 60px;
-    }
-
-    .logo{
-      width: auto;
-      padding-right: 5px;
-      background-color: white;
-      color: var(--dark-blue);
-    }
-
-    .header-div{
-      width: 100%;
-      background-color: var(--dark-blue);
-      z-index: 1;
-    }
-    .form-div{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      padding: 20px;
-      color: white;
-      background-color: var(--blue);
-    }
-
-    nav ul, nav ul li, h1 {display: flex; justify-content: space-around; }
-    nav {
-      font-size: 20px;
-      margin-right: 5px;
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      width: 30%;
-      }
-    ul li {list-style-type: none; height: 100%;}
-    nav ul{overflow: auto; width: 100%; height: 100%;}
-    main{
-      position: absolute;
-      margin-top: 60px;
-      width: 100%;
-    }
-    h2, footer, form{text-align: center;}
-    h2, footer{margin-top: 5px;}
-    footer{ margin-bottom: 5px; border-bottom: var(--darker-blue);}
-
-    a{color: white; text-decoration: none; padding:10px;}
-    a:hover{
-      background-color: var(--darker-blue);
-      border-radius: 5px;
-      box-shadow: 1px 1px 5px DarkGrey;
-    }
-
-    section{margin-top: 10px; background-color: white;}
-    #features{
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0;
-      height: auto;
-    }
-
-    .section-title {grid-area: 1 / 1 / span 1 / span 2; color: var(--dark-blue); height: 3rem; font-size: 2rem;}
-    .video-div, .figure-div { grid-area: 2 / 2 / span 1 / span 1;}
-    .list li{height: auto;}
-    .list{grid-column: 1 / 1; color: var(--dark-blue); }
-    i {font-size: 1.5rem;}
-    p {margin-left: 3rem; margin-top: 0.5rem;}
-    span{
-      font-weight: bold;
-      font-size: 1.5rem;
-      margin-left: 1rem;
-    }
-    #how_it_works{  padding-right: 10px;}
-    #fish-pic{ width: 50%;}
-    #fish-video {width: 420px; height: 315px;}
-    #pricing{
-       width: 80%;
-       margin-bottom: 30px;
-     }
-    .price-div{
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      text-align: center;
-      padding-bottom: 20px;
-    }
-    .price-div h2 { width: 300px; background-color: var(--dark-blue); color: white; margin-top: 0;}
-    .price{ border: solid 1px var(--dark-blue); margin-bottom: 5px; margin-top: auto;}
-
-    #submit{
-      background-color: var(--dark-blue);
-      color: white;
-      padding: 2%;
-    }
-    #pricing #submit {margin-bottom: 20px;}
-    ol {font-size: 2rem;}
-    p, .figure-div {font-size: 1rem;}
-
-
-    @media only screen and (max-width: 1100px) {
-      nav ul {  flex-direction: column;  }
-      main {margin-top: 200px;}
-      .header-div{ height: auto;}
-      #features{
-        display: flex;
-        flex-direction: column;
-      }
-      .price-div{
-        flex-direction: column;
-      }
-    }
-    @media only screen and (max-width: 620px) {
-      nav {    margin: auto; width:100%; margin-top: 50px;  }
-      nav ul {    flex-direction : row; }
-      .header-div {flex-direction: column;}
-      .logo{
-        display: flex;
-        align-items: center;
-      }
-      h1, nav, .logo img {position:relative;}
-      #fish-video {width: 420px; height: 315px;}
-    }
-
-    /* Mobile phones */
-    /* @media only screen and (max-width: 600px) {} */
-    /* Tablets */
-    /* @media only screen and (min-width: 600px) {} */
-    /* Desktop */
-    /* @media only screen and (min-width: 992px) {}  */
-
-    </style>
   </head>
   <body>
     <header id="header">
       <div class="header-div">
-        <div class="logo">
-          <img id="header-img" src= "https://i.ibb.co/nQxFJCx/fish-logo-7888-34.webp">
-          <h1>Ugly Fish - Pet Company<h1>
-        </div>
+        <img id="header-img" src= "https://i.ibb.co/nQxFJCx/fish-logo-7888-34.webp">
+        <div class="logo-title"><h1>Ugly Fish - Pet Company<h1></div>
         <nav id="nav-bar">
           <ul>
-            <li><a href="#features" class="nav-link">Features</a></li>
-            <li><a href="#how_it_works" class="nav-link">How it works</a></li>
             <li><a href="#pricing" class="nav-link">Pricing</a></li>
+            <li><a href="#how_it_works" class="nav-link">How it works</a></li>
+            <li><a href="#features" class="nav-link">Features</a></li>
+            <li><a href="#presentation" class="nav-link">Welcome</a></li>
   			  </ul>
         </nav>
       </div>
     </header>
-    <hr>
-    <main class="flex-wrap">
-      <div class="form-div flex-wrap">
-        <label for="form"><h2>Subscribe to our newsletter!</h2>
-          <form id="form" action="https://www.freecodecamp.com/email-submit">
-            <input id="email" placeholder="Email" type="email" name="email"></input>
-            <input id="submit" value="Submit" type="submit"></input>
-            <footer>Stay up to date with the new exciting ugly fish!</footer>
-          </form>
-        </label>
-      </div>
-
+    <main>
+      <section id="presentation">
+        <div class="total-div wrapper">
+          <div class="left-div">
+            <h1>An Ugly Fish.</h1>
+            <h1>A Life Companion.</h1>
+            <h1 style="font-style: italic;">A Friend.</h1>
+          </div>
+          <img src="../pic/fish-cute.jpg" alt="cute fish" class="right">
+        </div>
+      </section>
       <section id= "features">
-        <h1 class="section-title">Features</h1>
-        <ul class="list">
-          <li><i class="fas fa-star"></i><span>Premium Class</span><p>Our fish are the best of the best: we accept only those who pass a rigorous selection process.</p></li>
-          <li><i class="fas fa-face-smile"></i><span>Exceptional Companions</span><p>You will never regret choosing one of our fish as pet: they are the best life companions, always there to brighten your darkest days.</p></li>
-          <li><i class="fas fa-droplet"></i><span>Waterproof</span><p>All our fish are completely waterproof: their quality will not be altered even after prolonged immersion in any quantity of water!</p></li>
-          <li><i class="fas fa-person-cane"></i><span>Longevity</span><p>Through an all natural selection, we have obtained fish whose lifespan might even exceed yours. You will never have to worry about being sad or lonely for your whole lifetime!</p></li>
-        </ul>
-        <div class="video-div flex-wrap">
-          <video id="video" width="0" src="https://www.youtube.com/embed/JXiJl6HPaDo"></video>
-          <iframe id="fish-video" src="https://www.youtube.com/embed/JXiJl6HPaDo" title="ugly fish" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          <caption for="iframe" >Our excited customers' experience with one of our fish.</caption>
+        <div class="wrapper">
+          <h1 class="section-title">Features</h1>
+          <div class="total-div">
+            <ul class="left-div">
+              <li><i class="fas fa-star"></i><span>Premium Class</span><p>Our fish are the best of the best: we accept only those who pass a rigorous selection process.</p></li>
+              <li><i class="fas fa-face-smile"></i><span>Exceptional Companions</span><p>You will never regret choosing one of our fish as pet: they are the best life companions, always there to brighten your darkest days.</p></li>
+              <li><i class="fas fa-droplet"></i><span>Waterproof</span><p>All our fish are completely waterproof: their quality will not be altered even after prolonged immersion in any quantity of water!</p></li>
+              <li><i class="fas fa-person-cane"></i><span>Longevity</span><p>Through an all natural selection, we have obtained fish whose lifespan might even exceed yours. You will never have to worry about being sad or lonely for your whole lifetime!</p></li>
+            </ul>
+            <div class="right">
+              <!-- <video id="video" width="0" src="https://www.youtube.com/embed/JXiJl6HPaDo"></video> -->
+              <iframe id="fish-video" src="https://www.youtube.com/embed/JXiJl6HPaDo" title="ugly fish" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <p>Our excited customers' experience with one of our fish.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section  id= "how_it_works">
+        <div class="wrapper">
+        <h1 class="section-title">How it works</h1>
+          <ol>
+            <li><span>Choose the fish</span><p>Browse our catalogue of ugly fish and decide which one will be your lifetime companion!</p></li>
+            <li><span>Receive the fish</span><p>Once you complete the order, the fish will be delivered to you directly in a fish tank, with no additional costs!</p></li>
+            <li><span>Enjoy the fish</span><p>Enjoy your time with the ugly fish as you prefer.</p></li>
+            <li><span>A lifetime companion</span><p>The fish might live long enough to bury you, or if you get tired you can grill it. We assure you our fish are delicious!</p></li>
+              <p>... until death do us part.</p>
+          </ol>
+      </section>
+      <section>
+        <div class="wrapper right">
+            <img id="fish-pic" src="https://i.ibb.co/p32Dv5j/fried-fish-with-vegetables-plate.jpg" alt="grilled fish"></iframe>
+            <p>Our ugly fish are also gourmet.</p>
+          </div>
         </div>
       </section>
 
-    <section  id= "how_it_works">
-      <h1 class="section-title">How it works</h1>
-      <ol class="list">
-        <li><span>Choose the fish</span><p>Browse our catalogue of ugly fish and decide which one will be your lifetime companion!</p></li>
-        <li><span>Receive the fish</span><p>Once you complete the order, the fish will be delivered to you directly in a fish tank, with no additional costs!</p></li>
-        <li><span>Enjoy the fish</span><p>Enjoy your time with the ugly fish as you prefer.</p></li>
-        <li><span>A lifetime companion</span><p>The fish might live long enough to bury you, or if you get tired you can grill it. We assure you our fish are delicious!</p></li>
-          <p>... until death do us part.</p>
-      </ul>
-      <div class="figure-div flex-wrap">
-        <img id="fish-pic" src="https://i.ibb.co/p32Dv5j/fried-fish-with-vegetables-plate.jpg" alt="grilled fish"></iframe>
-        <caption for="img">Our ugly fish are also gourmet.</caption>
+    <section  id= "pricing">
+      <div class="wrapper">
+        <h1 class="section-title" style="margin-bottom: 10px;">Pricing</h1>
+        <!-- <p style="margin-top: 0px; margin-bottom: 30px; text-align: center; font-size: 20px;">Our prices are the lowest on the market!</p> -->
+        <div class="right">
+          <table>
+            <caption>Our prices are the lowest on the market!</caption>
+            <thead>
+              <tr>
+              <th>Ordinary Class Fish</th><th>Second Class Fish</th><th>First Class Fish</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>from $50</td><td>from $100</td><td>from $350</td></tr>
+              <tr><td><input id="submit" value="Browse" type="submit"></td><td><input id="submit" value="Browse" type="submit"></td><td><input id="submit" value="Browse" type="submit"></td>
+            </tbody>
+          </table>
+        </div>
+        <!-- <div class="price-div">
+          <div class="price">  <h2>Ordinary Fish</h2><h3>from $50</h3>  <input id="submit" value="Browse" type="submit"></input> </div>
+          <div class="price"> <h2>Second Class Fish</h2><h3>from $100</h3> <input id="submit" value="Browse" type="submit"></input></div>
+          <div class="price"><h2>First Class Fish</h2><h3>from $350</h3> <input id="submit" value="Browse" type="submit"></div>
+        </div> -->
       </div>
     </section>
-
-    <section  id= "pricing" class="flex-wrap">
-      <h1 class="section-title" style="margin-bottom: 10px;">Pricing</h1>
-      <p style="margin-top: 0px; margin-bottom: 30px; text-align: center; font-size: 20px;">Our prices are the lowest on the market!</p>
-      <div class="price-div">
-        <div class="price">  <h2>Ordinary Fish</h2><h3>from $50</h3>  <input id="submit" value="Browse" type="submit"></input> </div>
-        <div class="price"> <h2>Second Class Fish</h2><h3>from $100</h3> <input id="submit" value="Browse" type="submit"></input></div>
-        <div class="price"><h2>First Class Fish</h2><h3>from $350</h3> <input id="submit" value="Browse" type="submit"></div>
-      </div>
-    </section>
+      <section id="form-section">
+        <div class="form-div">
+          <label for="form"><h2>Subscribe to our newsletter!</h2>
+            <form id="form" action="https://www.freecodecamp.com/email-submit">
+              <input id="email" placeholder="Email" type="email" name="email"></input>
+              <input id="submit" value="Submit" type="submit"></input>
+              <footer>Stay up to date with the new exciting ugly fish!</footer>
+            </form>
+          </label>
+        </div>
+      </section>
     </main>
   </body>
 </html>
