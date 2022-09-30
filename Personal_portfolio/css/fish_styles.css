@@ -5,10 +5,10 @@
   --light-blue:   #6798c0;
   --lighter-blue: #99d6ea;
 }
-/* *{
+*{
   box-sizing: border-box;
   border: 1px solid red;
-} */
+}
 html { color:var(--darker-blue); font-size: 62.5%;}
 head, body{
   margin: 0; padding: 0;
@@ -104,7 +104,7 @@ section{
 }
 
 /******************************************************************/
-
+.right:not(.strange){align-self: center;}
 .left-div h1{
   text-align: center;
   font-size: 6rem;
@@ -132,99 +132,87 @@ ol {list-style-position: inside;}
 
 /******************************************************************/
 
+#animation-fish, #animation-fish2 {position: absolute; width: 20rem;}
+#animation-fish{
+  animation: 2s infinite bounce;
+  top: 26rem; right:30rem;
+}
+#animation-fish2{
+  animation: 2s infinite swing;
+  top: 46rem; right:40rem;
+}
+
+#how_it_works p {margin-top: 1rem;}
+#how_it_works h1 {margin-bottom: 1rem;}
+/******************************************************************/
+
 #pricing, #form-section {height:50vh;}
+table caption {margin-bottom: 2rem;}
 table{
   border-collapse: collapse;
   width: 50%;
   text-align: center;
 }
-.price-div{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-  padding-bottom: 20px;
-}
 th {
   background-color: var(--dark-blue);
   color: white; border: solid 1px white;
   padding: 1rem;
+  font-size: 2rem;
 }
 td{
   border: solid 1px var(--dark-blue);
   padding: 1rem;
+  font-size: 1.5rem;
 }
-
+#submit {
+  background: var(--blue);
+  color: white;
+  padding: 0.5rem;
+}
 /******************************************************************/
-#form-section{
-  height: 100vh; width: 100vw;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
+
 
 .form-div{
   background-color: rgba(0,0,0,0.5);
-  width:30%; height:200px;
+  color: white;
+  text-align: center;
+  width:30%; height:20rem;
   border-radius: 5px;
   box-shadow: 1px 1px 5px black;}
+footer{ margin-top: 1.5rem;}
 
 /******************************************************************/
+.shifter{ margin-top: 6rem;}
 
-
-
-/* .form-div{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  padding: 20px;
-  color: white;
-  background-color: var(--blue);
-} */
-
-/* h2, footer, form{text-align: center;}
-h2, footer{margin-top: 5px;}
-footer{ margin-bottom: 5px; border-bottom: var(--darker-blue);} */ */
-
-
-
-
-
-/*
-
-
-
-#submit{
-  background-color: var(--dark-blue);
-  color: white;
-  padding: 2%;
+@media only screen and (max-width: 1200px) {
+  html {  font-size: 50%;}
+  #animation-fish{  top: 26rem; right:20rem; }
+  #animation-fish2{    top: 46rem; right:30rem;  }
 }
-#pricing #submit {margin-bottom: 20px;}
-ol {font-size: 2rem;}
-p, .figure-div {font-size: 1rem;}
-
-
-@media only screen and (max-width: 1100px) {
-  nav ul {  flex-direction: column;  }
-  main {margin-top: 200px;}
-  .header-div{ height: auto;}
-  #features{
-    display: flex;
-    flex-direction: column;
-  }
-  .price-div{
-    flex-direction: column;
-  }
+@media only screen and (max-width: 1000px) {
+  #presentation h1{ font-size: 5rem;}
+  #fish-video {width:70%; height:70%;}
+  #animation-fish{    top: 26rem; right:10rem;  }
+  #animation-fish2{    top: 46rem; right:20rem;  }
+  #fish-pic {width: 70%;}
+  table, .form-div {width: 70%;}
+  .logo-title h1 {margin-left: 7rem; padding-right: 1rem;}
 }
-@media only screen and (max-width: 620px) {
-  nav {    margin: auto; width:100%; margin-top: 50px;  }
-  nav ul {    flex-direction : row; }
-  .header-div {flex-direction: column;}
-  .logo{
-    display: flex;
-    align-items: center;
+@media only screen and (max-width: 700px) {
+  html {  font-size: 40%;}
+  .total-div{ display: flex; flex-direction: column;}
+  #animation-fish{    top: 76rem; right:30rem;  }
+  #animation-fish2{    top: 96rem; right:40rem;  }
+  .right{ height: auto;}
+  #fish-video {width:70%; height:40rem;}
+  #cute-fish {width:90%; height:70%;}
+  .form-div{ height: 30rem;}
+}
+@media only screen and (max-width: 520px) {
+  html {  font-size: 30%;}
+  #animation-fish{    top: 96rem; right:30rem;  }
+  #animation-fish2{    top: 126rem; right:40rem;  }
+  /* #presentation h1{font-size: 8rem;} */
+  /* .project-wrap{ display: flex; flex-direction: column;} */
   }
-  h1, nav, .logo img {position:relative;}
-  #fish-video {width: 420px; height: 315px;} */
 }

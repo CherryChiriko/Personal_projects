@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Landing Page || Ugly Fish</title>
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <link href="../css/fish_styles.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
@@ -13,7 +14,7 @@
     <header id="header">
       <div class="header-div">
         <img id="header-img" src= "https://i.ibb.co/nQxFJCx/fish-logo-7888-34.webp">
-        <div class="logo-title"><h1>Ugly Fish - Pet Company<h1></div>
+        <div class="logo-title"><h1>Ugly Fish - Pet Company</h1></div>
         <nav id="nav-bar">
           <ul>
             <li><a href="#pricing" class="nav-link">Pricing</a></li>
@@ -32,11 +33,12 @@
             <h1>A Life Companion.</h1>
             <h1 style="font-style: italic;">A Friend.</h1>
           </div>
-          <img src="../pic/fish-cute.jpg" alt="cute fish" class="right" style="max-width:90%">
+          <img src="../pic/fish-cute.jpg" alt="cute fish" class="right" id = "cute-fish" style="max-height: 41.5rem;">
         </div>
       </section>
       <section id= "features">
         <div class="wrapper">
+        <div class="shifter">
           <h1 class="section-title">Features</h1>
           <div class="total-div">
             <ul class="left-div">
@@ -45,56 +47,70 @@
               <li><i class="fas fa-droplet"></i><span>Waterproof</span><p>All our fish are completely waterproof: their quality will not be altered even after prolonged immersion in any quantity of water!</p></li>
               <li><i class="fas fa-person-cane"></i><span>Longevity</span><p>Through an all natural selection, we have obtained fish whose lifespan might even exceed yours. You will never have to worry about being sad or lonely for your whole lifetime!</p></li>
             </ul>
-            <div class="right">
+            <div class="right strange">
               <!-- <video id="video" width="0" src="https://www.youtube.com/embed/JXiJl6HPaDo"></video> -->
               <iframe id="fish-video" src="https://www.youtube.com/embed/JXiJl6HPaDo" title="ugly fish" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               <p>Our excited customers' experience with one of our fish.</p>
             </div>
           </div>
         </div>
+        </div>
       </section>
       <section  id= "how_it_works">
         <div class="wrapper">
-        <h1 class="section-title">How it works</h1>
-          <ol>
-            <li><span>Choose the fish</span><p>Browse our catalogue of ugly fish and decide which one will be your lifetime companion!</p></li>
-            <li><span>Receive the fish</span><p>Once you complete the order, the fish will be delivered to you directly in a fish tank, with no additional costs!</p></li>
-            <li><span>Enjoy the fish</span><p>Enjoy your time with the ugly fish as you prefer.</p></li>
-            <li><span>A lifetime companion</span><p>The fish might live long enough to bury you, or if you get tired you can grill it. We assure you our fish are delicious!</p></li>
-              <p>... until death do us part.</p>
-          </ol>
+        <div class="shifter">
+          <h1 class="section-title">How it works</h1>
+          <div class="total-div">
+          <div class="left-div">
+            <ol>
+              <li><span>Choose the fish</span><p>Browse our catalogue of ugly fish and decide which one will be your lifetime companion!</p></li>
+              <li><span>Receive the fish</span><p>Once you complete the order, the fish will be delivered to you directly in a fish tank, with no additional costs!</p></li>
+              <li><span>Enjoy the fish</span><p>Enjoy your time with the ugly fish as you prefer.</p></li>
+              <li><span>A lifetime companion</span><p>The fish might live long enough to bury you, or if you get tired you can grill it. We assure you our fish are delicious!</p></li>
+            </ol>
+          </div>
+          <div class="right">
+            <img src="../pic/animation-fish2.png" id="animation-fish2">
+            <img src="../pic/animation-fish.png" id="animation-fish">
+          </div>
+        </div>
+      </div>
+      </div>
       </section>
       <section>
-        <div class="wrapper right" style="max-width:90%">
+        <div class="wrapper right strange" style="max-width:90%">
+          <p>... until death do us part.</p>
             <img id="fish-pic" src="https://i.ibb.co/p32Dv5j/fried-fish-with-vegetables-plate.jpg" alt="grilled fish"></iframe>
             <p>Our ugly fish are also gourmet.</p>
           </div>
         </div>
       </section>
 
-    <section  id= "pricing">
-      <div class="wrapper">
-        <h1 class="section-title" style="margin-bottom: 10px;">Pricing</h1>
-        <div class="right">
-          <table>
-            <caption>Our prices are the lowest on the market!</caption>
-            <thead>
-              <tr>
-              <th>Ordinary Class Fish</th><th>Second Class Fish</th><th>First Class Fish</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>from $50</td><td>from $100</td><td>from $350</td></tr>
-              <tr><td><input id="submit" value="Browse" type="submit"></td><td><input id="submit" value="Browse" type="submit"></td><td><input id="submit" value="Browse" type="submit"></td>
-            </tbody>
-          </table>
+      <section  id= "pricing">
+        <div class="wrapper">
+        <div class="shifter">
+          <h1 class="section-title" style="margin-bottom: 10px;">Pricing</h1>
+          <div class="right">
+            <table>
+              <caption>Our prices are the lowest on the market!</caption>
+              <thead>
+                <tr>
+                <th>Ordinary Class Fish</th><th>Second Class Fish</th><th>First Class Fish</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>from $50</td><td>from $100</td><td>from $350</td></tr>
+                <tr><td><input id="submit" value="Browse" type="submit"></td><td><input id="submit" value="Browse" type="submit"></td><td><input id="submit" value="Browse" type="submit"></td>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </section>
+      </section>
       <section id="form-section">
-        <div class="form-div">
+        <div class="right form-div">
           <label for="form"><h2>Subscribe to our newsletter!</h2>
-            <form id="form" action="https://www.freecodecamp.com/email-submit">
+            <form id="form" action="">
               <input id="email" placeholder="Email" type="email" name="email"></input>
               <input id="submit" value="Submit" type="submit"></input>
               <footer>Stay up to date with the new exciting ugly fish!</footer>
