@@ -5,10 +5,10 @@
   --light-blue:   #6798c0;
   --lighter-blue: #99d6ea;
 }
-*{
+/* *{
   box-sizing: border-box;
   border: 1px solid red;
-}
+} */
 html { color:var(--darker-blue); font-size: 62.5%;}
 head, body{
   margin: 0; padding: 0;
@@ -88,12 +88,13 @@ section{
 .right{
   grid-area: 1 / 2 ;
   object-fit: cover;
-  max-width: 90%;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  justify-self: center;
 }
 .left-div{
   grid-area: 1 / 1;
@@ -116,9 +117,7 @@ section{
   text-align: center;
   font-size: 4rem;}
 
-.right:not(#features .right){justify-self: center; }
-#features .right{ padding-left: 5rem;}
-#fish-video{width:100%; height:90%;}
+#fish-video{width:90%; height:90%;}
 
 span, i {
   font-size: 3rem; font-weight: bold;
