@@ -5,10 +5,10 @@
   --light-blue:   #6798c0;
   --lighter-blue: #99d6ea;
 }
-*{
+/* *{
   box-sizing: border-box;
   border: 1px solid red;
-}
+} */
 html { color:var(--darker-blue); font-size: 62.5%;}
 head, body{
   margin: 0; padding: 0;
