@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/tribute_styles.css" />
   </head>
   <body>
-    <div class="container ">
+    <div class="container">
       <div class="row gap-2 py-4">
         <div class="col-md bg-white">
           <h1  id="title" class="pt-2">Konata Izumi</h1>
@@ -22,14 +22,17 @@
 
 
         <div class="col-md bg-white">
-          <div class="d-flex h-100 flex-column">
-            <h2 class="pt-4 align-items-start"> Quotes </h2>
-            <h3 id="quote" class="pt-4 align-items-center">"Hello!"</h3>
-            <button class="btn mx-auto" onclick="generateQuote()">New Quote</button></th>
+          <!-- <div class="d-flex h-100 flex-column" id="white-right"> -->
+          <h2 class="pt-4 align-items-start"> Quotes </h2>
+          <div id="quote-text" class="d-flex flex-column justify-content-center">
+            <h3 id="quote" class="pt-4 align-items-center"></h3>
+            <h4 id="author"></h4>
+            <button class="btn mx-auto my-4" onclick="generateQuote()">New Quote</button>
+          </div>
             <footer class="col">If you want more, go watch "Lucky Star". <br/>
             <a href="https://animelon.com/series/Lucky%E2%98%86Star" id="tribute-link" target="_blank">Here</a> it even has Japanese subtitles.
             </footer>
-          </div>
+
 
           <!-- <div class="row">
             <div class="col bg-secondary"><p>Hello 1</p></div>

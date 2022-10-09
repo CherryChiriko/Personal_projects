@@ -13,7 +13,11 @@ const quote_list = [
   "As time goes by without anyone eating it, it starts getting dry and looking anything but appetizing, and no one\’s willing to make a move, but when the busboy takes it you go 'wait, we\’re not done with that yet.' kinda on reflex. But then you end up leaving without eating it."
 ]
 
+const quote = document.getElementById("quote");
+const author = document.getElementById("author");
+generateQuote();
+
 function generateQuote(){
-  quote = document.getElementById("quote");
-  quote.innerHTML = '\"' + quote_list[Math.floor(Math.random() * quote_list.length)] + '\"' + " - Konata Izumi";
+  quote.innerHTML = '\"' + quote_list[Math.floor(Math.random() * quote_list.length)] + '\"';
+  author.innerHTML = " - Konata Izumi";
 }
