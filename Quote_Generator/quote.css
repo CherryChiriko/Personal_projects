@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
+body{
+  background-color: blue;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.quote-author{text-align: right; margin-bottom: 10px;}
+#text {margin-left: 10px; margin-bottom: 10px;}
+#quote-box {min-height: 40%;}
+#quote{height:80%;}
