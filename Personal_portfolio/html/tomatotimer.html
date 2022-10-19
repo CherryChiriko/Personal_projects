@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../css/tomato.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
+    </head>
+    <body>
+      <div class="container">
+        <div class="border1">
+        <!-- <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: 10%"></div>
+        </div> -->
+
+        <!-- <progress id="file" value="32" max="100"> -->
+          <h1 id="time"></h1>
+        <!-- </progress> -->
+        </div>
+        <div class="buttons">
+        <button class="btn" type="button" name="pause" id="pause"><i class="fas fa-pause"></i></button>
+        <button class="btn" type="button" name="start" id="startStop"><i class="fas fa-play"></i>Start</button>
+                <button class="btn" type="button" name="restart" id="restart"><i class="fas fa-arrow-rotate-right"></i></button>
+        </div>
+      </div>
+      <script>
+
+        function display_number (m, s){
+          m = (m).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+          s = (s).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+          document.getElementById("time").innerHTML = m+": "+s;
+        }
+
+        let stop = false;
+        let minutes=0;  let seconds=5;
+        display_number (minutes, seconds);
+
+        startStop.onclick = ()=>{
+          if (!stop){
+            display = setInterval(timer, 1000); stop = true; startStop.innerHTML = "<i class='fas fa-stop'></i>Stop";}
+          else {clearInterval(display);         stop = false; startStop.innerHTML = "<i class='fas fa-play'></i>Start";}
+        }
+
+        function timer(){
+            display_number (minutes, seconds)
+
+            if (seconds==0){minutes-=1; seconds=59;}
+            else{seconds-=1};
+            if(minutes==0 && seconds==0){
+                display_number (minutes, seconds)
+                clearInterval(display)};
+        }
+      </script>
+    </body>
+</html>
