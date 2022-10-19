@@ -5,20 +5,16 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
     </head>
     <body>
-      <div class="container">
+      <div class="container flex-column flex-center">
         <div class="border1">
-        <!-- <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: 10%"></div>
-        </div> -->
-
-        <!-- <progress id="file" value="32" max="100"> -->
+        <div class="border2 flex-center">
           <h1 id="time"></h1>
-        <!-- </progress> -->
         </div>
-        <div class="buttons">
-          <button class="btn" type="button" name="stop"    id="stop"    ><i class="fas fa-stop"></i></button>
-          <button class="btn" type="button" name="start"   id="start"   ><i class="fas fa-play"></i>Start</button>
-          <button class="btn" type="button" name="restart" id="restart" ><i class="fas fa-arrow-rotate-right"></i></button>
+        </div>
+        <div class="buttons mt-3 flex-center">
+          <button class="btn mx-2" type="button" name="stop"    id="stop"    ><i class="fas fa-stop"></i></button>
+          <button class="btn mx-2" type="button" name="start"   id="start"   ><i class="fas fa-play pe-2"></i>Start</button>
+          <button class="btn mx-2" type="button" name="restart" id="restart" ><i class="fas fa-arrow-rotate-right"></i></button>
         </div>
       </div>
       <script>
@@ -30,9 +26,9 @@
           document.getElementById("time").innerHTML = m+": "+s;
         }
         function stop_timer (m = MINUTES, s = SECONDS){
-          stop.disabled = true; restart.disabled = true;
-          clearInterval(display); display_number (m, s);
-          pause = false; start.innerHTML = "<i class='fas fa-play'></i>Start";
+          stop.disabled = true; clearInterval(display);
+          minutes = m; seconds = s; display_number (minutes, seconds);
+          pause = false; start.innerHTML = "<i class='fas fa-play pe-2'></i>Start";
         }
         function timer(){
           display_number (minutes, seconds)
@@ -43,29 +39,21 @@
               clearInterval(display)};
         }
 
-        let pause = false; stop.disabled = true; restart.disabled = true; start.disabled = false;
+        let pause = false;   stop.disabled = true; restart.disabled = true; start.disabled = false;
         let minutes = MINUTES;  let seconds = SECONDS;
         display_number (minutes, seconds);
 
-        pause.onclick   = () => {clearInterval(display);}
-        restart.onclick = () => {
-          stop.disabled = true; restart.disabled = true; start.disabled = false;
-          clearInterval(display); minutes = MINUTES; seconds = SECONDS; display_number (minutes, seconds);
-          pause = false; start.innerHTML = "<i class='fas fa-play'></i>Start";
-          }
-
-        stop.onclick    = () => {
-          stop.disabled = true; restart.disabled = false; start.disabled = true;
-          clearInterval(display); display_number (0, 0);
-          pause = false; start.innerHTML = "<i class='fas fa-play'></i>Start";}
+        pause.onclick   = () => { clearInterval(display);}
+        restart.onclick = () => { stop_timer();    restart.disabled = true;  start.disabled = false;}
+        stop.onclick    = () => { stop_timer(0,0); restart.disabled = false; start.disabled = true;}
 
         start.onclick   = () => {
           if (!pause){
             stop.disabled = false; restart.disabled = false;
-            display = setInterval(timer, 1000); pause = true; start.innerHTML = "<i class='fas fa-pause'></i>Pause";}
+            display = setInterval(timer, 1000); pause = true; start.innerHTML = "<i class='fas fa-pause pe-2'></i>Pause";}
           else {
             clearInterval(display);
-            pause = false; start.innerHTML = "<i class='fas fa-play'></i>Start";
+            pause = false; start.innerHTML = "<i class='fas fa-play pe-2'></i>Start";
           }
         }
 

@@ -1,41 +1,51 @@
+:root{
+  --indigo:     #6958a6;
+  --green:      #5ab685;
+  --sky:        #36989b;
+}
 body::before {
   display:block;
   content: '';
   height:60px; /* or whatever */
 }
-* {
+html{  font-size: 160%;}
+.flex-center {  display: flex; justify-content: center; align-items: center;}
+/* * {
     box-sizing: border-box;
     border: 1px solid red;
-}
-.fa-play, .fa-pause {padding-right: 10px;}
+} */
+
 #start {
-  background-color: #6f32a8;
+  background-color: var(--indigo);
   color: white;
   border-radius: 20px;
   padding: 5px 15px ;
 }
 #stop, #restart{
-  color: #6f32a8;
+  color: var(--indigo);
   border-radius: 50%;
-  border: 1px solid #6f32a8;
-}
-#stop {padding: 10px 13px;}
-#restart{padding: 10px;}
-.btn {margin: 10px;}
-.buttons, .container{
+  border: 1px solid var(--indigo);
+  width: 50px; height: 50px;
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.buttons {margin-top: 10px;}
-.container{
-  flex-direction: column;
-}
+
 .border1{
   border:  1px solid #6f32a8;
   border-radius: 50%;
-  height: 300px;
-  width: 300px;
-  display: flex;
-  justify-content: center; align-items: center;
+  height: 300px;  width: 300px;
+  position: relative;
+}
+.border2{
+  position: absolute;
+  top: -6px; left: -6px;
+  height: 310px;  width: 310px;
+
+  background:
+    linear-gradient(white,white) padding-box,
+    conic-gradient( var(--indigo), var(--sky), var(--green),  var(--sky), var(--indigo)) border-box;
+  border-radius: 50em;
+  border: 10px solid transparent;
 }
