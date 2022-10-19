@@ -7,19 +7,19 @@ body::before {
     box-sizing: border-box;
     border: 1px solid red;
 }
-.fa-play, .fa-stop {padding-right: 10px;}
-#startStop {
+.fa-play, .fa-pause {padding-right: 10px;}
+#start {
   background-color: #6f32a8;
   color: white;
   border-radius: 20px;
   padding: 5px 15px ;
 }
-#pause, #restart{
+#stop, #restart{
   color: #6f32a8;
   border-radius: 50%;
   border: 1px solid #6f32a8;
 }
-#pause {padding: 10px 13px;}
+#stop {padding: 10px 13px;}
 #restart{padding: 10px;}
 .btn {margin: 10px;}
 .buttons, .container{
