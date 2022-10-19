@@ -4,8 +4,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
     </head>
-    <body>
-      <div class="container flex-column flex-center">
+    <body class="flex-center flex-column">
+      <div class="box flex-column flex-center py-5 bg-white">
         <div class="border1">
         <div class="border2 flex-center">
           <h1 id="time"></h1>
@@ -17,46 +17,10 @@
           <button class="btn mx-2" type="button" name="restart" id="restart" ><i class="fas fa-arrow-rotate-right"></i></button>
         </div>
       </div>
-      <script>
-        stop = document.getElementById("stop");
-        const MINUTES = 0; const SECONDS = 5;
-        function display_number (m, s){
-          m = (m).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-          s = (s).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-          document.getElementById("time").innerHTML = m+": "+s;
-        }
-        function stop_timer (m = MINUTES, s = SECONDS){
-          stop.disabled = true; clearInterval(display);
-          minutes = m; seconds = s; display_number (minutes, seconds);
-          pause = false; start.innerHTML = "<i class='fas fa-play pe-2'></i>Start";
-        }
-        function timer(){
-          display_number (minutes, seconds)
-
-          if (seconds==0){minutes-=1; seconds=59;}  else{seconds-=1};
-          if(minutes==0 && seconds==0){
-              display_number (minutes, seconds);
-              clearInterval(display)};
-        }
-
-        let pause = false;   stop.disabled = true; restart.disabled = true; start.disabled = false;
-        let minutes = MINUTES;  let seconds = SECONDS;
-        display_number (minutes, seconds);
-
-        pause.onclick   = () => { clearInterval(display);}
-        restart.onclick = () => { stop_timer();    restart.disabled = true;  start.disabled = false;}
-        stop.onclick    = () => { stop_timer(0,0); restart.disabled = false; start.disabled = true;}
-
-        start.onclick   = () => {
-          if (!pause){
-            stop.disabled = false; restart.disabled = false;
-            display = setInterval(timer, 1000); pause = true; start.innerHTML = "<i class='fas fa-pause pe-2'></i>Pause";}
-          else {
-            clearInterval(display);
-            pause = false; start.innerHTML = "<i class='fas fa-play pe-2'></i>Start";
-          }
-        }
-
-      </script>
+      <div class="alert">
+       <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+       This is an alert box.
+      </div>
+      <script src="../js/tomato.js"></script>
     </body>
 </html>
