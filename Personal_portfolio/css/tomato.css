@@ -59,11 +59,13 @@ body{
 
 
 /* The alert message box */
-.alert {
+#alert {
  padding: 20px;
  background-color: #f44336; /* Red */
  color: white;
- margin-bottom: 15px;
+ margin-bottom: 100px; /* 15 */
+ z-index: 1;
+ transform: translate(0, -50%);
 }
 
 /* The close button */
@@ -75,6 +77,6 @@ body{
  font-size: 22px;
  line-height: 20px;
  cursor: pointer;
- transition: 0.3s;
+ z-index: 1;
 }
-.closebtn:hover { color: black;}
+.closebtn:hover { color: var(--indigo);}
