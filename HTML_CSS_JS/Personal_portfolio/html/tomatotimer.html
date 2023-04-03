@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../css/tomato.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
+    </head>
+    <body class="flex-center flex-column">
+      <div class="box flex-column flex-center py-5 bg-white">
+        <div class="border1">
+        <div class="border2 flex-center">
+          <h1 id="time"></h1>
+        </div>
+        </div>
+        <div class="buttons mt-3 flex-center">
+          <button class="btn mx-2" type="button" name="stop"    id="stop"    ><i class="fas fa-stop"></i></button>
+          <button class="btn mx-2" type="button" name="start"   id="start"   ><i class="fas fa-play pe-2"></i>Start</button>
+          <button class="btn mx-2" type="button" name="restart" id="restart" ><i class="fas fa-arrow-rotate-right"></i></button>
+        </div>
+      </div>
+      <div   id="alert"    class="alert">
+       <span id="closebtn" class="closebtn">&times;</span>
+       Time's up.
+      </div>
+      <!-- <svg height="100" width="100">
+        <circle cx="50" cy="50" r="40" />
+      </svg> -->
+      <script src="../js/tomato.js"></script>
+    </body>
+</html>

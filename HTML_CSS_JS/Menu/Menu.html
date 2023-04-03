@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <style>
+      .smaller {width: 20%;}
+      .small {width: 40%;}
+    </style>
+  </head>
+  <body>
+  <!-- <div class ="container bg-secondary smaller"> -->
+  <div class ="container">
+  <div class="row bg-secondary smaller">
+    <div class="d-grid gap-1 p-2">
+      <button type="button" class="btn btn-dark">Clear Seeds</button>
+      <button type="button" class="btn btn-dark">Load Seeds</button>
+    </div>
+    <div class='row g-0'>
+      <div class='col-md-9 mx-5 my-1'>
+        <div class="btn-group-vertical col-md-9" role="group" aria-label="Basic radio toggle button group">
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+          <label class="btn btn-outline-dark" for="btnradio1">move</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+          <label class="btn btn-outline-dark" for="btnradio2">BG</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+          <label class="btn btn-outline-dark" for="btnradio3">FG</label>
+        </div>
+      </div>
+    </div>
+    <div class="d-grid p-2">
+      <button class="btn btn-dark" type="button">Save Seeds</button>
+    </div>
+    <form >
+      <label for="sigma" class="control-label">Sigma <i class="bi bi-info-circle text-info" style="margin-left:17px;" data-toggle="tooltip" data-placement="top" title="Sigma is..."></i></label>
+      <input type="number" id="sigma" class="form-control-sm small" style="margin-left:4px;" min="0.1" step="0.1">
+      <label for="lambda" class="form-label">Lambda <i class="bi bi-info-circle text-info mx-1" data-toggle="tooltip" data-placement="top" title="Lambda is..."></i></label>
+      <input type="number" id="lambda" class="form-control-sm small" min="0.1" step="0.1">
+
+      <div class="btn-group-justified my-2" role="group" aria-label="Basic radio toggle button group">
+
+        <input type="radio" class="btn-check" name="btnradio2" id="btnradio4" autocomplete="off" checked>
+        <label class="btn-sm btn-outline-dark" for="btnradio4">Standard</label>
+
+        <input type="radio" class="btn-check" name="btnradio2" id="btnradio5" autocomplete="off">
+        <label class="btn-sm btn-outline-dark" for="btnradio5">Visualize</label>
+
+        <input type="radio" class="btn-check" name="btnradio2" id="btnradio6" autocomplete="off">
+        <label class="btn-sm btn-outline-dark" for="btnradio6">Benchmark</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="save" class="form-check-input" />
+        <label for="checkbox" class="form-check-label"> Save result</label>
+      </div>
+    </form>
+    <div class="d-grid p-2">
+      <button type="button" class="btn btn-primary">Proceed to Cut</button>
+    </div>
+  </div>
+  </div>
+  </div>
+  </body>
+</html>

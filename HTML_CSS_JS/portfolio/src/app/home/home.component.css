@@ -1,0 +1,475 @@
+:host { 
+    display: contents; 
+  }
+  .home-container {
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+  }
+  .home-home {
+    width: 100%;
+    height: 1080px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-color: transparent;
+    background-color: rgba(34, 34, 34, 1);
+  }
+  .home-group7 {
+    top: 276px;
+    left: 235px;
+    width: 1413px;
+    height: 528px;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    align-self: auto;
+    box-sizing: border-box;
+    align-items: flex-start;
+    flex-shrink: 1;
+    border-color: transparent;
+    border-style: none;
+    border-width: 0;
+    margin-right: 0;
+    border-radius: 0px 0px 0px 0px;
+    margin-bottom: 0;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: transparent;
+  }
+  .home-group6 {
+    top: 0px;
+    left: 0px;
+    width: 528px;
+    height: 528px;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    align-self: auto;
+    box-sizing: border-box;
+    align-items: flex-start;
+    flex-shrink: 1;
+    border-color: transparent;
+    border-style: none;
+    border-width: 0;
+    border-radius: 0px 0px 0px 0px;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: transparent;
+  }
+  .home-ellipse1 {
+    top: 0px;
+    left: 0px;
+    width: 528px;
+    height: 528px;
+    position: absolute;
+    border-color: transparent;
+  }
+  .home-ellipse2 {
+    top: 19px;
+    left: 18px;
+    width: 491px;
+    height: 491px;
+    position: absolute;
+    border-color: transparent;
+  }
+  .home-text {
+    top: 44px;
+    left: 610px;
+    color: rgba(255, 255, 255, 0.5);
+    width: 260px;
+    height: auto;
+    position: absolute;
+    font-size: 24px;
+    align-self: auto;
+    font-style: Regular;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home-text02 {
+    top: 118px;
+    left: 610px;
+    color: rgba(255, 255, 255, 1);
+    width: 283px;
+    height: auto;
+    position: absolute;
+    font-size: 70px;
+    align-self: auto;
+    font-style: Bold;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 700;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home-text04 {
+    top: 207px;
+    left: 610px;
+    color: rgba(255, 255, 255, 1);
+    width: 803px;
+    height: auto;
+    position: absolute;
+    font-size: 20px;
+    align-self: auto;
+    font-style: Regular;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home-group8 {
+    top: 652px;
+    left: 1049px;
+    width: 163px;
+    height: 62px;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    align-self: auto;
+    box-sizing: border-box;
+    align-items: flex-start;
+    flex-shrink: 1;
+    border-color: transparent;
+    border-style: none;
+    border-width: 0;
+    margin-right: 0;
+    border-radius: 0px 0px 0px 0px;
+    margin-bottom: 0;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: rgba(51, 51, 51, 1);
+  }
+  .home-text09 {
+    top: 13px;
+    left: 47px;
+    color: rgba(255, 255, 255, 1);
+    width: 84px;
+    height: auto;
+    position: absolute;
+    font-size: 20px;
+    align-self: auto;
+    font-style: Regular;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home-group81 {
+    top: 652px;
+    left: 857px;
+    width: 177px;
+    height: 62px;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    align-self: auto;
+    box-sizing: border-box;
+    align-items: flex-start;
+    flex-shrink: 1;
+    border-color: transparent;
+    border-style: none;
+    border-width: 0;
+    margin-right: 0;
+    border-radius: 0px 0px 0px 0px;
+    margin-bottom: 0;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: rgba(51, 51, 51, 1);
+  }
+  .home-text11 {
+    top: 13px;
+    left: 47px;
+    color: rgba(255, 255, 255, 1);
+    width: 84px;
+    height: auto;
+    position: absolute;
+    font-size: 20px;
+    align-self: auto;
+    font-style: Regular;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home-group9 {
+    top: 1012px;
+    left: 0px;
+    width: 1920px;
+    height: 46px;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    align-self: auto;
+    box-sizing: border-box;
+    align-items: flex-start;
+    flex-shrink: 1;
+    border-color: transparent;
+    border-style: none;
+    border-width: 0;
+    margin-right: 0;
+    border-radius: 0px 0px 0px 0px;
+    margin-bottom: 0;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: transparent;
+  }
+  .home-text13 {
+    top: 15px;
+    left: 263px;
+    color: rgba(255, 255, 255, 0.5);
+    width: 84px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    align-self: auto;
+    font-style: Regular;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home-text15 {
+    top: 15px;
+    left: 161px;
+    color: rgba(255, 255, 255, 0.5);
+    width: 84px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    align-self: auto;
+    font-style: Regular;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home-text17 {
+    top: 15px;
+    left: 60px;
+    color: rgba(255, 255, 255, 0.5);
+    width: 83px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    align-self: auto;
+    font-style: Regular;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home-line2 {
+    top: 0px;
+    left: 0px;
+    width: 1920px;
+    height: 0px;
+    position: absolute;
+  }
+  .home-text22 {
+    top: 16px;
+    left: 1589px;
+    color: rgba(255, 255, 255, 0.800000011920929);
+    width: 274px;
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    align-self: auto;
+    font-style: Regular;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home-group10 {
+    top: 58px;
+    left: 1072px;
+    width: 787px;
+    height: 30px;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    align-self: auto;
+    box-sizing: border-box;
+    align-items: flex-start;
+    flex-shrink: 1;
+    border-color: transparent;
+    border-style: none;
+    border-width: 0;
+    margin-right: 0;
+    border-radius: 0px 0px 0px 0px;
+    margin-bottom: 0;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: transparent;
+  }
+  .home-text27 {
+    left: 352px;
+    color: rgba(255, 255, 255, 0.5);
+    width: 136px;
+    height: auto;
+    position: absolute;
+    font-size: 18px;
+    align-self: auto;
+    font-style: Regular;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home-text32 {
+    left: 138px;
+    color: rgba(255, 255, 255, 0.5);
+    width: 138px;
+    height: auto;
+    position: absolute;
+    font-size: 18px;
+    align-self: auto;
+    font-style: Regular;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home-text37 {
+    left: 564px;
+    color: rgba(255, 255, 255, 0.5);
+    width: 77px;
+    height: auto;
+    position: absolute;
+    font-size: 18px;
+    align-self: auto;
+    font-style: Regular;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home-text42 {
+    left: 717px;
+    color: rgba(255, 255, 255, 0.5);
+    width: 70px;
+    height: auto;
+    position: absolute;
+    font-size: 18px;
+    align-self: auto;
+    font-style: Regular;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home-text47 {
+    color: rgba(255, 255, 255, 1);
+    width: 62px;
+    height: auto;
+    position: absolute;
+    font-size: 18px;
+    align-self: auto;
+    font-style: Bold;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 700;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home-group11 {
+    top: 46px;
+    left: 60px;
+    width: 177px;
+    height: 55px;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    align-self: auto;
+    box-sizing: border-box;
+    align-items: flex-start;
+    flex-shrink: 1;
+    border-color: transparent;
+    border-style: none;
+    border-width: 0;
+    margin-right: 0;
+    border-radius: 0px 0px 0px 0px;
+    margin-bottom: 0;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: transparent;
+  }
+  .home-text49 {
+    top: 9px;
+    left: 63px;
+    color: rgba(255, 255, 255, 1);
+    width: 114px;
+    height: auto;
+    position: absolute;
+    font-size: 30px;
+    align-self: auto;
+    font-style: Bold;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 700;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home-text50 {
+    font-weight: 700;
+  }
+  .home-ellipse3 {
+    top: 0px;
+    left: 0px;
+    width: 55px;
+    height: 55px;
+    position: absolute;
+    border-color: transparent;
+  }
+  .home-text52 {
+    top: 9px;
+    left: 15px;
+    color: rgba(255, 255, 255, 1);
+    width: 33px;
+    height: auto;
+    position: absolute;
+    font-size: 35px;
+    align-self: auto;
+    font-style: Regular;
+    text-align: left;
+    font-family: Ribeye;
+    font-weight: 400;
+    line-height: 35px;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  

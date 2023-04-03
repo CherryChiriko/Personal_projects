@@ -1,0 +1,79 @@
+code {
+  font-family: Consolas,"courier new";
+  color: crimson;
+  background-color: #f1f1f1;
+  padding: 2px;
+  display: block;
+}
+nav ul, nav header{
+  list-style-type: none;
+  padding: 0;
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: auto;
+}
+nav header{ margin: 0; font-size: 20px; font-weight: bold;}
+nav ul{
+  margin-top: 25px;
+  border: solid #555;
+}
+nav ul li {position: relative; border: solid #555;}
+nav ul li a {display: block;}
+nav ul li a:hover {
+  background-color: #555;
+  color: white;
+}
+.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+#main-doc {
+  position: absolute;
+  margin-left: 310px;
+  padding: 20px;
+  margin-bottom: 110px;
+}
+
+@media only screen and (max-width: 815px) {
+  /* For mobile phones: */
+  #navbar ul {
+    border: 1px solid;
+    height: 207px;
+  }
+
+  #navbar {
+    background-color: white;
+    position: absolute;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-height: 275px;
+    border: none;
+    z-index: 1;
+    border-bottom: 2px solid;
+  }
+
+  #main-doc {
+    position: relative;
+    margin-left: 0px;
+    margin-top: 270px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #main-doc {
+    margin-left: -10px;
+  }
+
+  code {
+    margin-left: -20px;
+    width: 100%;
+    padding: 15px;
+    padding-left: 10px;
+    padding-right: 45px;
+    min-width: 233px;
+  }
+}

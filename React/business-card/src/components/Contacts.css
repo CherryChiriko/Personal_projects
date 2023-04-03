@@ -1,0 +1,15 @@
+.linkedin {  color: white}
+.mail {  color: #1E1F26;}
+.linkedin, .mail {text-decoration: none;}
+.mail:hover {  color: inherit;}
+.linkedin:hover {color: white}
+a {text-decoration: none}
+.btn-linkedin{
+  background-color: #5093E2;
+  color: white
+}
+.icon{   padding-right: 10px; }
+
+.contacts{
+  margin-top: 24px;
+}
