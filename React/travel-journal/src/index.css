@@ -28,22 +28,15 @@ nav > span {
 }
 
 .icon-earth{ font-size: 24px; margin-right: 7px;}
+.icon-location{ color: var(--orange); margin-right: 5px;}
 
 img{
   width: 125px; height:168px; border-radius: 5px;
   margin-left: 40px; margin-right: 19px;
 }
-.card--div{
-  max-width: 400px;
-}
-.google-a {
-  color: var(--grey);
-  /* margin-left: 12px; */
-}
+.card--div{  max-width: 400px;}
+.google-a {  color: var(--grey);}
 .google-a:hover {color: var(--orange);}
-/* .icon-location{ color: var(--orange); margin-right: 5px;}
+
 .card-location{letter-spacing: 1.5px;}
 
-
-
-h3{font-size: 25px; padding-bottom: 20px;} */

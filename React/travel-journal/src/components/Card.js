@@ -1,14 +1,17 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faLocationDot} from '@fortawesome/free-solid-svg-icons'
 
 export default function Card (props){
     return(
     <div className="container row card--div">
       <div className="col-3 col-sm-4 col-lg-2 py-4">
-        <img src={props.imageUrl} alt="place" />
+        <img src={props.imageUrl} alt={props.title} />
       </div>
       <div className="col-lg-4 col-6 my-5">
         <span className="row"><p className="card-location col-6">
-          <i className="fas fa-location-dot icon-location"></i>
+          <FontAwesomeIcon icon={faLocationDot} 
+          className='icon-location'/>
         {props.location.toUpperCase()}</p>
           <a href="{props.googleMapsUrl}" target="_blank" 
           className="col-6 google-a">View on Google Maps</a></span>
