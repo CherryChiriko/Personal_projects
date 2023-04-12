@@ -12,56 +12,30 @@ const [calculation, setCalculation] = React.useState('');
 
 function compute(){
   
-// const regex = /(-?\d+(?:\.\d+)?)[/x](-?\d+(?:\.\d+)?)([/x+-]?)/g;
-// let expression = '5/2 + 3.5x4 - 1'
-// function multiplyDivide(match, n1, n2){
-//     n1 = Number(n1); n2 = Number(n2); 
-//     console.log(n1, n2)
-//     let op = match.match(/[x/]/)[0];
-//     return (op==='x'? n1 * n2: n1/n2).toString();
-// }
-// function addSubtract(match, n1, op, n2){
-//     n1 = Number(n1); n2 = Number(n2); 
-//     return (op==='+'? n1 + n2: n1 - n2).toString();
-// }
-// let result = expression.replace(regex, multiplyDivide)
-// const regex2 = /^(-?\d+(?:\.\d+)?)\s*([+-])\s*(-?\d+(?:\.\d+)?)/;
-// console.log(result.match(regex2))
-// console.log('-----' + result.replace(regex2, addSubtract))
-// while (regex2.test(result)) {
-//     result = result.replace(regex2, addSubtract);
-//     console.log(result)
-// }
-let expression = '2.5 + 3 * 4 - 1 / 2';
-const regex = /(-?\d+(?:\.\d+)?)\s*([\+\-\*/])\s*(-?\d+(?:\.\d+)?)/;
 
-while (regex.test(expression)) {
-  expression = expression.replace(regex, (match, n1, op, n2) => {
+// let expression = '5 / 2 + 3 . 5 x 4 - 1'
+let expression = '2 . 5 + 3 x 4 - 1 / 2';
+expression = expression.split(' ').join('');
+console.log(expression)
+
+let regex = /(-?\d+(?:\.\d+)?)([x/])(-?\d+(?:\.\d+)?)/g;
+function multiplyDivide(match, n1, op, n2) {
     n1 = Number(n1);    n2 = Number(n2);
-    let result = match;
-    switch (op) {
-      case '+':
-        result = n1 + n2;
-        break;
-      case '-':
-        result = n1 - n2;
-        break;
-      case '*':
-        result = n1 * n2;
-        break;
-      case '/':
-        result = n1 / n2;
-        break;
-      default:
-        break;
-    }
-    return result.toString();
-  });
+    return (op === 'x' ? n1 * n2 : n1 / n2).toString();
 }
-
-console.log(expression);
-
-// return result
+  
+function addSubtract(match, n1, op, n2){
+    n1 = Number(n1); n2 = Number(n2); 
+    return (op==='+'? n1 + n2: n1 - n2).toString();
+}
+let result = expression.replace(regex, multiplyDivide)
+console.log(result)
+regex = /(-?\d+(?:\.\d+)?)([+-])(-?\d+(?:\.\d+)?)/g;
+while (regex.test(result)) {
+    result = result.replace(regex, addSubtract);
+}
+console.log(result)
+return result
 }
 
 console.log(compute())
@@ -86,3 +60,31 @@ return (
     </div>
   );
 }
+
+
+
+// const regex = /(-?\d+(?:\.\d+)?)\s*([+\-*/])\s*(-?\d+(?:\.\d+)?)/;
+
+// while (regex.test(expression)) {
+//   expression = expression.replace(regex, (match, n1, op, n2) => {
+//     n1 = Number(n1);    n2 = Number(n2);
+//     let result = match;
+//     switch (op) {
+//       case '*':
+//         result = n1 * n2;
+//         break;
+//       case '/':
+//         result = n1 / n2;
+//         break;      
+//       case '+':
+//         result = n1 + n2;
+//         break;
+//       case '-':
+//         result = n1 - n2;
+//         break;
+//       default:
+//         break;
+//     }
+//     return result.toString();
+//   });
+// }
