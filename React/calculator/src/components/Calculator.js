@@ -11,47 +11,59 @@ const buttons = data.map( button => (
 const [calculation, setCalculation] = React.useState('');
 
 function compute(){
-  const regex = /(-?\d+(?:\.\d+)?)[/x](-?\d+(?:\.\d+)?)([/x+-]?)/g;
+  
+// const regex = /(-?\d+(?:\.\d+)?)[/x](-?\d+(?:\.\d+)?)([/x+-]?)/g;
+// let expression = '5/2 + 3.5x4 - 1'
+// function multiplyDivide(match, n1, n2){
+//     n1 = Number(n1); n2 = Number(n2); 
+//     console.log(n1, n2)
+//     let op = match.match(/[x/]/)[0];
+//     return (op==='x'? n1 * n2: n1/n2).toString();
+// }
+// function addSubtract(match, n1, op, n2){
+//     n1 = Number(n1); n2 = Number(n2); 
+//     return (op==='+'? n1 + n2: n1 - n2).toString();
+// }
+// let result = expression.replace(regex, multiplyDivide)
+// const regex2 = /^(-?\d+(?:\.\d+)?)\s*([+-])\s*(-?\d+(?:\.\d+)?)/;
+// console.log(result.match(regex2))
+// console.log('-----' + result.replace(regex2, addSubtract))
+// while (regex2.test(result)) {
+//     result = result.replace(regex2, addSubtract);
+//     console.log(result)
+// }
+let expression = '2.5 + 3 * 4 - 1 / 2';
+const regex = /(-?\d+(?:\.\d+)?)\s*([\+\-\*/])\s*(-?\d+(?:\.\d+)?)/;
 
-  // Use a callback function to replace matched expressions with calculated result
-//   const result = '5/2 + 3.5x4 - 1'.replace(regex, (match, num1, num2, operator) => {
-//     // Convert matched numbers to floats for decimal support
-//     num1 = parseFloat(num1);
-//     num2 = parseFloat(num2);
+while (regex.test(expression)) {
+  expression = expression.replace(regex, (match, n1, op, n2) => {
+    n1 = Number(n1);    n2 = Number(n2);
+    let result = match;
+    switch (op) {
+      case '+':
+        result = n1 + n2;
+        break;
+      case '-':
+        result = n1 - n2;
+        break;
+      case '*':
+        result = n1 * n2;
+        break;
+      case '/':
+        result = n1 / n2;
+        break;
+      default:
+        break;
+    }
+    return result.toString();
+  });
+}
 
-//     // Perform division or multiplication based on operator
-//     if (operator === '/') {
-//       return (num1 / num2).toString();
-//     } else if (operator === 'x') {
-//       return (num1 * num2).toString();
-//     }
+console.log(expression);
 
-//     // Return the original match if operator is not / or x
-//     return match;
-//   });
-let expression = '5/2 + 3.5x4 - 1'
-function multiplyDivide(match, n1, n2){
-    n1 = Number(n1); n2 = Number(n2); 
-    console.log(n1, n2)
-    let op = match.match(/[x/]/)[0];
-    return (op==='x'? n1 * n2: n1/n2).toString();
+// return result
 }
-function addSubtract(match, n1, op, n2){
-    n1 = Number(n1); n2 = Number(n2); 
-    return (op==='+'? n1 + n2: n1 - n2).toString();
-}
-let result = expression.replace(regex, multiplyDivide)
-const regex2 = /^(-?\d+(?:\.\d+)?)\s*([+-])\s*(-?\d+(?:\.\d+)?)/;
-console.log(result.match(regex2))
-console.log('-----' + result.replace(regex2, addSubtract))
-while (regex2.test(result)) {
-    result = result.replace(regex2, addSubtract);
-    console.log(result)
-}
-return result
-  // Evaluate the remaining + and - operations in the expression
-//   return eval(result);
-}
+
 console.log(compute())
 function addCharacter(calc, val){
     let calcArr = calc? calc.split(' ') : [];
