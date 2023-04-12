@@ -11,7 +11,6 @@ const buttons = data.map( button => (
 const [calculation, setCalculation] = React.useState('');
 
 function compute(){
-    // Use regex to match numbers separated by /, x, +, -
   const regex = /(-?\d+(?:\.\d+)?)[/x](-?\d+(?:\.\d+)?)([/x+-]?)/g;
 
   // Use a callback function to replace matched expressions with calculated result
@@ -31,14 +30,24 @@ function compute(){
 //     return match;
 //   });
 let expression = '5/2 + 3.5x4 - 1'
-const regArr =  expression.match(regex)
-console.log(regArr)
-function multiplyDivide(match, n1, n2, op){
-    n1 = Number(n1); n2 = Number(n2)
-    const result = n1 + n2;
-    return result.toString()
+function multiplyDivide(match, n1, n2){
+    n1 = Number(n1); n2 = Number(n2); 
+    console.log(n1, n2)
+    let op = match.match(/[x/]/)[0];
+    return (op==='x'? n1 * n2: n1/n2).toString();
+}
+function addSubtract(match, n1, op, n2){
+    n1 = Number(n1); n2 = Number(n2); 
+    return (op==='+'? n1 + n2: n1 - n2).toString();
 }
 let result = expression.replace(regex, multiplyDivide)
+const regex2 = /^(-?\d+(?:\.\d+)?)\s*([+-])\s*(-?\d+(?:\.\d+)?)/;
+console.log(result.match(regex2))
+console.log('-----' + result.replace(regex2, addSubtract))
+while (regex2.test(result)) {
+    result = result.replace(regex2, addSubtract);
+    console.log(result)
+}
 return result
   // Evaluate the remaining + and - operations in the expression
 //   return eval(result);
