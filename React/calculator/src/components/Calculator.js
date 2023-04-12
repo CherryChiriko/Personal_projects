@@ -10,49 +10,66 @@ const buttons = data.map( button => (
 ))
 const [calculation, setCalculation] = React.useState('');
 
-function compute(){
-  
-
-// let expression = '5 / 2 + 3 . 5 x 4 - 1'
-let expression = '2 . 5 + 3 x 4 - 1 / 2';
-expression = expression.split(' ').join('');
-console.log(expression)
-
-let regex = /(-?\d+(?:\.\d+)?)([x/])(-?\d+(?:\.\d+)?)/g;
 function multiplyDivide(match, n1, op, n2) {
     n1 = Number(n1);    n2 = Number(n2);
     return (op === 'x' ? n1 * n2 : n1 / n2).toString();
 }
-  
+
 function addSubtract(match, n1, op, n2){
     n1 = Number(n1); n2 = Number(n2); 
     return (op==='+'? n1 + n2: n1 - n2).toString();
 }
-let result = expression.replace(regex, multiplyDivide)
-console.log(result)
-regex = /(-?\d+(?:\.\d+)?)([+-])(-?\d+(?:\.\d+)?)/g;
-while (regex.test(result)) {
-    result = result.replace(regex, addSubtract);
-}
-console.log(result)
-return result
+
+function compute(){
+    let result = calculation.split(' ').join('');
+    let regex = /(-?\d+(?:\.\d+)?)([x/])(-?\d+(?:\.\d+)?)/g;
+    
+    result = result.replace(regex, multiplyDivide)
+    regex = /(-?\d+(?:\.\d+)?)([+-])(-?\d+(?:\.\d+)?)/g;
+
+    while (regex.test(result)) {
+        result = result.replace(regex, addSubtract); console.log(result)
+    }
+    return result
 }
 
-console.log(compute())
 function addCharacter(calc, val){
     let calcArr = calc? calc.split(' ') : [];
     if (calcArr.length >= 15) {return 'DIGIT LIMIT MET'} 
     calcArr.push(val)
     return calcArr.join(' ')
 }
+
+// function checkForm(val, num){
+//     switch(val){
+//         case 0: return false;
+//         default: return true;
+//     }
+// }
+
 function updateCalculation(val){
-    val==="AC"? setCalculation('') :
-    val==="="? compute() :
-    setCalculation(prevCalculation => addCharacter(prevCalculation, val))
+    
+    switch(val){
+        case 'AC': setCalculation(''); break;
+        case '=': setCalculation(compute()); break;
+        case 0: if (calculation ==='0') {break}
+        // eslint-disable-next-line no-fallthrough
+        case '.': 
+        console.log(calculation[calculation.length-1], calculation)
+        if (calculation[calculation.length-1]==='.') {break}
+        // eslint-disable-next-line no-fallthrough
+        default: 
+        if (calculation === 'DIGIT LIMIT MET'){setCalculation(''); break;}
+        setCalculation(prevCalculation => addCharacter(prevCalculation, val));
+        break;
+    }
+    // val==="AC"? setCalculation('') :
+    // val==="="? setCalculation(compute()) :
+    // setCalculation(prevCalculation => addCharacter(prevCalculation, val))
 }
 return (
-    <div className='rounded container tot-div'>
-        <div className='screen container rounded'
+    <div className='rounded tot-div'>
+        <div className='screen rounded'
         id="display">{calculation}</div>
         <div className='calc-div'>
             {buttons}
@@ -71,19 +88,14 @@ return (
 //     let result = match;
 //     switch (op) {
 //       case '*':
-//         result = n1 * n2;
-//         break;
+//         result = n1 * n2; break;
 //       case '/':
-//         result = n1 / n2;
-//         break;      
+//         result = n1 / n2; break;
 //       case '+':
-//         result = n1 + n2;
-//         break;
+//         result = n1 + n2; break;
 //       case '-':
-//         result = n1 - n2;
-//         break;
-//       default:
-//         break;
+//         result = n1 - n2;  break;
+//       default: break;
 //     }
 //     return result.toString();
 //   });
