@@ -13,9 +13,7 @@ const styles = {
 }
   return (
     <>
-        <div className="buttons" style={styles} >{props.value}</div>
+        <div className="buttons" style={styles} onClick={props.handleClick}>{props.value}</div>
     </>
   );
 }
-
-// onClick={props.handleClick}
