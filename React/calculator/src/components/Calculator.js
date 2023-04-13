@@ -9,17 +9,16 @@ const buttons = data.map( button => (
         handleClick={() => {updateCalculation(button.value)}}/>
 ))
 const [calculation, setCalculation] = React.useState('');
+const [lastNum, setLastNum] = React.useState('');
 
 function multiplyDivide(match, n1, op, n2) {
     n1 = Number(n1);    n2 = Number(n2);
     return (op === 'x' ? n1 * n2 : n1 / n2).toString();
 }
-
 function addSubtract(match, n1, op, n2){
     n1 = Number(n1); n2 = Number(n2); 
     return (op==='+'? n1 + n2: n1 - n2).toString();
 }
-
 function compute(){
     let result = calculation.split(' ').join('');
     let regex = /(-?\d+(?:\.\d+)?)([x/])(-?\d+(?:\.\d+)?)/g;
@@ -40,37 +39,48 @@ function addCharacter(calc, val){
     return calcArr.join(' ')
 }
 
-// function checkForm(val, num){
-//     switch(val){
-//         case 0: return false;
-//         default: return true;
-//     }
-// }
+function checkForm(val){
+    if (!lastNum){
+        if (['+','x','/'].includes(val)){ console.log("Starting with operator"); return false}
+        else if (val === '.'){
+            console.log("Starting with dot");
+            setCalculation(prevCalculation => addCharacter(prevCalculation, 0));
+            return true;
+        }
+    }
+    else if (lastNum === '0' && val === 0){
+        console.log("Starting with 0 and adding another 0");
+        return false;
+    }
+    if (lastNum.includes('.') && val === '.'){
+        console.log("Trying to add two dots");
+        return false;
+    }
+    if (calculation === 'DIGIT LIMIT MET'){
+        setCalculation(''); setLastNum(''); return false;}
+    return true
+}
 
 function updateCalculation(val){
-    
+    if (typeof(val) ==='number' || val === '.'){
+        setLastNum(prevLastNum => addCharacter(prevLastNum, val))
+    } else {setLastNum('')}
     switch(val){
         case 'AC': setCalculation(''); break;
-        case '=': setCalculation(compute()); break;
-        case 0: if (calculation ==='0') {break}
-        // eslint-disable-next-line no-fallthrough
-        case '.': 
-        console.log(calculation[calculation.length-1], calculation)
-        if (calculation[calculation.length-1]==='.') {break}
-        // eslint-disable-next-line no-fallthrough
+        case '=': setLastNum(compute()); setCalculation(compute()); break;
         default: 
-        if (calculation === 'DIGIT LIMIT MET'){setCalculation(''); break;}
-        setCalculation(prevCalculation => addCharacter(prevCalculation, val));
+        if (checkForm(val)) {
+            setCalculation(prevCalculation => addCharacter(prevCalculation, val));
+        }
         break;
     }
-    // val==="AC"? setCalculation('') :
-    // val==="="? setCalculation(compute()) :
-    // setCalculation(prevCalculation => addCharacter(prevCalculation, val))
 }
 return (
     <div className='rounded tot-div'>
         <div className='screen rounded'
-        id="display">{calculation}</div>
+        id="display">
+            <p className='full-calc'>{calculation}</p>
+            <p>{lastNum}</p></div>
         <div className='calc-div'>
             {buttons}
         </div>

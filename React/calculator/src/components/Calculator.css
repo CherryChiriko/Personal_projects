@@ -11,6 +11,7 @@
     color: white;
     font-family: Michroma, sans-serif;
     display: flex;
+    flex-direction: column;
     align-items: flex-end; justify-content: right;
     padding: .5rem;
 }
@@ -19,3 +20,4 @@
     grid-template-columns: repeat(4, 1fr);
     font-family: Orbitron, sans-serif;
 }
+.full-calc{    color: var(--yellow); font-size: 1rem;}
