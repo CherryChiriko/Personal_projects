@@ -1,17 +1,30 @@
 .timer-div{
     font-size: 80%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;    
     color: var(--indigo);
 }
+.sb-div{    
+    border: 1px solid var(--indigo);
+    display: flex; flex-direction: column;
+    align-items: center;
+    min-width: 8rem; min-height: 5rem;
+    margin: auto 1rem 1rem 1rem ;
+}
 .sb-span{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    font-size: 110%;
+    display: flex;
+    justify-content: space-evenly;
 }
 .timer-btn{
-    font-size: 20%; padding: .5rem;
-    color: white; 
-    /* border-radius: 45%; */
-    background-color: var(--indigo);
+    padding: .5rem !important;
+    color: white !important; 
+    background-color: var(--indigo) !important;
+    font-size: .5rem !important; 
+    width: 1rem !important; height: 1rem !important; 
+    display: flex !important;
+    justify-content: center !important; align-items: center !important;
+    margin: 0 .5rem 0 .5rem !important; 
 }
+
+/* *{
+    border: 1px solid red;
+} */

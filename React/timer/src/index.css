@@ -3,7 +3,6 @@
   --green:      #5ab685;
   --sky:        #36989b;
 }
-html{ font-size: 160%; }
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -15,4 +14,5 @@ body {
   display: flex; justify-content: center; align-items: center;
   height: 100vh;
 }
+.flex-center {  display: flex; justify-content: center; align-items: center;}
 
