@@ -5,14 +5,13 @@ export default function Timer(props) {
     const [minutes, setMinutes] = React.useState(props.minutes);
     const [seconds, setSeconds] = React.useState(5);
 
-    const [isTimerRunning, setIsTimerRunning] = React.useState(true); 
     function timeOut(){
-        setIsTimerRunning(false);
-        console.log("BEEP")
+        console.log("BEEP");
+        props.timeOut();
     }
     React.useEffect(() => {
-        console.log(isTimerRunning)
-        if (isTimerRunning) {
+        console.log(props.isTimerRunning)
+        if (props.isTimerRunning) {
             const id = setInterval(() => {
             setSeconds( prevSeconds => {
                 if (!prevSeconds) {  
@@ -24,8 +23,8 @@ export default function Timer(props) {
                 return prevSeconds - 1
             })
         }, 1000);
-        return ()=> clearInterval(id)}   }
-    ,[isTimerRunning, minutes])
+        return ()=> clearInterval(id)}}
+    )
   return (
     <>
         <h2 id="timer-label">{props.type}</h2>

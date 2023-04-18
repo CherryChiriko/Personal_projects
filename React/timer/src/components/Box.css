@@ -6,7 +6,8 @@
 }
 
 
-#start {
+#start_stop {
+    font-size: 1.3rem;
     background-color: var(--indigo);
     color: white;
     border-radius: 20px;
@@ -22,3 +23,9 @@
     justify-content: center;
     align-items: center;
   }
+.LR-btn{
+    color: var(--indigo) !important;
+    border-radius: 50%;
+    border: 1px solid var(--indigo) !important;
+    width: 50px; height: 50px;
+}
