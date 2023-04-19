@@ -7,7 +7,7 @@ import { faArrowRotateRight, faPause, faPlay } from '@fortawesome/free-solid-svg
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Box() {
-    const [time, setTime] = React.useState({ session: 0, break: 5  });
+    const [time, setTime] = React.useState({ session: 0, break: 0  });
     const [type, setType] = React.useState("session");
     const [isTimerRunning, setIsTimerRunning] = React.useState(false);
     const [timerKey, setTimerKey] = React.useState(Date.now())
