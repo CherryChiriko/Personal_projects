@@ -12,6 +12,9 @@ export default function Box() {
     const [isTimerRunning, setIsTimerRunning] = React.useState(false);
     const [timerKey, setTimerKey] = React.useState(Date.now())
 
+    // const condition = !isTimerRunning ? time : null ;
+    const condition = !isTimerRunning && time;
+
     const previousTimeRef = React.useRef(null);
 
     function handleTimeOut(){
@@ -21,14 +24,13 @@ export default function Box() {
     function reset(){
         setTimerKey(Date.now());
         setIsTimerRunning(false);
-        setTime({ session: 25, break: 5  });
+        setTime({ session: 0, break: 5  });
         setType("session");
     }
     React.useEffect( () => {
-        if (!isTimerRunning && previousTimeRef.current !== time) {
-            console.log(previousTimeRef.current, time)
-            previousTimeRef.current = time;
-            setTimerKey(Date.now());}
+        if (previousTimeRef.current === time) { return } 
+        // previousTimeRef.current = time;
+        setTimerKey(Date.now());
     }, [type, time])
 
     

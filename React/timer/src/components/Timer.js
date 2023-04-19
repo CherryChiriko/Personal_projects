@@ -4,14 +4,14 @@ import React from 'react';
 import mp3 from '../assets/store-beep.mp3';
 
 export default function Timer(props) {
-    const SECONDS = 8;
+    const SECONDS = 6;
     const [minutes, setMinutes] = React.useState(props.minutes);
     const [seconds, setSeconds] = React.useState(SECONDS);
 
     
     const totalSeconds = props.minutes*60 + SECONDS;
     const [styles, setStyles] = React.useState(
-        {backgroundImage: `none`}
+        { backgroundImage: `none` }
     )
 
     function timeOut(){
@@ -32,21 +32,10 @@ export default function Timer(props) {
             })
             if (!seconds && !minutes) {return}
             const elapsedSeconds = 1 + totalSeconds - (minutes*60 + seconds);
-            if (elapsedSeconds <= totalSeconds/2) {
-                let deg = 90 + 360 * elapsedSeconds / totalSeconds;
-                setStyles({
-                    backgroundImage: `
-                    linear-gradient(${deg}deg, transparent 50%, cyan 50%), 
-                    linear-gradient(90deg, cyan 50%, white 50%)`})
-            }
-            else {
-                let deg = 90 + 360 * elapsedSeconds / totalSeconds;
-                setStyles({
-                    backgroundImage: `
-                    linear-gradient(90deg, transparent 50%, white 50%), 
-                    linear-gradient(${deg}deg, transparent 50%, cyan 50%), 
-                    linear-gradient(90deg, white 50%, transparent 50%)`})
-            }
+            let deg = 360 * elapsedSeconds / totalSeconds;
+            setStyles({
+                backgroundImage: `conic-gradient(white ${deg}deg, transparent 0)`
+            })
         }, 1000);
         return ()=> clearInterval(id)}}
     )
