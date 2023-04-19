@@ -2,6 +2,7 @@
   --indigo:     #6958a6;
   --green:      #5ab685;
   --sky:        #36989b;
+  --gradient: conic-gradient( var(--indigo), var(--sky), var(--green),  var(--sky), var(--indigo)) border-box;
 }
 body {
   margin: 0;

@@ -1,32 +1,38 @@
-.pie {  border:  2px solid #6f32a8;}
-
-.ten {
-  width: 200px;  height: 200px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 50%;
-  float: left;  margin: 1em;
-}
-
-#time-left{
-  position: relative;  top: 140px; 
-  font-size: 2rem;
-}
 #timer-label{
-  margin-bottom: -50px;
   color: var(--indigo); 
   font-weight: bold;
   text-transform:capitalize;
 }
 
-
-
-.border1{
+.outside-circle{
+  height: 200px;  width: 200px;
   border:  1px solid #6f32a8;
   border-radius: 50%;
-  height: 300px;  width: 300px;
-  position: relative;
+  margin: 1rem;
+  background: var(--gradient);
+}
+.ten {
+  width: 198px;  height: 198px;
+  border-radius: 50%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.inside-circle{
+  height: 180px;  width: 180px;
+  border-radius: 50%;
+
+  background-color: white;
+}
+
+
+#time-left{
+  position: relative;  
+  /* top: 140px;  */
+  font-size: 2rem;
+  z-index: 2;
 }
 .border2{
   position: absolute;
@@ -40,3 +46,4 @@
   border: 10px solid transparent;
   transition: stroke-dashoffset 0.5s ease-in-out;
 }
+
