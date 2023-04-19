@@ -7,27 +7,31 @@ import { faArrowRotateRight, faPause, faPlay } from '@fortawesome/free-solid-svg
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Box() {
-    const [type, setType] = React.useState("session");
     const [time, setTime] = React.useState({ session: 0, break: 5  });
+    const [type, setType] = React.useState("session");
     const [isTimerRunning, setIsTimerRunning] = React.useState(false);
+    const [timerKey, setTimerKey] = React.useState(Date.now())
 
-   function handleTimeOut(){
-    setTimerKey(Date.now());
-    setIsTimerRunning(false);
-    setTime(prevTime => ({
-        ...prevTime,
-        [type]: prevTime[type]
-    }));
-   }
-    const startbtn = <FontAwesomeIcon icon={faPlay} className="me-3"/>
-    const stopbtn = <FontAwesomeIcon icon={faPause} className="me-3"/>
+    const condition = !isTimerRunning ? time : '' ;
+    
+    function handleTimeOut(){
+        setType(prevType=> (prevType === "session" ? "break" : "session"))     
+    }
+    
     function reset(){
         setTimerKey(Date.now());
         setIsTimerRunning(false);
         setTime({ session: 0, break: 5  });
         setType("session");
     }
-    const [timerKey, setTimerKey] = React.useState(Date.now())
+    React.useEffect( () => {
+        setTimerKey(Date.now())
+    }, [type, condition])
+
+    
+    const startbtn = <FontAwesomeIcon icon={faPlay} className="me-3"/>
+    const stopbtn = <FontAwesomeIcon icon={faPause} className="me-3"/>
+
     return (
     <div className="box flex-center flex-column py-5 bg-white">
         <TimeSetup time={time} setTime={setTime}/>

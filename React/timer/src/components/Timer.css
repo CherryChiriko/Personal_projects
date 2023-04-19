@@ -1,7 +1,7 @@
 .pie {  border:  2px solid #6f32a8;}
 
 .ten {
-  width: 250px;  height: 250px;
+  width: 200px;  height: 200px;
   background-image: 
   linear-gradient(126deg, transparent 50%, cyan 50%), 
   linear-gradient(90deg, cyan 50%, transparent 50%);
@@ -13,8 +13,8 @@
 }
 
 #time-left{
-  position: relative;  top: 170px; 
-  font-size: 3rem;
+  position: relative;  top: 140px; 
+  font-size: 2rem;
 }
 #timer-label{
   margin-bottom: -50px;

@@ -1,16 +1,17 @@
 
 import './Timer.css'
 import React from 'react';
+import mp3 from '../assets/store-beep.mp3';
+
 export default function Timer(props) {
     const [minutes, setMinutes] = React.useState(props.minutes);
     const [seconds, setSeconds] = React.useState(5);
 
     function timeOut(){
-        console.log("BEEP");
+        document.getElementById('beep').play();
         props.timeOut();
     }
     React.useEffect(() => {
-        console.log(props.isTimerRunning)
         if (props.isTimerRunning) {
             const id = setInterval(() => {
             setSeconds( prevSeconds => {
@@ -26,7 +27,8 @@ export default function Timer(props) {
         return ()=> clearInterval(id)}}
     )
   return (
-    <>
+    <>  
+        <audio src={mp3} id="beep"/>
         <h2 id="timer-label">{props.type}</h2>
         <h1 id="time-left">
             {minutes.toLocaleString('en-US',{
