@@ -18,10 +18,7 @@ export default function App() {
   React.useEffect(()=>{
     fetch(initText)
     .then(res => res.text())
-    .then(text => {
-      setText(text); 
-      setParsedText(marked.parse(text))
-    })
+    .then(text => {   setText(text);    })
   })
 
   return (
