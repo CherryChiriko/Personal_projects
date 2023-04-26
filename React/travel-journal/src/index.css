@@ -40,3 +40,10 @@ img{
 
 .card-location{letter-spacing: 1.5px;}
 
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+.link:hover{
+  color: inherit;
+}
