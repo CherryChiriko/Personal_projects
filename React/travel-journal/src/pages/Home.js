@@ -8,8 +8,8 @@ export default function Home (){
       <Card key={card.id} {...card}/>
     )})
     return (
-      <>
+      <div className="flex-center flex-column">
       {card} 
-      </>
+      </div>
     )
 }

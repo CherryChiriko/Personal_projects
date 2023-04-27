@@ -1,5 +1,6 @@
 export const cardsData = [
     {
+        id: 3,
         title: "浅草寺",
         location: "Japan",
         googleMapsUrl: "https://goo.gl/maps/2tHz6U5VsLXfi2pw9",
@@ -7,11 +8,12 @@ export const cardsData = [
         endDate: "24 Jan, 2027",
         description: "Completed in 645, this temple, Tokyo's oldest, was built to honor Kannon, the goddess of mercy.",
         imageUrl: "https://source.unsplash.com/VvpHyhlkXbo", /** https://unsplash.com/photos/VvpHyhlkXbo */
-        entry: `Today, I visited 浅草寺 (Asakusa Temple) in Tokyo, Japan. The temple is a beautiful and historic landmark that is more than 1,300 years old. As soon as I arrived, I was struck by the stunning architecture of the main hall, which is adorned with intricate wood carvings and colorful paintings.
-        The temple grounds were bustling with people, and I could hear the sound of traditional Japanese music playing in the distance. I walked around the various buildings, marveling at the beautiful gardens and ponds that surrounded them. I even got to witness a traditional Japanese wedding taking place, which was a beautiful and unique experience.
-        Overall, my visit to 浅草寺 was truly unforgettable. I feel grateful to have had the opportunity to experience such a significant cultural landmark and to learn more about Japan's rich history and traditions.`
+        entry: `Today, I visited 浅草寺 (Asakusa Temple) in Tokyo, Japan.\nThe temple is a beautiful and historic landmark that is more than 1,300 years old.\nAs soon as I arrived, I was struck by the stunning architecture of the main hall, which is adorned with intricate wood carvings and colorful paintings.
+        The temple grounds were bustling with people, and I could hear the sound of traditional Japanese music playing in the distance.\nI walked around the various buildings, marveling at the beautiful gardens and ponds that surrounded them. I even got to witness a traditional Japanese wedding taking place, which was a beautiful and unique experience.
+        \nOverall, my visit to 浅草寺 was truly unforgettable. I feel grateful to have had the opportunity to experience such a significant cultural landmark and to learn more about Japan's rich history and traditions.`
     },
     {
+        id: 2,
         title: "Tour Eiffel",
         location: "France",
         googleMapsUrl: "https://goo.gl/maps/Bo2JESeuFm8aRFjt5",
@@ -25,6 +27,7 @@ export const cardsData = [
         Overall, my visit to the Eiffel Tower was a dream come true. I feel incredibly lucky to have had the opportunity to see such an iconic landmark and to experience the beauty of Paris from above.`
     },
     {
+        id:1,
         title: "Ponte di Rialto",
         location: "Italy",
         googleMapsUrl: "https://goo.gl/maps/naG7qUpEfR39hpRe7",
@@ -38,6 +41,7 @@ export const cardsData = [
         Overall, my visit to the Rialto Bridge was a highlight of my time in Venice. The bridge is a true masterpiece of architecture and a testament to the city's rich history and culture.`
     },
     {
+        id: 0,
         title: "Marienplatz",
         location: "Germany",
         googleMapsUrl: "https://goo.gl/maps/NMNTQdqWqwvTVbPZ9",

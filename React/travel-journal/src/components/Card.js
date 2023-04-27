@@ -4,14 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faLocationDot} from '@fortawesome/free-solid-svg-icons'
 export default function Card (props){
     return(
-      <Link className="link" to="">
-    <div className="container row card--div">
-      <div className="col-3 py-4">
       
-        <img src={props.imageUrl} alt={props.title} />
-
+    <div className="row card--div rounded">
+      <div className="col p-4 img-div">
+      <Link className="link" to={`/entries/${props.id}`}>
+        <img className="small-img" src={props.imageUrl} alt={props.title} />
+      </Link>
       </div>
-      <div className="col-lg-4 col-6 my-5">
+      <div className="col my-5">
         <span className="row"><p className="card-location col-6">
           <FontAwesomeIcon icon={faLocationDot} 
           className='icon-location'/>
@@ -23,6 +23,5 @@ export default function Card (props){
         <p>{props.description}</p>
       </div>
     </div>
-    </Link>
     )
 }

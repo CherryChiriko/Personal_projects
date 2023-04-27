@@ -30,11 +30,11 @@ nav > span {
 .icon-earth{ font-size: 24px; margin-right: 7px;}
 .icon-location{ color: var(--orange); margin-right: 5px;}
 
-img{
+.small-img{
   width: 125px; height:168px; border-radius: 5px;
   margin-left: 40px; margin-right: 19px;
 }
-.card--div{  max-width: 400px;}
+.card--div{  max-width: 500px;}
 .google-a {  color: var(--grey);}
 .google-a:hover {color: var(--orange);}
 
@@ -46,4 +46,19 @@ img{
 }
 .link:hover{
   color: inherit;
+}
+
+nav{
+  position: fixed;
+  z-index: 5;
+}
+.large-img{
+  width: 30rem;
+}
+.entry-title{
+  color: var(--orange); font-size: 3rem; font-weight: bold;
+}
+.entry-body{
+  font-size: 1.2rem; margin-top: 1rem;
+  max-width: 60%;
 }

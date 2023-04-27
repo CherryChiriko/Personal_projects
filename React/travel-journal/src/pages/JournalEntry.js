@@ -1,15 +1,15 @@
 import React from 'react'
-import Card from "../components/Card"
+import Entry from "../components/Entry"
 import {cardsData} from "../assets/data"
+import { useParams } from 'react-router-dom'
+
 
 export default function JournalEntry (){
-    const card = cardsData.map(card => {
-      return (
-      <Card key={card.id} {...card}/>
-    )})
+    const params = useParams()
+    const card = cardsData.find(card => card.id === Number(params.id))
     return (
       <>
-      {card} 
+      <Entry card={card}/>
       </>
     )
 }
