@@ -6,7 +6,7 @@ export default function Entry (props){
     }
 
     return(
-        <div className="d-flex flex-row py-4">
+        <div className="d-flex flex-row py-4 total-div-entry ">
         <div className='col-md-3 mx-auto my-4'>
           <img className="large-img" src={props.card.imageUrl} alt={props.card.title}></img>
         </div>

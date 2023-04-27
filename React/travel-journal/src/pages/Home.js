@@ -1,9 +1,18 @@
 import React from 'react'
 import Card from "../components/Card"
-import {cardsData} from "../assets/data"
+// import {cardsData} from "../assets/data"
+
+import '../server'
 
 export default function Home (){
-    const card = cardsData.map(card => {
+    const [cardData, setCardData] = React.useState(null);
+    React.useEffect(() => {
+      fetch("/api/cards")
+        .then(response => response.json())
+        .then(json =>  setCardData(json.cards))
+    }, [])
+
+    const card = cardData.map(card => {
       return (
       <Card key={card.id} {...card}/>
     )})
