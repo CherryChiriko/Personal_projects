@@ -1,6 +1,6 @@
 .drum-pad{
   width: 3rem; height: 3rem;
-  background-color: coral !important;
+  background-color: #a15000 !important;
 }
 
 .pad-display{
@@ -16,7 +16,9 @@
 }
 #display{
   height: 3rem; width: 8rem;
-  background-color: rebeccapurple;
+  background-color:  	#008282;
+  color: white;
+  display: flex; justify-content: center; align-items: center;
 }
 #drum-machine{
   display: flex; justify-content: center; align-items: center;
@@ -26,5 +28,6 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   padding: 1rem;  
-  background-color: aqua;
+  background-color: black;
+  color: white;
 }
