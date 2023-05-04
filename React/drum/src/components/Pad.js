@@ -6,7 +6,8 @@ import React from 'react';
     const clips = clipsData;
 
     const drumButtons = clips.map(clip =>
-      (<DrumPad letter={clip.letter} audio={clip.audio} key={clip.letter}
+      (<DrumPad letter={clip.letter} key={clip.letter}
+        audio={clip.audio} volume={props.volume}
       handleButtonClick={(event, letter) => handleButtonClick(event, letter)}/>))
     
     function handleButtonClick(letter) {

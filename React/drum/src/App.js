@@ -20,11 +20,7 @@ export default function App() {
     }
   }
   function handleKeyLift(){    setKey(null)  }
-
-  function setLetter(letter){
-    console.log(letter)
-    setKey(letter)
-  }
+  function setLetter(letter){    setKey(letter)  }
 
   function playAudio(){
     if (isPowerOn) {
@@ -40,15 +36,23 @@ export default function App() {
     return matchingClip ? matchingClip.name : ''
   }
 
+  const [volume, setVolume] = React.useState(0.5);
+  function handleVolume(vol){
+    setVolume(vol)
+  }
+
   return (
     <div id="drum-machine" tabIndex={-1} 
     onKeyDown={event => handleKeyPress(event)}
     onKeyUp={handleKeyLift}
     >
       <div id="box" className='rounded'>
-        <Pad isPowerOn={isPowerOn} keyPressed={key}
+        <Pad isPowerOn={isPowerOn} volume={volume}
+        keyPressed={key}
         handleButtonClick={setLetter}/>
-        <Controls togglePower={togglePower} name={getClipName()}/>
+        <Controls togglePower={togglePower} name={getClipName()}
+        handleVolume={vol => handleVolume(vol)}
+        volume={volume} power={isPowerOn}/>
       </div>
     </div>
   );
