@@ -8,6 +8,7 @@ import React from 'react';
     const drumButtons = clips.map(clip =>
       (<DrumPad letter={clip.letter} key={clip.letter}
         audio={clip.audio} volume={props.volume}
+        isActive={props.keyPressed === clip.letter}
       handleButtonClick={(event, letter) => handleButtonClick(event, letter)}/>))
     
     function handleButtonClick(letter) {

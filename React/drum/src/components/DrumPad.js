@@ -7,11 +7,8 @@ export default function DrumPad(props) {
   function handleClick(){
     props.handleButtonClick(props.letter);
   }
-  console.log(document.getElementById("W"))
-  // const audio = document.getElementById(`${props.letter}`);
-  // audio.volume = 0.1;
   return (
-    <button className="btn btn-dark drum-pad" onClick={handleClick}>
+    <button className={`btn btn-dark drum-pad ${props.isActive ? 'active' : ''}`} onClick={handleClick}>
       <audio src={props.audio} className="clip" id={props.letter}
       ref={audioRef}/>
       <h2>{props.letter}</h2>

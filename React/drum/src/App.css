@@ -2,7 +2,16 @@
   width: 3rem; height: 3rem;
   background-color: #a15000 !important;
 }
-
+.drum-pad:hover, .active{
+  background-color: #008282 !important;
+}
+.drum-pad:active, .active{
+  background: #e5e5e5;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
+}
 .pad-display{
   display: grid;
   grid-template-columns: repeat(3, 1fr);

@@ -29,7 +29,10 @@ export default function App() {
   }
   
   if (key && document.getElementById(`${key}`))
-  { playAudio() }
+  { if (isPowerOn) {
+    playAudio(); 
+    setTimeout(() => {setKey(null);}, 1000);} 
+    else {setKey(null)} }
 
   function getClipName(){
     const matchingClip = isPowerOn ? clipsData.find(clip => clip.letter === key) : null;
@@ -37,9 +40,7 @@ export default function App() {
   }
 
   const [volume, setVolume] = React.useState(0.5);
-  function handleVolume(vol){
-    setVolume(vol)
-  }
+  function handleVolume(vol){    setVolume(vol)  }
 
   return (
     <div id="drum-machine" tabIndex={-1} 
