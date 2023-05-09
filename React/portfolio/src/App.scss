@@ -1,0 +1,19 @@
+$primary-color: #ffd700;
+@import 'animate.css';
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('./assets/fonts/helveticaneue.ttf') format('ttf');
+}
+@font-face {
+  font-family: 'La Belle Aurore';
+  src: url('./assets/fonts/LaBelleAurore.ttf') format('ttf');
+}
+@font-face {
+  font-family: 'Coolvetica Regular';
+  src: url('./assets/fonts/coolvetica-rg.otf') format('otf');
+}
+
+input, textarea{
+  font-family: 'Helvetica Neue';
+}
