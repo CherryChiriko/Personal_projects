@@ -9,6 +9,8 @@
   display: flex; justify-content: center; align-items: center;
   margin-bottom: 4rem;
   box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+
+  font-family: 'Poppins'
 }
 .search-box, .city-box{
   border: 1px solid blueviolet;
@@ -22,7 +24,7 @@
 }
 .city-box{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr) 0.5fr;
 }
 
 .centered-items {
@@ -38,7 +40,4 @@
 }
 .city-text{
   font-weight: bold;
-}
-.city-icon{
-  height: .8px !important;
 }

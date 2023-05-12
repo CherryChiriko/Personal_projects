@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import 'typeface-poppins';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CityBox from './components/CityBox';
 import SearchBar from './components/SearchBar';
@@ -13,39 +14,69 @@ export default function App() {
 
   const url = selectedId?
   `${OW_BASEURL}/weather?id=${selectedId}&appid=${OW_APIKEY}` : null;
-  
+  // `${OW_BASEURL}/weather?id=1&appid=${OW_APIKEY}` : null
   React.useEffect(()=>{
     if (url){
       fetch(url)
-      .then(response => response.json())
+      .then(response => {
+        if(!response.ok){
+          if (response.status === 404) {
+            throw new Error('City not found');
+          }
+          throw new Error('Network response error');
+        }
+        return response.json()
+      })
       .then(json =>  { 
-        console.log(json.weather[0].description); console.log(selectedId);
-        const weather = json.weather[0].description;
-        const icon = `https://openweathermap.org/img/w/${json.weather[0].icon}.png`
+        if (json){
+          const weather = json.weather[0].description;
+          const icon = `https://openweathermap.org/img/w/${json.weather[0].icon}.png`
+          if (!findCityInArray(selectedId)){
+            const newCity = {
+              id: json.id,
+              name: json.name,
+              weather: weather,
+              icon: icon
+            };
+            setCities(prevCities=>(
+              [...prevCities, newCity]))
+          }
+          else {
+            setCities(prevCities =>
+              prevCities.map(city =>
+                city.id === selectedId ? 
+                { id: json.id, name: json.name, weather: weather, icon: icon } : city
+              )
+            );
+          }
+        }
+        
+      })
+      .catch(error => {
         if (!findCityInArray(selectedId)){
           const newCity = {
-            id: json.id,
-            name: json.name,
-            weather: weather,
-            icon: icon
+            id: selectedId,
+            name: '',
+            weather: error.message,
+            icon: ''
           };
           setCities(prevCities=>(
-            [...prevCities, newCity]))
-        }
-        else {
+          [...prevCities, newCity]))
+        } else {
           setCities(prevCities =>
             prevCities.map(city =>
               city.id === selectedId ? 
-              { ...city, weather: weather, icon: icon } : city
+              { id: selectedId, name: '', weather: error.message, icon: '' } : city
             )
           );
         }
-      })
+      });
     }   
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[selectedId, refreshKey])
 
   function findCityInArray(id){
-    return cities.find(city => city.id === Number(id))
+    return cities.find(city => Number(city.id) === Number(id))
   }  
  
   function reloadCity(cityId){
@@ -83,7 +114,6 @@ export default function App() {
 }
 
 
- // const id = 524901;
-  
-  // const url= 'https://jsonplaceholder.typicode.com/todos/1'
+// const id = 524901;
+// const url= 'https://jsonplaceholder.typicode.com/todos/1'
 
