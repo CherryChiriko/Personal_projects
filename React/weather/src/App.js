@@ -9,10 +9,12 @@ import { OW_BASEURL, OW_APIKEY } from './data/config';
 export default function App() {
   const [cities, setCities] = React.useState([]);
   const [selectedId, setSelectedId] = React.useState(null);
+  const [refreshKey, setRefreshKey] = React.useState(0);
 
   const url = selectedId?
   `${OW_BASEURL}/weather?id=${selectedId}&appid=${OW_APIKEY}` : null;
-  // const url = 'https://jsonplaceholder.typicode.com/todos/1';
+
+  
   React.useEffect(()=>{
     if (url){
       fetch(url)
@@ -39,35 +41,18 @@ export default function App() {
         }
       })
     }   
-  },[selectedId])
+  },[selectedId, refreshKey])
 
   function findCityInArray(id){
     return cities.find(city => city.id === Number(id))
-  }
-
-  // const fetchWeatherData = (id) => {
-  //   if (!findCityInArray(id)){
-  //     const url=`${OW_BASEURL}/weather?id=${id}&appid=${OW_APIKEY}`;
-  //     fetch(url)
-  //       .then(response => response.json())
-  //       .then(json =>  {
-  //         // console.log(json.weather[0].description)
-  //         setCities(prevCities=>(
-  //           [...prevCities, 
-  //             {id:json.id, name: json.name, weather: json.weather[0].description}]))
-  //     })}
-  //   }
-  
-  // const id = 524901;
-  
-  // const url= 'https://jsonplaceholder.typicode.com/todos/1'
-
-  // React.useEffect(()=>{
-  //   fetchWeatherData(selectedId)}, [selectedId])
-
-  function addCity(city){
-    // setSelectedId(city.id)
-    // setCities(prevCities => [...prevCities, city])
+  }  
+ 
+  function reloadCity(cityId){
+    if (cityId !== selectedId){
+      setSelectedId(cityId)
+    }
+    else {
+    setRefreshKey(prevRefreshKey => prevRefreshKey +1)}
   }
   function deleteCity(cityId){
     setCities(prevCities => prevCities.filter(city => city.id !== cityId))
@@ -78,7 +63,7 @@ export default function App() {
       name={city.name} 
       weather={city.weather} 
       handleDelete={cityId => deleteCity(cityId)}
-      />
+      handleReload={cityId => reloadCity(cityId)}/>
   ));
 
   return (
@@ -87,10 +72,16 @@ export default function App() {
         <h2>Weather Info</h2>
       </div>
       <div className='cities-div'> 
-        <SearchBar handleChange={city => addCity(city)}
+        <SearchBar 
         selectId={id => setSelectedId(id)}/> 
         {city}
       </div>
     </div>
   );
 }
+
+
+ // const id = 524901;
+  
+  // const url= 'https://jsonplaceholder.typicode.com/todos/1'
+

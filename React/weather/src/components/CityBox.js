@@ -6,6 +6,9 @@ export default function CityBox(props) {
     function deleteCity(){
         props.handleDelete(props.id)
     }
+    function reloadCity(){
+        props.handleReload(props.id)
+    }
 
     return (
         <div className="city-box my-1 rounded">
@@ -17,7 +20,7 @@ export default function CityBox(props) {
             <p className="mx-3 my-2 weather-text">{props.weather}</p>
         </div>
         <div className="right-aligned-items">
-            <button className="btn">
+            <button className="btn" onClick={reloadCity}>
             <FontAwesomeIcon icon={faRotateRight} />
             </button>
             <button className="btn" onClick={deleteCity}>
