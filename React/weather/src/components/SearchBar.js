@@ -11,7 +11,7 @@ export default function SearchBar(props) {
         props.handleChange({id: option, name: event.target.value})
     };
     const searchCity = citiesData.map(city => (
-        <option key={`option-${city._id}`} value={city.name} id={`option-${city._id}`}>
+        <option key={`option-${city._id}`} value={city.name} id={city._id}>
           {city.name}
         </option>
     ));
