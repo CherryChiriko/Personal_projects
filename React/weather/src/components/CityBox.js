@@ -1,13 +1,12 @@
 import React from 'react';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { faSun, faXmark, faRotateRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function CityBox(props) {
     function deleteCity(){
         props.handleDelete(props.id)
     }
+
     return (
         <div className="city-box my-1 rounded">
         <div className="left-aligned-items">
