@@ -8,18 +8,42 @@ import { OW_BASEURL, OW_APIKEY } from './data/config';
 
 export default function App() {
   const [cities, setCities] = React.useState([]);
-  const [selectedId, setSelectedId] = React.useState(null)
-  
-  const url= 'https://jsonplaceholder.typicode.com/todos/1';
+  const [selectedId, setSelectedId] = React.useState(null);
+
+  const url = selectedId?
+  `${OW_BASEURL}/weather?id=${selectedId}&appid=${OW_APIKEY}` : null;
+  // const url = 'https://jsonplaceholder.typicode.com/todos/1';
   React.useEffect(()=>{
+    if (url){
       fetch(url)
       .then(response => response.json())
-      .then(json =>  { console.log(json); console.log(selectedId) })
-  })
+      .then(json =>  { 
+        console.log(json.weather[0].description); console.log(selectedId);
+        const weather = json.weather[0].description;
+        if (!findCityInArray(selectedId)){
+          const newCity = {
+            id: json.id,
+            name: json.name,
+            weather: weather
+          };
+          setCities(prevCities=>(
+            [...prevCities, newCity]))
+        }
+        else {
+          setCities(prevCities =>
+            prevCities.map(city =>
+              city.id === selectedId ? 
+              { ...city, weather: weather } : city
+            )
+          );
+        }
+      })
+    }   
+  },[selectedId])
 
-  // function findCityInArray(id){
-  //   return cities.find(city => city.id === id)
-  // }
+  function findCityInArray(id){
+    return cities.find(city => city.id === Number(id))
+  }
 
   // const fetchWeatherData = (id) => {
   //   if (!findCityInArray(id)){
@@ -43,7 +67,7 @@ export default function App() {
 
   function addCity(city){
     // setSelectedId(city.id)
-    setCities(prevCities => [...prevCities, city])
+    // setCities(prevCities => [...prevCities, city])
   }
   function deleteCity(cityId){
     setCities(prevCities => prevCities.filter(city => city.id !== cityId))
@@ -52,8 +76,9 @@ export default function App() {
   const city = cities.map(city => (
       <CityBox key={city.id} id={city.id} 
       name={city.name} 
-      // weather={city.weather} 
-      handleDelete={cityId => deleteCity(cityId)}/>
+      weather={city.weather} 
+      handleDelete={cityId => deleteCity(cityId)}
+      />
   ));
 
   return (
