@@ -13,7 +13,6 @@ export default function App() {
 
   const url = selectedId?
   `${OW_BASEURL}/weather?id=${selectedId}&appid=${OW_APIKEY}` : null;
-
   
   React.useEffect(()=>{
     if (url){
@@ -22,11 +21,13 @@ export default function App() {
       .then(json =>  { 
         console.log(json.weather[0].description); console.log(selectedId);
         const weather = json.weather[0].description;
+        const icon = `https://openweathermap.org/img/w/${json.weather[0].icon}.png`
         if (!findCityInArray(selectedId)){
           const newCity = {
             id: json.id,
             name: json.name,
-            weather: weather
+            weather: weather,
+            icon: icon
           };
           setCities(prevCities=>(
             [...prevCities, newCity]))
@@ -35,7 +36,7 @@ export default function App() {
           setCities(prevCities =>
             prevCities.map(city =>
               city.id === selectedId ? 
-              { ...city, weather: weather } : city
+              { ...city, weather: weather, icon: icon } : city
             )
           );
         }
@@ -62,6 +63,7 @@ export default function App() {
       <CityBox key={city.id} id={city.id} 
       name={city.name} 
       weather={city.weather} 
+      icon={city.icon}
       handleDelete={cityId => deleteCity(cityId)}
       handleReload={cityId => reloadCity(cityId)}/>
   ));

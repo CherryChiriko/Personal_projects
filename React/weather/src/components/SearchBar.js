@@ -17,7 +17,7 @@ export default function SearchBar(props) {
         </option>
     ));
     return (
-        <div className="city-box my-3 rounded">
+        <div className="search-box my-3 rounded">
         <select className="form-select" onChange={handleChange}>
             <option selected disabled>Add a city...</option>
             {searchCity}
