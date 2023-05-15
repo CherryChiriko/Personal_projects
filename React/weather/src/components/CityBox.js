@@ -25,7 +25,10 @@ export default function CityBox(props) {
     <img height="40px" src={props.icon} alt='icon'/> :
     <FontAwesomeIcon icon={faCircleExclamation} color="#f0ad4e"/>
     return (
-        <div className="city-box my-1 rounded" onClick={selectId}>
+        <div 
+        className={`city-box my-1 rounded
+        ${props.id === selectedId ? 'active' : ''}`} 
+        onClick={selectId}>
         <div className="left-aligned-items">
             <p className="mx-3 my-2 city-text">{props.name}</p>
         </div>

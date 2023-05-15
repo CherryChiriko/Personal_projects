@@ -14,6 +14,7 @@ import cloudImg from './assets/img/cloud.png';
 import rainImg from './assets/img/rain.png';
 import hazeImg from './assets/img/haze.png';
 import sunImg from './assets/img/sun.png';
+import aquamarine from './assets/img/aquamarine.png';
 
 export default function App() {
 
@@ -86,6 +87,7 @@ export default function App() {
     }
   }
   function chooseImage(weather){ 
+    console.log(weather)
     switch(true){
       case (/rain/i.test(weather)):
         return `url(${rainImg})`;
@@ -95,16 +97,17 @@ export default function App() {
         return `url(${hazeImg})`;
       case (/clear/i.test(weather)):
         return `url(${sunImg})`; 
-      default: return 'aquamarine';
+      default: 
+      console.log('here'); return `url(${aquamarine})`;
     }
   }
   
-  const background = getBackground();
+  const background = (selectedId && findCityInArray(selectedId))? 
+  getBackground():
+  `url(${aquamarine})`;
   const styles = {
     backgroundImage: `${background}`,
-    backgroundSize: 'cover',
-    // backgroundPosition: 'center',
-    // backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover'
   }
 
   const city = cities.map(city => (
@@ -118,7 +121,7 @@ export default function App() {
     <div>
       <div className="title" style={styles}>
         <div 
-        className={`${background!=='aquamarine'? 'div-around-title': ''} rounded`}>
+        className={`${background!==`url(${aquamarine})`? 'div-around-title': ''} rounded`}>
           <h2>Weather Info</h2>
         </div>
       </div>
