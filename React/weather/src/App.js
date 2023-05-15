@@ -10,6 +10,11 @@ import { OW_BASEURL, OW_APIKEY } from './data/config';
 import { useAppDispatch, useAppSelector } from './app/hooks'
 import { add, refresh } from './actions';
 
+import cloudImg from './assets/img/cloud.png';
+import rainImg from './assets/img/rain.png';
+import hazeImg from './assets/img/haze.png';
+import sunImg from './assets/img/sun.png';
+
 export default function App() {
 
   const cities = useAppSelector(state => state.cities);
@@ -45,7 +50,8 @@ export default function App() {
             id: json.id,
             name: json.name,
             weather: weather,
-            icon: icon
+            icon: icon,
+            background: chooseImage(weather)
           };
           !findCityInArray(selectedId)? 
             dispatch(add(newCity)):
@@ -58,7 +64,8 @@ export default function App() {
           id: selectedId,
           name: '',
           weather: error.message,
-          icon: ''
+          icon: '',
+          background: chooseImage('')
         };
         !findCityInArray(selectedId) ?
           dispatch(add(newCity)):
@@ -71,7 +78,35 @@ export default function App() {
   React.useEffect(()=>{
     localStorage.setItem('currentCities', JSON.stringify(cities))
   }, [cities])
- 
+  
+  function getBackground(){
+    if (selectedId){
+      return findCityInArray(selectedId) ?
+      findCityInArray(selectedId).background : ''
+    }
+  }
+  function chooseImage(weather){ 
+    switch(true){
+      case (/rain/i.test(weather)):
+        return `url(${rainImg})`;
+      case (/cloud/i.test(weather)):
+        return `url(${cloudImg})`;
+      case (/haze/i.test(weather)):
+        return `url(${hazeImg})`;
+      case (/clear/i.test(weather)):
+        return `url(${sunImg})`; 
+      default: return 'aquamarine';
+    }
+  }
+  
+  const background = getBackground();
+  const styles = {
+    backgroundImage: `${background}`,
+    backgroundSize: 'cover',
+    // backgroundPosition: 'center',
+    // backgroundRepeat: 'no-repeat',
+  }
+
   const city = cities.map(city => (
       <CityBox key={city.id} id={city.id} 
       name={city.name} 
@@ -81,8 +116,11 @@ export default function App() {
 
   return (
     <div>
-      <div className="title">
-        <h2>Weather Info</h2>
+      <div className="title" style={styles}>
+        <div 
+        className={`${background!=='aquamarine'? 'div-around-title': ''} rounded`}>
+          <h2>Weather Info</h2>
+        </div>
       </div>
       <div className='cities-div'> 
         <SearchBar /> 

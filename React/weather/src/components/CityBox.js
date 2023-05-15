@@ -17,12 +17,15 @@ export default function CityBox(props) {
         dispatch(updateId(props.id)):
         dispatch(updateRefreshKey())
     }
+    function selectId(){
+        // dispatch(updateId(props.id))
+    }
 
     const displayResult = props.name ? 
     <img height="40px" src={props.icon} alt='icon'/> :
     <FontAwesomeIcon icon={faCircleExclamation} color="#f0ad4e"/>
     return (
-        <div className="city-box my-1 rounded">
+        <div className="city-box my-1 rounded" onClick={selectId}>
         <div className="left-aligned-items">
             <p className="mx-3 my-2 city-text">{props.name}</p>
         </div>

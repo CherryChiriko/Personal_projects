@@ -5,7 +5,10 @@
 
 .title{
   width: 100%; height: 200px;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
+  /* background: url("https://img.freepik.com/free-photo/cloud-blue-sky_1232-3108.jpg?w=996&t=st=1684159260~exp=1684159860~hmac=94b4a2db06f502add069ef3e3557bc4dfe9302d901782673bc16f6a71ec14087")
+  ; */
+
   display: flex; justify-content: center; align-items: center;
   margin-bottom: 4rem;
   box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
@@ -25,6 +28,8 @@
 .city-box{
   display: grid;
   grid-template-columns: repeat(2, 1fr) 0.5fr;
+  min-width: 300px;
+  /* cursor: pointer; */
 }
 
 .centered-items {
@@ -40,4 +45,11 @@
 }
 .city-text{
   font-weight: bold;
+}
+
+
+.div-around-title{ 
+  background-color: aquamarine;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)
 }
