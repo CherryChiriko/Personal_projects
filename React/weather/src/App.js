@@ -8,7 +8,7 @@ import SearchBar from './components/SearchBar';
 import { OW_BASEURL, OW_APIKEY } from './data/config';
 
 import { useAppDispatch, useAppSelector } from './app/hooks'
-import { add, refresh } from './actions';
+import { add, refresh, updateId } from './actions';
 
 import cloudImg from './assets/img/cloud.png';
 import rainImg from './assets/img/rain.png';
@@ -30,6 +30,12 @@ export default function App() {
   function findCityInArray(id){
     return cities.find(city => Number(city.id) === Number(id))
   }  
+  function addRefreshCity(newCity){
+    !findCityInArray(selectedId)? 
+      dispatch(add(newCity)):
+      dispatch(refresh(selectedId, newCity))
+    dispatch(updateId(newCity.id))
+  }
 
   React.useEffect(()=>{
     if (url){
@@ -54,9 +60,7 @@ export default function App() {
             icon: icon,
             background: chooseImage(weather)
           };
-          !findCityInArray(selectedId)? 
-            dispatch(add(newCity)):
-            dispatch(refresh(selectedId, newCity))
+          addRefreshCity(newCity)
         }
         
       })
@@ -68,9 +72,7 @@ export default function App() {
           icon: '',
           background: chooseImage('')
         };
-        !findCityInArray(selectedId) ?
-          dispatch(add(newCity)):
-          dispatch(refresh(selectedId, newCity))
+        addRefreshCity(newCity)
       });
     }   
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -82,8 +84,9 @@ export default function App() {
   
   function getBackground(){
     if (selectedId){
-      return findCityInArray(selectedId) ?
-      findCityInArray(selectedId).background : ''
+      const city = findCityInArray(selectedId);
+      return  city?
+      city.background : ''
     }
   }
   function chooseImage(weather){ 
@@ -97,14 +100,12 @@ export default function App() {
         return `url(${hazeImg})`;
       case (/clear/i.test(weather)):
         return `url(${sunImg})`; 
-      default: 
-      console.log('here'); return `url(${aquamarine})`;
+      default: return `url(${aquamarine})`;
     }
   }
   
   const background = (selectedId && findCityInArray(selectedId))? 
-  getBackground():
-  `url(${aquamarine})`;
+  getBackground():  `url(${aquamarine})`;
   const styles = {
     backgroundImage: `${background}`,
     backgroundSize: 'cover'
