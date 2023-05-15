@@ -7,19 +7,24 @@ import SearchBar from './components/SearchBar';
 
 import { OW_BASEURL, OW_APIKEY } from './data/config';
 
+import { useAppDispatch, useAppSelector } from './app/hooks'
+import { add, refresh } from './actions';
+
 export default function App() {
 
-  function getInitialState(){
-    const currentCities = JSON.parse(localStorage.getItem('currentCities'));
-    return currentCities || [];
-  }
-  const [cities, setCities] = React.useState(getInitialState());
-  const [selectedId, setSelectedId] = React.useState(null);
-  const [refreshKey, setRefreshKey] = React.useState(0);
+  const cities = useAppSelector(state => state.cities);
+  const selectedId = useAppSelector(state => state.selectedId);
+  const refreshKey = useAppSelector(state => state.refreshKey);
+  const dispatch = useAppDispatch();
 
   const url = selectedId?
   `${OW_BASEURL}/weather?id=${selectedId}&appid=${OW_APIKEY}` : null;
-  // `${OW_BASEURL}/weather?id=1&appid=${OW_APIKEY}` : null
+  // `${OW_BASEURL}/weather?id=1&appid=${OW_APIKEY}` : null;
+
+  function findCityInArray(id){
+    return cities.find(city => Number(city.id) === Number(id))
+  }  
+
   React.useEffect(()=>{
     if (url){
       fetch(url)
@@ -36,45 +41,28 @@ export default function App() {
         if (json){
           const weather = json.weather[0].description;
           const icon = `https://openweathermap.org/img/w/${json.weather[0].icon}.png`
-          if (!findCityInArray(selectedId)){
-            const newCity = {
-              id: json.id,
-              name: json.name,
-              weather: weather,
-              icon: icon
-            };
-            setCities(prevCities=>(
-              [...prevCities, newCity]))
-          }
-          else {
-            setCities(prevCities =>
-              prevCities.map(city =>
-                city.id === selectedId ? 
-                { id: json.id, name: json.name, weather: weather, icon: icon } : city
-              )
-            );
-          }
+          const newCity = {
+            id: json.id,
+            name: json.name,
+            weather: weather,
+            icon: icon
+          };
+          !findCityInArray(selectedId)? 
+            dispatch(add(newCity)):
+            dispatch(refresh(selectedId, newCity))
         }
         
       })
       .catch(error => {
-        if (!findCityInArray(selectedId)){
-          const newCity = {
-            id: selectedId,
-            name: '',
-            weather: error.message,
-            icon: ''
-          };
-          setCities(prevCities=>(
-          [...prevCities, newCity]))
-        } else {
-          setCities(prevCities =>
-            prevCities.map(city =>
-              city.id === selectedId ? 
-              { id: selectedId, name: '', weather: error.message, icon: '' } : city
-            )
-          );
-        }
+        const newCity = {
+          id: selectedId,
+          name: '',
+          weather: error.message,
+          icon: ''
+        };
+        !findCityInArray(selectedId) ?
+          dispatch(add(newCity)):
+          dispatch(refresh(selectedId, newCity))
       });
     }   
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -83,29 +71,12 @@ export default function App() {
   React.useEffect(()=>{
     localStorage.setItem('currentCities', JSON.stringify(cities))
   }, [cities])
-
-  function findCityInArray(id){
-    return cities.find(city => Number(city.id) === Number(id))
-  }  
  
-  function reloadCity(cityId){
-    if (cityId !== selectedId){
-      setSelectedId(cityId)
-    }
-    else {
-    setRefreshKey(prevRefreshKey => prevRefreshKey +1)}
-  }
-  function deleteCity(cityId){
-    setCities(prevCities => prevCities.filter(city => city.id !== cityId))
-  }
-
   const city = cities.map(city => (
       <CityBox key={city.id} id={city.id} 
       name={city.name} 
       weather={city.weather} 
-      icon={city.icon}
-      handleDelete={cityId => deleteCity(cityId)}
-      handleReload={cityId => reloadCity(cityId)}/>
+      icon={city.icon}/>
   ));
 
   return (
@@ -114,15 +85,11 @@ export default function App() {
         <h2>Weather Info</h2>
       </div>
       <div className='cities-div'> 
-        <SearchBar 
-        selectId={id => setSelectedId(id)}/> 
+        <SearchBar /> 
         {city}
       </div>
     </div>
   );
 }
 
-
-// const id = 524901;
-// const url= 'https://jsonplaceholder.typicode.com/todos/1'
 
