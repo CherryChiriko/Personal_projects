@@ -8,7 +8,12 @@ import SearchBar from './components/SearchBar';
 import { OW_BASEURL, OW_APIKEY } from './data/config';
 
 export default function App() {
-  const [cities, setCities] = React.useState([]);
+
+  function getInitialState(){
+    const currentCities = JSON.parse(localStorage.getItem('currentCities'));
+    return currentCities || [];
+  }
+  const [cities, setCities] = React.useState(getInitialState());
   const [selectedId, setSelectedId] = React.useState(null);
   const [refreshKey, setRefreshKey] = React.useState(0);
 
@@ -74,6 +79,10 @@ export default function App() {
     }   
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[selectedId, refreshKey])
+
+  React.useEffect(()=>{
+    localStorage.setItem('currentCities', JSON.stringify(cities))
+  }, [cities])
 
   function findCityInArray(id){
     return cities.find(city => Number(city.id) === Number(id))
