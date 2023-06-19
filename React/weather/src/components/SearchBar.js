@@ -3,7 +3,7 @@ import citiesData from '../data/cities.json'
 import { updateId } from '../actions';
 import { useAppDispatch } from '../app/hooks';
 
-export default function SearchBar(props) {
+export default function SearchBar() {
 
     const dispatch = useAppDispatch();
 
