@@ -33,18 +33,18 @@ export default function Home (){
 //     });
 
     return(
-        <div className="home-div">
+        <div className="main-div">
             <img src={photo} alt="Me" 
             className="home-photo rounded"></img>
             <div className="home-description">
-                <p className='home-job'>Software Developer</p>
-                <h1 className='home-title'>Sofia Di Gennaro</h1>
+                <p className='soft-text'>Software Developer</p>
+                <h1 className='main-title'>Sofia Di Gennaro</h1>
                 <p>
                 Highly motivated and dedicated professional with a strong background in theoretical physics, transitioning into programming with a focus on frontend development. Equipped with a solid foundation in scientific principles and analytical thinking, I am driven by a passion for problem-solving and creating innovative software solutions. Additionally, I possess a keen interest in foreign languages and thrive in international environments.
                 </p>
                 <div className="row">
-                    <button className="btn bg-dark home-button">Curriculum</button>
-                    <button className="btn bg-dark home-button">Contact</button>
+                    <button className="btn bg-dark blue-button">Curriculum</button>
+                    <button className="btn bg-dark blue-button">Contact</button>
                     
                 </div>
             </div> 
