@@ -1,20 +1,20 @@
 import { NavLink } from 'react-router-dom'
 
-export default function Navbar (){
-    function activeStyles(isActive : any) {
-        return isActive?
-        {
-            color: "white",
-            fontWeight: "bold"
-        } : {}
-    } 
+export default function Navbar (){ 
     return(
         <nav className="flex-center">
-            <NavLink className="link" to="/"
-            style={isActive => activeStyles(isActive)}> Home </NavLink>
-            <NavLink className="link" to="/skills"> Skills </NavLink>
-            <NavLink className="link" to="/portfolio"> Portfolio </NavLink>
-            <NavLink className="link" to="/contacts"> Contacts </NavLink>
+            <NavLink to="/"
+            className={({isActive}) => isActive ? "active-link" : "link"}> 
+                Home </NavLink>
+            <NavLink to="/skills"
+            className={({isActive}) => isActive ? "active-link" : "link"}>
+                Skills </NavLink>
+            <NavLink to="/portfolio"
+            className={({isActive}) => isActive ? "active-link" : "link"}> 
+                Portfolio </NavLink>
+            <NavLink to="/contacts"
+            className={({isActive}) => isActive ? "active-link" : "link"}> 
+                Contacts </NavLink>
         </nav>
     )
 }
