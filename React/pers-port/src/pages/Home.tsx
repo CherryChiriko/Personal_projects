@@ -34,7 +34,7 @@ export default function Home (){
 //     });
 
     return(
-        <div className="flex-standard">
+        <div className="flex-standard home-div">
             <img src={photo} alt="Me" 
             className="home-photo rounded"></img>
             <div className="home-description">
@@ -43,7 +43,7 @@ export default function Home (){
                 <p>
                 Highly motivated and dedicated professional with a strong background in theoretical physics, transitioning into programming with a focus on frontend development. Equipped with a solid foundation in scientific principles and analytical thinking, I am driven by a passion for problem-solving and creating innovative software solutions. Additionally, I possess a keen interest in foreign languages and thrive in international environments.
                 </p>
-                <div className="row d-flex justify-content-center align-items-center">
+                <div className="row flex-standard">
                     <button className="btn bg-dark blue-button mx-4">Curriculum</button>
                     <button className="btn bg-dark blue-button mx-4"
                     onClick={() => window.location.href = '/contacts'}>Contact</button>

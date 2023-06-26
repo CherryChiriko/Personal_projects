@@ -7,7 +7,8 @@ export default function ProjectCard (props : any){
             props.info :
             props.info.slice(0, maxTextLength) + '...'
     return(
-        <div className='project-card rounded p-3 m-3'>
+        <div className='project-card rounded p-3 m-3' 
+        onClick={() => window.location.href = `/${props.id}`}>
             <p className="text-bold">{props.title}</p>
             <img src={props.image} alt="project" 
             className='project-photo rounded'/>
