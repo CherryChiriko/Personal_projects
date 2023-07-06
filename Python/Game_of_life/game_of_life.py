@@ -10,7 +10,7 @@ cb = plt.colorbar(matrix)
 cb.remove() 
 x, y = [], []
 # initialization function: plot the background of each frame
-def inita():
+def init():
     # M[5,5:8] = 1                          # BLINKER CONFIGURATION (period 2)
     M[0:3,2] = 1; M[1,0] = 1;  M[2,1] = 1   # GLIDER CONFIGURATION
     matrix.set_array(M)

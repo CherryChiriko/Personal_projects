@@ -1,11 +1,5 @@
 import re
 
-print('*** This is a console calculator ***')
-print('Type the operation you wish to calculate and press Enter.\n')
-operation = input('The valid operators are +, -, x, / and . for decimals.\n')
-
-
-
 def multiplyDivide(match) :
     num1, operator, num2 = match.groups()
     num1 = float(num1)
@@ -31,16 +25,16 @@ def remove_leading_zeros(match):
     num = num.lstrip('0')
     return num if num != '' else '0'
 
-def compute():
+def compute(operation):
     result = operation.replace(' ', '')
 
-    if re.search(r"[x/]{2,}|[x/][+\-]|[\+\-][x/]|[+\-]{2,}", result):
+    if re.search(r"[x/]{2,}|[x/][+]|[\+\-][x/]|[+\-]{2,}", result):
         return "Invalid request"
     
 
     regex = r"(-?\d+(?:\.\d+)?)([x/])(-?\d+(?:\.\d+)?)"
     result = re.sub(regex, remove_leading_zeros, result)
-    
+
     result = re.sub(regex, multiplyDivide, result)
     regex = r"(-?\d+(?:\.\d+)?)([+\-])(-?\d+(?:\.\d+)?)"
 
@@ -49,5 +43,10 @@ def compute():
 
     return result
 
-print(compute())
+
+print('*** This is a console calculator ***')
+print('Type the operation you wish to calculate and press Enter.\n')
+operation = input('The valid operators are +, -, x, / and . for decimals.\n')
+
+print(compute(operation))
 

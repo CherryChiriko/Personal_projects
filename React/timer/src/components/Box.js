@@ -7,13 +7,13 @@ import { faArrowRotateRight, faPause, faPlay } from '@fortawesome/free-solid-svg
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Box() {
-    const [time, setTime] = React.useState({ session: 0, break: 0  });
+    const [time, setTime] = React.useState({ session: 25, break: 5  });
     const [type, setType] = React.useState("session");
     const [isTimerRunning, setIsTimerRunning] = React.useState(false);
     const [timerKey, setTimerKey] = React.useState(Date.now())
 
     // const condition = !isTimerRunning ? time : null ;
-    const condition = !isTimerRunning && time;
+    // const condition = !isTimerRunning && time;
 
     const previousTimeRef = React.useRef(null);
 
@@ -24,7 +24,7 @@ export default function Box() {
     function reset(){
         setTimerKey(Date.now());
         setIsTimerRunning(false);
-        setTime({ session: 0, break: 5  });
+        setTime({ session: 25, break: 5  });
         setType("session");
     }
     React.useEffect( () => {

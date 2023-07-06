@@ -4,7 +4,7 @@ import React from 'react';
 import mp3 from '../assets/store-beep.mp3';
 
 export default function Timer(props) {
-    const SECONDS = 6;
+    const SECONDS = 0;
     const [minutes, setMinutes] = React.useState(props.minutes);
     const [seconds, setSeconds] = React.useState(SECONDS);
 
