@@ -1,0 +1,53 @@
+@import './base.css';
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+body {
+  display: flex;
+  place-items: center;
+}
+
+section{
+  margin-top: 2rem;
+}
+p {
+  margin: 1rem auto;
+}
+
+button {
+  background-color: transparent;
+  padding: .5rem .7rem;
+  border-radius: 15px;
+  color: hsla(160, 100%, 37%, 1);
+  border: 1px solid hsla(160, 100%, 37%, 1);
+}
+button:hover{
+  background-color: hsla(160, 100%, 37%, 0.2);
+  color: white;
+  border: 1px solid white;
+}
+
+.flex-standard{
+  text-align: center;
+  display: flex;
+  justify-content: center; align-items: center;
+}
