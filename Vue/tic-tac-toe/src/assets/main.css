@@ -1,0 +1,9 @@
+@import './base.css';
+
+.flex-center{
+  text-align: center;
+  display: flex;
+  justify-content: center; align-items: center;
+}
+.cross{    color: aqua; }
+.circle {   color: orangered;}
