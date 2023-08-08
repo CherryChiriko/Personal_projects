@@ -4,6 +4,7 @@ import { useGameStore } from '@/stores/game';
 
 const gameStore = useGameStore();
 const isCross = gameStore.isPlayer1; 
+function reset() {    gameStore.reset()  }
 </script>
 
 <template>
@@ -18,6 +19,8 @@ const isCross = gameStore.isPlayer1;
       
     </span>
     <GameBoard />
+    <button class="btn mt-4 btn btn-outline-light"
+    @click="reset">Reset</button>
   </div>
 </template>
 

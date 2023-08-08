@@ -1,31 +1,39 @@
 <template>
-  <div class="cell cross flex-center" @click="update"
+  <div 
+  class="cell cross flex-center" 
+  :style="{gridArea: `${x} / ${y}`}"
   :class="value ? 'cross' : (value === false)? 'circle' : ''"
-  :style="{gridArea: `${x} / ${y}`}">
-      <span class="material-symbols-outlined" 
-      v-if="value">
+  @click="update">
+      <span 
+      v-if="value"
+      class="material-symbols-outlined">
       {{value ? 'close' : 'circle'}}
       </span>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import { useGameStore } from '@/stores/game';
+  import { toRefs, watch } from 'vue'
+
+  const props = defineProps<{
+    position: number[],
+  }>();
+
+  const { position } = toRefs(props);
+
+  watch(position, () => {console.log(position)})
 
   const gameStore = useGameStore();
-  function reset() {    gameStore.reset()  }
-  function update(){    ù
-    console.log(x, y)
+  function update(){
+    console.log(position)
+    // console.log(x, y)
     // gameStore.update(x,y)  
   }
 
-  // watch(() => {
-  // const { modelValue } = props;
-  // console.log(modelValue);
-  // });
 
-  const position = defineProps(['position']).position
-  const [x, y] = position
+  // const position = defineProps(['position']).position
+  // const [x, y] = position
   // const [x, y] = toRefs(props.position);
 
 
@@ -40,12 +48,30 @@
   // const [x, y] = toRefs(position);
 
 
-  const value = gameStore.grid[y][x]; 
+  
   // value in the cell position
 
   // const [x, y] = this.position;
   // function reset(){ gameStore.reset()}
+  // const props = defineProps({
+  //   position: Array
+  // })
+  // const [x, y] = toRefs(props).position
 
+  // watch(position, () => {})
+  // console.log(toRefs(props).position)
+  const [x, y] = [0,0]
+  const value = gameStore.grid[y][x]; 
+
+  // const props = defineProps({
+  //   show: Boolean,
+  //   position: Array
+  // })
+  // const { show, position } = toRefs(props)
+
+  // watch(show, () => {})
+  // watch(position, () => {})
+  // console.log(position)
 </script>
 <style scoped>
 
