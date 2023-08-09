@@ -40,7 +40,7 @@ export const useGameStore = defineStore('game', () => {
     const update = (x: number, y: number) => {
         if (!grid.value[y][x]){
             grid.value[y][x] = isPlayer1.value;
-            isPlayer1.value = !isPlayer1.value
+            isPlayer1.value = !isPlayer1.value;
         }
     }
 

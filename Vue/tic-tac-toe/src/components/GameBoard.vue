@@ -3,16 +3,12 @@
         <BoardCell 
         v-for="index in 9" :key="index"
         :position = "getPosition(index-1)"
-        :show="show"/>
-
+        />
     </div>
 </template>
 
 <script setup lang="ts">
 import BoardCell from './BoardCell.vue';
-import { ref } from 'vue'
-
-const show = ref(true)
 
 function getPosition(i: number) : number[]{
     // get the position in coordinates from the index of the cell
